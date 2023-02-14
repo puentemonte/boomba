@@ -25,3 +25,39 @@ img.preview {
     height: 100px;
     border-radius: 10px;
 }
+
+.body-style {
+    background-color: rgb(249, 243, 255);
+}
+
+.header-underline {
+    width: 270px;
+    height: 20px;
+    border-radius: 7px;
+    background-color: rgba(150,71,254, 0.2);
+    position: relative;
+    margin: 0 auto;
+    transform: translate(0px, -25px);
+    z-index: -1;
+}
+
+.cards {
+    width: 600px;
+    margin: 0 auto;
+}
+
+.create, .play {
+    height: 220px;
+    font-size: larger;
+    padding: 25px;
+}
+
+.create {
+    margin-right: 4%;
+    background-color: rgb(150,71,254);
+    color: white;
+}
+
+.play {
+    background-color: rgba(150,71,254, 0.2);
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="fragments/head :: header" />
+    <title>IW: Welcome</title>
+</head>
+
+<body class="d-flex flex-column h-100 body-style">
+    <header th:replace="fragments/nav.html :: nav"></header>
+
+    <main class="flex-shrink-0">
+        <div class="container">
+            <h1 class="mt-5 text-center">LA B💣MBA</h1>
+            <div class="header-underline"></div>
+        </div>
+        <div class="container">
+            <div class="row text-center cards">
+                <div class="col create card">
+                    <p class="card-text" th:text="#{home.create}">Crear</p>
+                </div>
+                <div class="col play card">
+                    <p class="card-text" th:text="#{home.play}">Jugar</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <th:block th:replace="fragments/footer.html :: footer" />
+</body>
+
+</html>
