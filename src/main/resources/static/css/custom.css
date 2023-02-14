@@ -26,24 +26,44 @@ img.preview {
     border-radius: 10px;
 }
 
+/* MODIFICACIÓNES AQUÍ ABAJO */
+
+h1 {
+    font-size: 50px;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(150,71,254);
+    font-weight: bold;
+}
+
+a:hover {
+    color: rgb(150,71,254);
+}
+
+a:visited {
+    color: rgb(150,71,254);
+}
+
 .body-style {
     background-color: rgb(249, 243, 255);
 }
 
 .header-underline {
-    width: 270px;
-    height: 20px;
+    width: 330px;
+    height: 25px;
     border-radius: 7px;
     background-color: rgba(150,71,254, 0.2);
     position: relative;
     margin: 0 auto;
-    transform: translate(0px, -25px);
+    transform: translate(0px, -33px);
     z-index: -1;
 }
 
 .cards {
     width: 600px;
-    margin: 0 auto;
+    margin: 20px auto 0 auto;
 }
 
 .create, .play {
@@ -56,8 +76,33 @@ img.preview {
     margin-right: 4%;
     background-color: rgb(150,71,254);
     color: white;
+    opacity: 1;
 }
 
 .play {
     background-color: rgba(150,71,254, 0.2);
+}
+
+.play button {
+    background-color: white;
+    color: rgb(150,71,254);
+}
+
+.create button {
+    background-color: rgb(225, 202, 255);
+    color: black;
+}
+
+.btn-home {
+    border-radius: 10px;
+    margin: 0 auto;
+    width: 90px;
+    height: 40px;
+    line-height: 0px;
+    border: 0px;
+    font-weight: bold;
+}
+
+.no-account {
+    padding: 25px;
 }

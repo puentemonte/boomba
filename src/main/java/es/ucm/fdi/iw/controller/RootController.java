@@ -28,4 +28,9 @@ public class RootController {
     public String home(Model model) {
         return "home";
     }
+
+    @GetMapping("/register")
+    public String register(Model model) {
+        return "register";
+    }
 }
