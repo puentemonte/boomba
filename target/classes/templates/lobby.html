@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="fragments/head :: header" />
+    <title>IW: Welcome</title>
+</head>
+
+<body class="d-flex flex-column h-100 body-style">
+    <header th:replace="fragments/nav.html :: nav"></header>
+
+    <main class="flex-shrink-0">
+        <div class="container lobby">
+            <h2 class="mt-4"><b>PARTIDA #2318</b></h1>
+            <div class = "row">
+                <div class = "col">
+                    <h3>Creado por <b>@erik</b></h2>    
+                </div>
+                <div class = "col-md-auto">
+                    <button class = "btn-purple-bg">PRIVADA</button>
+                    <button class = "btn-white-bg">PÚBLICA</button>
+                </div>
+            </div>
+        </div>
+        <div class="container card crd-purple-bg lobby">
+            <div class = "row">
+                <div class = "col-md-auto user-list">
+                    <div class="btn-group">
+                        <button type="button" class="btn-dropdown-white-bg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          6 JUGADORES
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>6 jugadores</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class = "col card crd-light-bg chat-lobby">
+                    
+                </div>
+                <div class = "col">
+                    <div class = "row card crd-light-bg crd-thin">
+                        <div class = "col-md-auto exploding-time"> 
+                            <p class = "exploding-time">TIEMPO DE EXPLOSIÓN</p>
+                        </div>
+                        <div class = "col-md-auto exploding-time">
+                            <div class="btn-group">
+                                <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                  20 segundos
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>20 segundos</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "row card crd-light-bg crd-thin">
+                        <div class = "col-md-auto interfix-length"> 
+                            <p class = "interfix-length">TAMAÑO INTERFIJO</p>
+                        </div>
+                        <div class = "col-md-auto interfix-length">
+                            <div class="btn-group">
+                                <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                  3 letras
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>3 letras</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "row card crd-light-bg crd-alphabet-lobby">
+                        <p class = "alphabet-lobby text-center">ABECEDARIO A COMPLETAR</p>
+                    </div>
+                    <div class = "row card crd-light-bg crd-topics">
+                        <p class = "topics text-center">TEMÁTICAS</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <th:block th:replace="fragments/footer.html :: footer" />
+</body>
+
+</html>

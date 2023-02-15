@@ -33,4 +33,9 @@ public class RootController {
     public String register(Model model) {
         return "register";
     }
+
+    @GetMapping("/lobby")
+    public String lobby(Model model) {
+        return "lobby";
+    }
 }
