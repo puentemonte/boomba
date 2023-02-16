@@ -25,7 +25,7 @@
         <div class="container card crd-purple-bg lobby">
             <div class = "row">
                 <div class = "col-md-auto user-list">
-                    <div class="btn-group">
+                    <div class="row btn-group">
                         <button type="button" class="btn-dropdown-white-bg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                           6 JUGADORES
                         </button>
@@ -33,9 +33,74 @@
                             <li>6 jugadores</li>
                         </ul>
                     </div>
+                    <div class="row row-player">
+                        <div class = "col-md-auto">
+                            <img class="rounded-circle lobby-player-avatar" th:src="@{img/pale_yellow.png}">
+                        </div>
+                        <div class = "col-md-auto lobby-player-name">
+                            <p class = "lobby-player-name">@elena</p>
+                        </div>
+                    </div>
+                    <div class="row row-player">
+                        <div class = "col-md-auto">
+                            <img class="rounded-circle lobby-player-avatar" th:src="@{img/pale_pink.png}">
+                        </div>
+                        <div class = "col-md-auto lobby-player-name">
+                            <p class="lobby-player-name">@ainhoa</p>
+                        </div>
+                    </div>
+                    <div class="row row-player">
+                        <div class = "col-md-auto">
+                            <img class="rounded-circle lobby-player-avatar" th:src="@{img/pale_green.png}">
+                        </div>
+                        <div class = "col-md-auto lobby-player-name">
+                            <p class = "lobby-player-name">@fran</p>
+                        </div>
+                    </div>
+                    <div class="row row-player">
+                        <div class = "col-md-auto">
+                            <img class="rounded-circle lobby-player-avatar" th:src="@{img/pale_blue.png}">
+                        </div>
+                        <div class = "col-md-auto lobby-player-name">
+                            <p class="lobby-player-name">@manuela</p>
+                        </div>
+                    </div>
+                    <div class="row row-player">
+                        <div class = "col-md-auto">
+                            <img class="rounded-circle lobby-player-avatar" th:src="@{img/pale_orange.png}">
+                        </div>
+                        <div class = "col-md-auto lobby-player-name">
+                            <p class = "lobby-player-name">@julia</p>
+                        </div>
+                    </div>
+                    <div class="row row-player">
+                        <div class = "col-md-auto">
+                            <img class="rounded-circle lobby-player-avatar" th:src="@{img/pale_purple.png}">
+                        </div>
+                        <div class = "col-md-auto lobby-player-name">
+                            <p class="lobby-player-name">@erik</p>
+                        </div>
+                    </div>
                 </div>
-                <div class = "col card crd-light-bg chat-lobby">
-                    
+                <div id = "lobby" class = "col card crd-light-bg chat-lobby">
+                    <div class = "card crd-lighter-bg chat-msg">
+                        <div class = "card-body">
+                            <div class = "row">
+                                <div class = "col-md-auto">
+                                    <img class="rounded-circle lobby-player-avatar" th:src="@{img/pale_yellow.png}">
+                                </div>
+                                <div class = "col">
+                                    <p class = "chat-text">@elena</p>
+                                    <p class = "chat-text">Podemos poner 30s?</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id = "chat-textarea" class = "d-flex">
+                        <form>
+                            <input type="text" class="form-control chat-textarea" placeholder="Escribe aquí lo que quieras...">
+                        </form>
+                    </div>
                 </div>
                 <div class = "col">
                     <div class = "row card crd-light-bg crd-thin">
@@ -44,7 +109,7 @@
                         </div>
                         <div class = "col-md-auto exploding-time">
                             <div class="btn-group">
-                                <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button type="button" class="dropdown-toggle btn-dropdown-white-bg" data-bs-toggle="dropdown" aria-expanded="false">
                                   20 segundos
                                 </button>
                                 <ul class="dropdown-menu">
@@ -59,7 +124,7 @@
                         </div>
                         <div class = "col-md-auto interfix-length">
                             <div class="btn-group">
-                                <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button type="button" class="dropdown-toggle btn-dropdown-white-bg" data-bs-toggle="dropdown" aria-expanded="false">
                                   3 letras
                                 </button>
                                 <ul class="dropdown-menu">
@@ -68,11 +133,22 @@
                             </div>
                         </div>
                     </div>
-                    <div class = "row card crd-light-bg crd-alphabet-lobby">
-                        <p class = "alphabet-lobby text-center">ABECEDARIO A COMPLETAR</p>
+                    <div class = "card crd-light-bg crd-alphabet-lobby">
+                        <div class = "row">
+                            <p class = "alphabet-lobby text-center">ABECEDARIO A COMPLETAR</p>
+                        </div>
+                        <div class = "d-flex row text-center">
+                            <p><button class = "btn-small text-center" th:each="letter:${alphabet}" th:text="${letter}">A</button></p>
+                        </div>
                     </div>
-                    <div class = "row card crd-light-bg crd-topics">
-                        <p class = "topics text-center">TEMÁTICAS</p>
+                    <div class = "card crd-light-bg crd-topics">
+                        <div class = "row">
+                            <p class = "topics text-center">TEMÁTICAS</p>
+                        </div>
+                        <div class = "d-flex row topics-mg">
+                            <p><button class = "btn-topic text-center" th:each="topic:${selected_topics}" th:text="${topic}">Verbos</button>
+                                <button class = "btn-topic-plus text-center">+</button></p>
+                        </div>
                     </div>
                 </div>
             </div>

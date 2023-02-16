@@ -36,6 +36,11 @@ public class RootController {
 
     @GetMapping("/lobby")
     public String lobby(Model model) {
+        String[] alphabet = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P",
+                                        "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+        String[] topics = new String[]{"Verbos", "Sustantivos", "Animales", "Comida"}; 
+        model.addAttribute("alphabet", alphabet);
+        model.addAttribute("selected_topics", topics);
         return "lobby";
     }
 }

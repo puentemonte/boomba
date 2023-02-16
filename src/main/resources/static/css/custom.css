@@ -122,6 +122,11 @@ a:visited {
     color: white;
 }
 
+.btn-purple-bg:hover, .btn-white-bg:hover{
+    background-color: rgb(225, 202, 255);
+    color: white;
+}
+
 .btn-white-bg{ 
     background-color: white;
     color: rgb(150,71,254);
@@ -144,12 +149,12 @@ a:visited {
 }
 
 .user-list{
-    width: 240px;
+    width: 220px;
+    margin: 20px 0 20px 20px;
 }
 
 .btn-dropdown-white-bg {
     border-radius: 5px;
-    margin: 0 auto;
     width: 180px;
     height: 30px;
     line-height: 0px;
@@ -157,7 +162,6 @@ a:visited {
     font-weight: bold; 
     background-color: white;
     color: rgb(150,71,254);
-    margin: 20px 5px;
 }
 
 .chat-lobby{
@@ -177,7 +181,7 @@ a:visited {
 }
 
 .crd-alphabet-lobby{
-    height: 200px;
+    height: 175px;
 }
 
 .crd-topics{
@@ -186,4 +190,85 @@ a:visited {
 
 .lobby{
     width: 1200px;
+}
+
+.row-player{
+    margin-top: 20px;
+    font-size: medium;
+}
+
+.lobby-player-avatar{
+    width: 50px;
+    height: 50px;
+}
+
+.lobby-player-name{
+    margin: auto 0;
+}
+
+.chat-msg{
+    margin: 10px 0 20px 0;
+    background-color: rgb(245, 239, 255);
+    color : black;
+    font-weight: normal;
+    padding : 0;
+}
+
+.chat-text{
+    margin: 5px;
+}
+
+#chat-textarea {
+    position: absolute;
+    bottom: 0;
+}
+
+#lobby {
+    position: relative;
+    padding-bottom: 200px;
+}
+
+.chat-textarea{
+    border-radius: 20px;
+    height: 50px;
+    width: 450px;
+    margin: 10px 0;
+}
+
+.btn-small{
+    width: 27px;
+    height: 27px;
+    border-radius: 20px;
+    background-color: rgb(150,71,254);
+    color: white;
+    border-width: 0;
+    display: inline;
+    margin: 5px 7px;
+    font-weight: bold;
+}
+
+.btn-topic{
+    height: 27px;
+    border-radius: 20px;
+    background-color: rgb(150,71,254);
+    color: white;
+    border-width: 0;
+    display: inline;
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.btn-topic-plus{
+    height: 27px;
+    border-radius: 20px;
+    background-color: white;
+    color: rgb(150,71,254);
+    border-width: 0;
+    display: inline;
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.topics-mg {
+    margin-left: 5px;
 }
