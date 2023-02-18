@@ -432,3 +432,135 @@ a:visited {
     font-size: xx-large;
     font-weight: bold;
 }
+
+.btn-profile-img {
+    width: 150px;
+    height: 150px;
+    background-color: #ffe8a3;
+    border-radius: 100px;
+    border-width: 0;
+    font-size: larger;
+}
+
+.last-conection {
+    color: rgb(103, 103, 103);
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.profile-info{
+    margin-left: 10px;
+}
+
+.table-statistics{
+    border-width: 5px;
+    border-color: rgb(150,71,254);
+    padding: 0;
+}
+
+.statistics-head {
+    font-weight: bold;
+    background-color: rgb(225, 202, 255);
+    height: 50px;
+}
+
+table{
+    table-layout: fixed;
+    width: 200px;
+}
+
+.statistics-label{
+    font-weight: bold;
+    font-size: larger;
+    color: white;
+    background-color: rgb(150,71,254);
+    border-radius: 5px;
+    width: 350px;
+    height: 30px;
+    margin-left: auto;
+}
+
+.winner-card{
+    height: 480px;
+    background-color: rgb(150,71,254);
+    color: white;
+}
+
+.winner-photo{
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 90px;
+}
+
+.winner-position{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.winner-stats{
+    background-color: rgb(225, 202, 255);
+    color: black;
+    margin: 20px;
+    padding: 20px;
+}
+
+.white-purple-stat{
+    color: rgb(150,71,254);
+    background-color: white;
+    border-radius: 10px;
+    width: 100px;
+}
+
+.not-winners {
+    margin: auto;
+}
+
+.second-player-card {
+    background-color: rgb(150,71,254);
+    color: white;
+    border-width: 0;
+}
+
+.third-player-card{
+    background-color: rgb(150,71,254);
+    color: white;
+    border-width: 0;
+    margin-left: 40px;
+    margin-top: 20px;
+}
+
+.fourth-player-card{
+    background-color: rgb(150,71,254);
+    color: white;
+    border-width: 0;
+    margin-left: 80px;
+    margin-top: 20px;
+}
+
+.fifth-player-card{
+    background-color: rgb(150,71,254);
+    color: white;
+    border-width: 0;
+    margin-left: 120px;
+    margin-top: 20px;
+}
+
+.mini-card-purple {
+    background-color: rgb(225, 202, 255);
+    color: rgb(150,71,254);
+    padding: 20px 25px;
+    border-width: 0;
+}
+
+.mini-card-grey{
+    background-color: rgb(224, 224, 224);
+    color: rgb(150,71,254);
+    padding: 20px 25px;
+    border-width: 0;
+}
+
+.summ-center-player{
+    margin: auto 0;
+}

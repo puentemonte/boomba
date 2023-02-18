@@ -63,4 +63,19 @@ public class RootController {
         model.addAttribute("guessed_word", guessed_word);
         return "bystander";
     }
+
+    @GetMapping("/profile")
+    public String profile(Model model) {
+        String[] columns = new String[]{"Número de partidas", "Resultado", "Palabras", "Rondas"};
+        String[] codes = new String[]{"#1111", "#2222", "#3333", "#4444", "#5555"};
+        model.addAttribute("columns", columns);
+        model.addAttribute("codes", codes);
+        return "profile";
+    }
+
+    @GetMapping("/summary")
+    public String summary(Model model) {
+        return "summary";
+    }
+
 }

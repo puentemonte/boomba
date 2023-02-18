@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="fragments/head :: header" />
+    <title>IW: Profile</title>
+</head>
+
+<body class="d-flex flex-column h-100 body-style">
+    <header th:replace="fragments/nav.html :: nav"></header>
+
+    <main class="flex-shrink-0">
+        <div class="container window">
+            <div class = "row mt-4">
+                <div class = "col-md-auto">
+                    <button class = "btn-profile-img"><b>Editar</b></button>
+                </div>
+                <div class = "col profile-info">
+                    <h2><b>John Doe</b></h2>
+                    <h5>@john_doe</h5>
+                    <p class = "last-conection">Última conexión el 12/12/23</p>
+                </div>
+            </div>
+            <div class = "row">
+                <div class = "text-center statistics-label">HISTÓRICO DE PARTIDAS</div>
+                <div class = "card table-statistics">
+                    <table class="table table-borderless text-center">
+                        <thead class="statistics-head">
+                            <tr>
+                              <th scope="col" th:each="col:${columns}" th:text="${col}">Default</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr th:each="code:${codes}">
+                              <td th:text="${code}">Default</td>
+                              <td>1er puesto</td>
+                              <td>28</td>
+                              <td>12</td>
+                            </tr>
+                          </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <th:block th:replace="fragments/footer.html :: footer" />
+</body>
+
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="fragments/head :: header" />
+    <title>IW: Summary</title>
+</head>
+
+<body class="d-flex flex-column h-100 body-style">
+    <header th:replace="fragments/nav.html :: nav"></header>
+
+    <main class="flex-shrink-0">
+        <div class="container window">
+            <h2 class="mt-4"><b>PARTIDA #2318</b></h2>
+            <div class="row">
+                <div class="col">
+                    <h3>Creado por <b>@erik</b></h3>    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"> 
+                    <div class = "card winner-card">
+                        <div class = "row">
+                            <div class = "col-md-auto winner-position">
+                                <h1><b>#1</b></h1>
+                            </div>
+                            <div class = "col">
+                                <img class="rounded-circle winner-photo" th:src="@{img/pale_blue.png}">
+                            </div>
+                        </div>
+                        <div class = "row text-center">
+                            <h4><b>¡El ganador/a es @manuela!</b></h4>
+                        </div>
+                        <div class = "card winner-stats">
+                            <div class = "row">
+                                <div class = "col">
+                                    <p><b>PALABRAS CORRECTAS</b></p>
+                                </div>
+                                <div class = "col-md-auto">
+                                    <p class = "white-purple-stat text-center"><b>28</b></p>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "col">
+                                    <p><b>VIDAS RESTANTES</b></p>
+                                </div>
+                                <div class = "col-md-auto">
+                                    <p class = "white-purple-stat text-center"><b>2</b></p>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "col">
+                                    <p><b>RONDAS SOBREVIVIDAS</b></p>
+                                </div>
+                                <div class = "col-md-auto">
+                                    <p class = "white-purple-stat text-center"><b>10</b></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col not-winners"> 
+                    <div class = "card second-player-card">
+                        <div class = "row">
+                            <div class = "col-md-auto">
+                                <div class = "card mini-card-purple">
+                                    <h2><b>#2</b></h2>
+                                </div>
+                            </div>
+                            <div class = "col-md-auto summ-center-player">
+                                <div class = "row">
+                                    <div class="col-md-auto">
+                                        <img class="rounded-circle lobby-player-avatar" th:src="@{img/pale_yellow.png}">
+                                    </div>
+                                    <div class="col-md-auto lobby-player-name">
+                                        <p class="lobby-player-name">@julia</p>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "card third-player-card">
+                        <div class = "row">
+                            <div class = "col-md-auto">
+                                <div class = "card mini-card-purple">
+                                    <h2><b>#3</b></h2>
+                                </div>
+                            </div>
+                            <div class = "col-md-auto summ-center-player">
+                                <div class = "row">
+                                    <div class="col-md-auto">
+                                        <img class="rounded-circle lobby-player-avatar" th:src="@{img/pale_pink.png}">
+                                    </div>
+                                    <div class="col-md-auto lobby-player-name">
+                                        <p class="lobby-player-name">@ainhoa</p>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "card fourth-player-card">
+                        <div class = "row">
+                            <div class = "col-md-auto">
+                                <div class = "card mini-card-grey">
+                                    <h2><b>#4</b></h2>
+                                </div>
+                            </div>
+                            <div class = "col-md-auto summ-center-player">
+                                <div class = "row">
+                                    <div class="col-md-auto">
+                                        <img class="rounded-circle lobby-player-avatar" th:src="@{img/pale_green.png}">
+                                    </div>
+                                    <div class="col-md-auto lobby-player-name">
+                                        <p class="lobby-player-name">@fran</p>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "card fifth-player-card">
+                        <div class = "row">
+                            <div class = "col-md-auto">
+                                <div class = "card mini-card-grey">
+                                    <h2><b>#5</b></h2>
+                                </div>
+                            </div>
+                            <div class = "col-md-auto summ-center-player">
+                                <div class = "row">
+                                    <div class="col-md-auto">
+                                        <img class="rounded-circle lobby-player-avatar" th:src="@{img/pale_purple.png}">
+                                    </div>
+                                    <div class="col-md-auto lobby-player-name">
+                                        <p class="lobby-player-name">@erik</p>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <th:block th:replace="fragments/footer.html :: footer" />
+</body>
+
+</html>
