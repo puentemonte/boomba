@@ -43,4 +43,14 @@ public class RootController {
         model.addAttribute("selected_topics", topics);
         return "lobby";
     }
+
+    @GetMapping("/game")
+    public String game(Model model) {
+        String[] alphabet = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P",
+                                        "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+        String[] interfix = new String[]{"I", "T", "O"};
+        model.addAttribute("alphabet", alphabet);
+        model.addAttribute("interfix", interfix);
+        return "game";
+    }
 }

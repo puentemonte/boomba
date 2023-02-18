@@ -107,7 +107,7 @@ a:visited {
     padding: 25px;
 }
 
-.btn-purple-bg, .btn-white-bg{
+.btn-purple-bg, .btn-white-bg {
     border-radius: 5px;
     margin: 0 auto;
     width: 120px;
@@ -117,28 +117,29 @@ a:visited {
     font-weight: bold; 
 }
 
-.btn-purple-bg{ 
+.btn-purple-bg { 
     background-color: rgb(150,71,254);
     color: white;
 }
 
-.btn-purple-bg:hover, .btn-white-bg:hover{
+.btn-purple-bg:hover, .btn-white-bg:hover {
     background-color: rgb(225, 202, 255);
     color: white;
 }
 
-.btn-white-bg{ 
+.btn-white-bg { 
     background-color: white;
     color: rgb(150,71,254);
 }
 
-.crd-purple-bg{
+.crd-purple-bg {
     background-color: rgb(150,71,254);
     color: white;
 }
 
-.lobby{
-    height: auto;
+.lobby {
+    position: relative;
+    padding-bottom: 200px;
 }
 
 .crd-light-bg {
@@ -148,7 +149,7 @@ a:visited {
     margin: 20px 5px;
 }
 
-.user-list{
+.user-list {
     width: 220px;
     margin: 20px 0 20px 20px;
 }
@@ -164,49 +165,46 @@ a:visited {
     color: rgb(150,71,254);
 }
 
-.chat-lobby{
-    height: 500;
+.chat-lobby {
+    height: 500px;
 }
 
-.exploding-time, .interfix-length{
+.exploding-time, .interfix-length {
     margin: auto 0;
 }
 
-.alphabet-lobby, .topics{
+.alphabet, .topics {
     margin: 10px auto;
 }
 
-.crd-thin{
+.crd-thin {
     height: 45px;
 }
 
-.crd-alphabet-lobby{
+.crd-alphabet-lobby {
     height: 175px;
 }
 
-.crd-topics{
+.crd-topics {
     height: 150px;
 }
 
-.lobby{
-    width: 1200px;
-}
-
-.row-player{
+.row-player {
     margin-top: 20px;
+    margin-bottom: 20px;
     font-size: medium;
 }
 
-.lobby-player-avatar{
+.lobby-player-avatar {
     width: 50px;
     height: 50px;
 }
 
-.lobby-player-name{
+.lobby-player-name {
     margin: auto 0;
 }
 
-.chat-msg{
+.chat-msg {
     margin: 10px 0 20px 0;
     background-color: rgb(245, 239, 255);
     color : black;
@@ -214,7 +212,7 @@ a:visited {
     padding : 0;
 }
 
-.chat-text{
+.chat-text {
     margin: 5px;
 }
 
@@ -223,19 +221,14 @@ a:visited {
     bottom: 0;
 }
 
-#lobby {
-    position: relative;
-    padding-bottom: 200px;
-}
-
-.chat-textarea{
+.chat-textarea {
     border-radius: 20px;
     height: 50px;
     width: 450px;
     margin: 10px 0;
 }
 
-.btn-small{
+.btn-small {
     width: 27px;
     height: 27px;
     border-radius: 20px;
@@ -247,7 +240,7 @@ a:visited {
     font-weight: bold;
 }
 
-.btn-topic{
+.btn-topic {
     height: 27px;
     border-radius: 20px;
     background-color: rgb(150,71,254);
@@ -258,7 +251,7 @@ a:visited {
     font-weight: bold;
 }
 
-.btn-topic-plus{
+.btn-topic-plus {
     height: 27px;
     border-radius: 20px;
     background-color: white;
@@ -271,4 +264,110 @@ a:visited {
 
 .topics-mg {
     margin-left: 5px;
+}
+
+.center-inside-div {
+    margin: 0px;
+    position: relative;
+    top: 50%;
+    transform: translate(0,-50%);
+    text-align: center;
+}
+
+.lives {
+    display: flex;
+}
+
+.lives-text h3 {
+    margin-right: 15px;
+    color: rgb(150,71,254);
+    font-weight: bold;
+}
+
+.lives-counter {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: rgb(150,71,254);
+}
+
+.lives-counter p {
+    color: white;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.crd-alphabet-game {
+    width: 280px;
+    height: 240px;
+    margin: 20px auto 0 auto;
+}
+
+.correct-words {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.correct-words-text {
+    margin: 20px 0 0 0;
+}
+
+.correct-words-text h4{
+    color: rgb(150,71,254);
+    font-weight: bold;
+}
+
+.correct-words-number {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background-color: rgb(150,71,254);
+}
+
+.correct-words-number p {
+    color: white;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.game {
+    background-color: rgb(150,71,254);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-info {
+    margin: 20px 20px 20px 0px;
+}
+
+.window {
+    height: auto;
+    width: 1200px;
+}
+
+.user-list-game {
+    width: 220px;
+    margin-left: 20px;
+    border-radius: 5px;
+}
+
+.current-turn {
+    background-color: rgb(225, 202, 255);
+    padding: 5px;
+}
+
+.game-input {
+    margin-top: 20px;
+}
+
+.interfix {
+    font-size: 70px;
+    color: white;
+    font-weight: bold;
+    text-decoration-line: underline;
+    text-underline-offset: 10px;
+    margin: 70px 20px 120px auto;
 }

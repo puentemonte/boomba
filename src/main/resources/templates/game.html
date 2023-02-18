@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="fragments/head :: header" />
+    <script type="text/javascript" th:src="@{/js/timer.js}"></script>
+    <title>IW: Game</title>
+</head>
+
+<body class="d-flex flex-column h-100 body-style">
+    <header th:replace="fragments/nav.html :: nav"></header>
+
+    <main class="flex-shrink-0">
+        <div class="container window">
+            <h2 class="mt-4"><b>PARTIDA #2318</b></h2>
+                <div class="row">
+                    <div class="col-5"></div>
+                    <div class="col lives">
+                        <div class="lives-text"><h3 class="center-inside-div">Vidas restantes: </h3></div>
+                        <div class="lives-counter center-inside-div"><p class="center-inside-div">3</p></div>    
+                    </div>
+                    <div class="col-md-auto">
+                        <canvas id="canvas"></canvas>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 game-info">
+                        <div class="row">
+                            <div class="card crd-light-bg crd-alphabet-game">
+                                <div class="row">
+                                    <p class="alphabet text-center">ABECEDARIO A COMPLETAR</p>
+                                </div>
+                                <div class="d-flex row text-center">
+                                    <p><button class="btn-small text-center" th:each="letter:${alphabet}" th:text="${letter}">A</button></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col correct-words">
+                                <div class="correct-words-text"><h4 class="center-inside-div">PALABRAS CORRECTAS</h4></div>
+                                <div class="correct-words-number center-inside-div"><p class="center-inside-div">13</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 game text-center">
+                        <div class="d-flex flex-row text-center">
+                            <th:block th:each="letter:${interfix}" >
+                                <p class="p-2 text-center interfix" th:text="${letter}">interfijo</p>
+                            </th:block>
+                        </div>
+                        <div class="game-input">
+                            <form>
+                                <input type="text" class="form-control chat-textarea" placeholder="Escribe aquí lo que quieras...">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col user-list-game crd-purple-bg">
+                        <div class="row row-player current-turn">
+                            <div class="col-md-auto">
+                                <img class="rounded-circle lobby-player-avatar" th:src="@{img/pale_yellow.png}">
+                            </div>
+                            <div class="col-md-auto lobby-player-name">
+                                <p class="lobby-player-name">@elena</p>
+                            </div>
+                        </div>
+                        <div class="row row-player">
+                            <div class="col-md-auto">
+                                <img class="rounded-circle lobby-player-avatar" th:src="@{img/pale_pink.png}">
+                            </div>
+                            <div class="col-md-auto lobby-player-name">
+                                <p class="lobby-player-name">@ainhoa</p>
+                            </div>
+                        </div>
+                        <div class="row row-player">
+                            <div class="col-md-auto">
+                                <img class="rounded-circle lobby-player-avatar" th:src="@{img/pale_green.png}">
+                            </div>
+                            <div class="col-md-auto lobby-player-name">
+                                <p class="lobby-player-name">@fran</p>
+                            </div>
+                        </div>
+                        <div class="row row-player">
+                            <div class="col-md-auto">
+                                <img class="rounded-circle lobby-player-avatar" th:src="@{img/pale_blue.png}">
+                            </div>
+                            <div class="col-md-auto lobby-player-name">
+                                <p class="lobby-player-name">@manuela</p>
+                            </div>
+                        </div>
+                        <div class="row row-player">
+                            <div class="col-md-auto">
+                                <img class="rounded-circle lobby-player-avatar" th:src="@{img/pale_orange.png}">
+                            </div>
+                            <div class="col-md-auto lobby-player-name">
+                                <p class="lobby-player-name">@julia</p>
+                            </div>
+                        </div>
+                        <div class="row row-player">
+                            <div class="col-md-auto">
+                                <img class="rounded-circle lobby-player-avatar" th:src="@{img/pale_purple.png}">
+                            </div>
+                            <div class="col-md-auto lobby-player-name">
+                                <p class="lobby-player-name">@erik</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </main>
+
+    <th:block th:replace="fragments/footer.html :: footer" />
+</body>
+
+</html>
