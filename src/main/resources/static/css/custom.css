@@ -294,7 +294,7 @@ a:visited {
 .lives-counter p {
     color: white;
     font-weight: bold;
-    font-size: larger;
+    font-size: x-large;
 }
 
 .crd-alphabet-game {
@@ -328,7 +328,7 @@ a:visited {
 .correct-words-number p {
     color: white;
     font-weight: bold;
-    font-size: larger;
+    font-size: x-large;
 }
 
 .game {
@@ -364,10 +364,71 @@ a:visited {
 }
 
 .interfix {
-    font-size: 70px;
     color: white;
     font-weight: bold;
     text-decoration-line: underline;
     text-underline-offset: 10px;
+    
+}
+
+.interfix.playing {
+    font-size: 70px;
     margin: 70px 20px 120px auto;
+}
+
+.interfix.observing {
+    font-size: 50px;
+    margin: 19px 20px 50px auto;
+}
+
+.canvas {
+    width: 130px;
+    margin: 0 auto;
+}
+
+.mt-custom {
+    margin-top: 84px;
+}
+
+.bystander-info {
+    width: 400px;
+    margin: 0;
+    
+}
+
+.bystander-info p {
+    color: white;
+}
+
+.lasting-lives {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgb(225, 202, 255);
+    position: relative;
+    margin: 0 auto;
+    transform: translate(100px, -60px);
+}
+
+.guessed-words {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgb(225, 202, 255);
+    position: relative;
+    margin: 0 auto;
+    transform: translate(100px, -60px);
+}
+
+.lasting-lives p, .guessed-words p {
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.observing-player {
+    margin: 0;
+    margin-top: 20px;
+    color: white;
+    font-size: xx-large;
+    font-weight: bold;
 }

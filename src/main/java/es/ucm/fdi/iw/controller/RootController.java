@@ -53,4 +53,14 @@ public class RootController {
         model.addAttribute("interfix", interfix);
         return "game";
     }
+
+    @GetMapping("/bystander")
+    public String bystander(Model model) {
+        String[] alphabet = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P",
+                                        "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+        String[] guessed_word = new String[]{"M", "E", "R", "I", "T", "O"};
+        model.addAttribute("alphabet", alphabet);
+        model.addAttribute("guessed_word", guessed_word);
+        return "bystander";
+    }
 }
