@@ -357,6 +357,7 @@ a:visited {
 .current-turn {
     background-color: rgb(225, 202, 255);
     padding: 5px;
+    border-radius: 5px;
 }
 
 .game-input {
@@ -563,4 +564,27 @@ table{
 
 .summ-center-player{
     margin: auto 0;
+}
+
+.btn-admin {
+    margin: 20px auto 0 auto;
+}
+
+.btn-admin button {
+    width: 240px;
+    height: 80px;
+    margin-right: 70px;
+}
+
+.btn-deban {
+    background-color: rgb(174,245,198);
+    
+}
+
+.btn-ban {
+    background-color: rgb(255,199,194);
+}
+
+.btn-more {
+    background-color: rgb(204,204,204);
 }
