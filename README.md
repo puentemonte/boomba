@@ -1,6 +1,15 @@
-# Aplicación de Plantilla de IW
+# LA BOOMBA
 
-Debes buscar todos los lugares donde aparece la palabra "plantilla" (incluido este párrafo) y reemplazar las ocurrencias, y el contexto circundante, por valores que tengan sentido en tu aplicación. Por ejemplo, este párrafo deberías eliminarlo de tu proyecto.
+## Vistas principales de la aplicación web
+
+![Vista de Inicio | Home View](https://user-images.githubusercontent.com/56733112/219961382-54e259ed-a8ce-4464-a9b5-1a8fb19eb289.jpg)
+![Vista de Lobby | Lobby View](https://user-images.githubusercontent.com/56733112/219961733-8644884e-3d85-4288-8fdc-69dc827e0095.jpg)
+![Vista de Juego | Game View ](https://user-images.githubusercontent.com/56733112/219961770-44a84ed5-2e59-45c3-8e8d-cd9317ad4865.jpg)
+![Vista de Observador | Observer View](https://user-images.githubusercontent.com/56733112/219961786-72505f71-0c44-4759-8265-37f2e1a5b198.jpg)
+![Vista de Resumen | Recap View](https://user-images.githubusercontent.com/56733112/219961804-cdce3c92-ac83-4280-b050-e4a994ca94a3.jpg)
+![vista de Registro | Sign Up View](https://user-images.githubusercontent.com/56733112/219961965-21b373e7-df5d-4f5c-bfb9-3c10722dd33c.jpg)
+![Vista de Perfil | Profile View](https://user-images.githubusercontent.com/56733112/219961946-43fea094-4bb7-43e0-8971-1d54126c67df.jpg)
+![Vista de Admin | Admin View](https://user-images.githubusercontent.com/56733112/219961986-e3cb5c97-4acb-4201-8d30-a044b7ecac32.jpg)
 
 ## Contenido de la plantilla
 
