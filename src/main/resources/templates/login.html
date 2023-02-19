@@ -3,29 +3,39 @@
 
 <head>
     <th:block th:replace="fragments/head :: header" />
-    <title>IW: Login</title>
+    <title>IW: Register</title>
 </head>
 
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column h-100 body-style">
     <header th:replace="fragments/nav.html :: nav"></header>
 
     <main class="flex-shrink-0">
         <div class="container">
-            <form class="form-signin" method="post" th:action="@{/login}">
-                <h2 class="form-signin-heading">Please sign in</h2>
-                <p th:if="${#request.getQueryString() == 'error'}" class="error">
-                    Error en nombre de usuario o contraseña
-                </p>
-                <p>
-                    <label for="username" class="visually-hidden">Username</label>
-                    <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="required">
-                </p>
-                <p>
-                    <label for="password" class="visually-hidden">Password</label>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="required">
-                </p>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            </form>
+            <h1 class="mt-4 text-center">LA B💣MBA</h1>
+            <div class="header-underline"></div>
+            <div class="card login-card">
+                <div class="row text-center">
+                    <form class="form-signin" method="post" th:action="@{/login}">
+                        <p th:if="${#request.getQueryString() == 'error'}" class="error">
+                            Error en nombre de usuario o contraseña
+                        </p>
+                        <p>
+                            <label for="username"><b>TU NOMBRE DE USUARIO</b></label>
+                            <input type="text" id="username" name="username" class="form-control register-input" placeholder="pollito" required="required">
+                        </p>
+                        <p>
+                            <label for="password"><b>TU CONTRASEÑA</b></label>
+                            <input type="password" id="password" name="password" class="form-control register-input" placeholder="pollito123" required="required">
+                        </p>
+                        <button class="btn-form" type="submit">INICIA SESIÓN</button>
+                    </form>
+                </div>
+                <div class="row register-login-msg">
+                    <span>¿Todavía no tienes cuenta?
+                        <a th:href="@{register}">Regístrate</a>
+                    </span>
+                </div>
+            </div>
         </div>
     </main>
 

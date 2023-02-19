@@ -10,26 +10,61 @@
     <header th:replace="fragments/nav.html :: nav"></header>
 
     <main class="flex-shrink-0">
-        <div class="container">
-            <form class="form-signin" method="post" th:action="@{/login}">
-                <h2 class="form-signin-heading">Por favor regístrate</h2>
-                <p th:if="${#request.getQueryString() == 'error'}" class="error">
-                    Error en nombre de usuario o contraseña
-                </p>
-                <p>
-                    <label for="username" class="visually-hidden">Nombre de usuario</label>
-                    <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="required">
-                </p>
-                <p>
-                    <label for="password" class="visually-hidden">Contraseña</label>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="required">
-                </p>
-                <p>
-                    <label for="password" class="visually-hidden">Repetir contraseña</label>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="required">
-                </p>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Registrarse</button>
-            </form>
+        <div class="container register">
+            <h1 class="mt-4 text-center">LA B💣MBA</h1>
+            <div class="header-underline"></div>
+            <div class="card outer-register-card">
+                <div class="row text-center">
+                    <div class = "col">
+                        <div class="card intra-register-card">
+                            <div class="row">
+                                <button class = "btn-avatar-img"><b>Elige un avatar</b></button>
+                            </div>
+                            <div class="row">
+                                <div class = "text-center">
+                                    <button class = "btn-mini-avatar-yellow"> </button>
+                                    <button class = "btn-mini-avatar-green"> </button>
+                                    <button class = "btn-mini-avatar-blue"> </button>
+                                    <button class = "btn-mini-avatar-purple"> </button>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class = "text-center">
+                                    <button class = "btn-mini-avatar-orange"> </button>
+                                    <button class = "btn-mini-avatar-pink"> </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "col register-form">
+                        <div class = "row">
+                            <form class="form-signin" method="post" th:action="@{/login}">
+                                <p th:if="${#request.getQueryString() == 'error'}" class="error">
+                                    Error en nombre de usuario o contraseña
+                                </p>
+                                <p>
+                                    <label for="username"><b>ELIGE UN APODO</b></label>
+                                    <input type="text" id="username" name="username" class="form-control register-input" placeholder="pollito" required="required">
+                                </p>
+                                <p>
+                                    <label for="eamil"><b>INTRODUCE UN CORREO</b></label>
+                                    <input type="email" id="email" name="email" class="form-control register-input" placeholder="pollito@ucm.es" required="required">
+                                </p>
+                                <p>
+                                    <label for="password"><b>INTRODUCE UNA CONTRASEÑA</b></label>
+                                    <input type="password" id="password" name="password" class="form-control register-input" placeholder="pollito123" required="required">
+                                </p>
+                                <button class="btn-form" type="submit">REGÍSTRATE</button>
+                            </form>
+                        </div>
+                        <div class="row register-login-msg">
+                            <span>¿Ya tienes una cuenta?
+                                <a th:href="@{login}">Inicia sesión</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
