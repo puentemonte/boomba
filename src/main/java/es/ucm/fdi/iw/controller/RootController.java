@@ -78,4 +78,9 @@ public class RootController {
         return "summary";
     }
 
+    @GetMapping("/report")
+    public String report(Model model) {
+        return "report";
+    }
+
 }

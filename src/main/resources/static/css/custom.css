@@ -356,7 +356,8 @@ a:visited {
 
 .current-turn {
     background-color: rgb(225, 202, 255);
-    padding: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     border-radius: 5px;
 }
 
@@ -573,7 +574,7 @@ table{
 .btn-admin button {
     width: 240px;
     height: 80px;
-    margin-right: 70px;
+    margin-left: 125px;
 }
 
 .btn-deban {
@@ -713,4 +714,13 @@ table{
     padding: 20px;
     border-width: 0;
     margin: auto;
+}
+
+.report-game {
+    height: 50px;
+    
+}
+
+.report-game p {
+    margin-top: 12px;
 }
