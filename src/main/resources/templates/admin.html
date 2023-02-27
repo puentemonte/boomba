@@ -10,10 +10,108 @@
     <header th:replace="fragments/nav.html :: nav"></header>
 
     <main class="flex-shrink-0">
-        <div class="container window">
+        <div class="container">
             <h2 class="mt-4 mb-5 text-center"><b>LISTA DE PERFILES DENUNCIADOS</b></h2>
         </div>
-        
+        <div class="container card crd-purple-bg admin-window">
+            <div class="row">
+                <div class="col-md-auto user-list">
+                    <div class="row btn-group">
+                        <button type="button" class="btn-dropdown-white-bg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          6 PERFILES
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>6 perfiles</li>
+                        </ul>
+                    </div>
+                    <div class="row row-player">
+                        <div class="col-md-auto">
+                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_yellow.png}">
+                        </div>
+                        <div class="col-md-auto lobby-player-name">
+                            <p class="lobby-player-name">@pam</p>
+                        </div>
+                    </div>
+                    <div class="row row-player">
+                        <div class="col-md-auto">
+                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_green.png}">
+                        </div>
+                        <div class="col-md-auto lobby-player-name">
+                            <p class="lobby-player-name">@hugo</p>
+                        </div>
+                    </div>
+                    <div class="row row-player">
+                        <div class="col-md-auto">
+                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_blue.png}">
+                        </div>
+                        <div class="col-md-auto lobby-player-name">
+                            <p class="lobby-player-name">@adrian</p>
+                        </div>
+                    </div>
+                    <div class="row row-player">
+                        <div class="col-md-auto">
+                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_pink.png}">
+                        </div>
+                        <div class="col-md-auto lobby-player-name">
+                            <p class="lobby-player-name">@pablo</p>
+                        </div>
+                    </div>
+                    <div class="row row-player">
+                        <div class="col-md-auto">
+                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_orange.png}">
+                        </div>
+                        <div class="col-md-auto lobby-player-name">
+                            <p class="lobby-player-name">@monica</p>
+                        </div>
+                    </div>
+                    <div class="row row-player">
+                        <div class="col-md-auto">
+                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_purple.png}">
+                        </div>
+                        <div class="col-md-auto lobby-player-name">
+                            <p class="lobby-player-name">@esther</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col card report-stats">
+                    <div class = "even-lighter-cards">
+                        <div class = "even-lighter-crd">
+                            <div class = "col">
+                                <div class = "row">
+                                    <div class = "col">
+                                        <p>PARTIDAS JUGADAS</p>
+                                    </div>
+                                    <div class = "col-md-auto">
+                                        <p class = "white-purple-report-stats text-center">4</p>
+                                    </div>
+                                </div>
+                                <div class = "row">
+                                    <a class = "link-last">Ver última partida</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "even-lighter-crd">
+                            <div class = "col">
+                                <div class = "row">
+                                    <div class = "col">
+                                        <p>DENUNCIAS</p>
+                                    </div>
+                                    <div class = "col-md-auto">
+                                        <p class = "white-purple-report-stats text-center">3</p>
+                                    </div>
+                                </div>
+                                <div class = "row">
+                                    <a class = "link-last">Ver última partida denunciada</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "text-center mt-btn">
+                            <button class="btn-form" type="submit">VER PARTIDAS</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <th:block th:replace="fragments/footer.html :: footer" />

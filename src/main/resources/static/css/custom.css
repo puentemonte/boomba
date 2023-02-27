@@ -724,3 +724,44 @@ table{
 .report-game p {
     margin-top: 12px;
 }
+
+.admin-window{
+    width: 1000px;
+}
+
+.report-stats {
+    background-color: rgb(225, 202, 255);
+    color: #313131;
+    font-weight: bold; 
+    margin: 40px;
+    border-radius: 10px;
+}
+
+.even-lighter-cards{
+    margin: 40px 40px 60px 40px;
+}
+
+.even-lighter-crd{
+    background-color: rgb(244, 235, 255);
+    margin: 20px;
+    font-size: x-large;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.white-purple-report-stats{
+    color: rgb(150,71,254);
+    background-color: white;
+    border-radius: 10px;
+    width: 150px;
+}
+
+.mt-btn {
+    margin-top: 50px;
+}
+
+.link-last{
+    color: rgb(150,71,254);
+    font-size: medium;
+}
+
