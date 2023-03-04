@@ -44,11 +44,12 @@ public class User implements Transferable<User.Transfer> {
     @Column(nullable = false)
     private String password;
 
-    private String firstName;
-    private String lastName;
-
     private boolean enabled;
     private String roles; // split by ',' to separate roles
+    
+    @OneToMany
+    @JoinColumn(name="user_id")
+    private List<Player> players = new ArrayList<>();
 
 	@OneToMany
 	@JoinColumn(name = "sender_id")

@@ -2,13 +2,16 @@ package es.ucm.fdi.iw.model;
 
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
 @Data
-public class Game {
+@NoArgsConstructor
+@Table(name="Game")
+public class Game implements Transferable<Game.Transfer> {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen")
     @SequenceGenerator(name = "gen", sequenceName = "gen")
@@ -28,4 +31,24 @@ public class Game {
 
     @OneToOne
     private Player creator; 
+
+    @OneToMany
+    @JoinColumn(name="game_id")
+    private List<Player> players = new ArrayList<>();
+
+    @Getter
+    @AllArgsConstructor
+    public static class Transfer {
+        private long id;
+    }
+
+    @Override
+    public Transfer toTransfer() {
+        return new Transfer(id);
+    }
+
+    @Override
+    public String toString() {
+        return toTransfer().toString();
+    }
 }

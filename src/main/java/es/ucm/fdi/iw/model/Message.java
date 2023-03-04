@@ -46,6 +46,8 @@ public class Message implements Transferable<Message.Transfer> {
 	
 	private LocalDateTime dateSent;
 	private LocalDateTime dateRead;
+
+	private boolean reported;
 	
 	/**
 	 * Objeto para persistir a/de JSON

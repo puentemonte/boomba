@@ -1,10 +1,16 @@
 package es.ucm.fdi.iw.controller;
 
+import java.util.ArrayList;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
+import es.ucm.fdi.iw.model.*;
+import es.ucm.fdi.iw.model.User.Role;
 
 /**
  *  Non-authenticated requests only.
@@ -46,11 +52,32 @@ public class RootController {
 
     @GetMapping("/game")
     public String game(Model model) {
-        String[] alphabet = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P",
-                                        "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+        List<String> alphabet = new ArrayList<> (List.of("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P",
+        "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"));
         String[] interfix = new String[]{"I", "T", "O"};
         model.addAttribute("alphabet", alphabet);
         model.addAttribute("interfix", interfix);
+
+        Game game = new Game();
+        game.setExploding_time(30);
+        game.setIfx_length(3);
+        List<String> topics = new ArrayList<>();
+        topics.add("All");
+        game.setTopics(topics);
+        game.setAlphabet(alphabet);
+        game.setState("Started");
+        game.setRounds(0);
+        game.setPriv(true);
+        game.setInterfix("ito");
+        Player creator = new Player();
+        creator.setGame(game);
+        creator.setRounds(0);
+        User user = new User();
+        user.setEnabled(true);
+        user.setUsername("Erik");
+        creator.setUser(user);
+        game.setCurr_player(creator);
+
         return "game";
     }
 
