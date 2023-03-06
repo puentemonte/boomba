@@ -64,6 +64,7 @@ public class User implements Transferable<User.Transfer> {
      * @param role to check
      * @return true iff this user has that role.
      */
+     
     public boolean hasRole(Role role) {
         String roleName = role.name();
         return Arrays.asList(roles.split(",")).contains(roleName);

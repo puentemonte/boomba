@@ -61,6 +61,7 @@ public class RootController {
         Game game = new Game();
         game.setExploding_time(30);
         game.setIfx_length(3);
+        
         List<String> topics = new ArrayList<>();
         topics.add("All");
         game.setTopics(topics);
@@ -69,9 +70,11 @@ public class RootController {
         game.setRounds(0);
         game.setPriv(true);
         game.setInterfix("ito");
+
         Player creator = new Player();
         creator.setGame(game);
         creator.setRounds(0);
+
         User user = new User();
         user.setEnabled(true);
         user.setUsername("Erik");
