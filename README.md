@@ -2,43 +2,7 @@
 
 ## DB
 
-- User
-	- Roles
-	- Id
-	- Username
-	- Password
-	- Email
-	- Enabled
-	- Games
-	- Active date
-
-- Game
-	- Id
-	- Players
-	- Exploding time
-	- Interfix
-	- Ifx Length
-	- Topics (en duda)
-	- Alphabet
-	- State (el estado de la partida: lobby, jugando y terminada)
-	- Action (solo las palabras correctas y aceptadas)
-	- Rounds (número de pasadas por las que han pasado los usuarios)
-	- Turn (el usuario que tiene el turno)
-	- Private
-	- Messages
-
-- Player
-	- Words
-	- Lives
-	- Rounds
-	- Rank
-	- Alphabet
-  
-- Message
-	- Sender
-	- Game
-	- Text
-	- Reported
+![DB](https://user-images.githubusercontent.com/56733112/223422199-9e879b59-2e70-4b7f-ad1a-63f63a39603c.png)
 
 ## Vistas principales de la aplicación web
 
