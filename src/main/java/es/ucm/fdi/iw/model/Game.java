@@ -2,8 +2,7 @@ package es.ucm.fdi.iw.model;
 
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.*;
 
@@ -19,8 +18,15 @@ public class Game implements Transferable<Game.Transfer> {
 
     private int exploding_time;
     private int ifx_length;
+
+    @Column
+    @ElementCollection(targetClass = String.class)
     private List<String> topics;
+
+    @Column
+    @ElementCollection(targetClass = String.class)
     private List<String> alphabet;
+    
     private String state;
     private int rounds;
     private boolean priv;

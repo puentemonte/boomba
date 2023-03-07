@@ -18,11 +18,15 @@
             <div class="row text-center cards">
                 <div class="col create card">
                     <p class="card-text" th:text="#{home.create}">Crear</p>
-                    <button class="btn-home">CREAR</button>
+                    <form action="#" th:action="@{/lobby}" method="post">
+                        <button class="btn-home" type="submit" name="create">CREAR</button>
+                    </form>
                 </div>
                 <div class="col play card">
                     <p class="card-text" th:text="#{home.play}">Jugar</p>
-                    <button class="btn-home">JUGAR</button>
+                    <a th:href="@{lobby}">
+                        <button class="btn-home" type="submit" name="play">JUGAR</button>
+                    </a>
                 </div>
             </div>
         </div>
