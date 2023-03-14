@@ -3,6 +3,7 @@
 
 <head>
     <th:block th:replace="fragments/head :: header" />
+    <script th:src="@{/js/lobby.js}"></script>
     <title>IW: Lobby</title>
 </head>
 
@@ -25,13 +26,16 @@
         <div class="container card crd-purple-bg window">
             <div class="row">
                 <div class="col-md-auto user-list">
-                    <div class="row btn-group">
-                        <button type="button" class="btn-dropdown-white-bg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                          6 JUGADORES
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>6 jugadores</li>
-                        </ul>
+                    <div class="row">
+                        <select class="form-select form-select-md mb-3 btn-dropdown-white-bg" aria-label=".form-select-lg example" id="num-players">
+                            <option class="dropdown-item" value="2">2 jugadores</option>
+                            <option class="dropdown-item" value="3">3 jugadores</option>
+                            <option class="dropdown-item" value="4">4 jugadores</option>
+                            <option class="dropdown-item" value="5">5 jugadores</option>
+                            <option class="dropdown-item" value="6">6 jugadores</option>
+                            <option class="dropdown-item" value="7">7 jugadores</option>
+                            <option class="dropdown-item" value="8">8 jugadores</option>
+                        </select>
                     </div>
                     <div class="row row-player">
                         <div class="col-md-auto">
@@ -98,7 +102,7 @@
                     </div>
                     <div id="chat-textarea" class="d-flex">
                         <form>
-                            <input type="text" class="form-control chat-textarea" placeholder="Escribe aquí lo que quieras...">
+                            <input type="text" class="form-control chat-textarea disabled" placeholder="Escribe aquí lo que quieras...">
                         </form>
                     </div>
                 </div>
