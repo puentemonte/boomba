@@ -7,10 +7,15 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import es.ucm.fdi.iw.model.*;
 import es.ucm.fdi.iw.model.User.Role;
 
@@ -43,47 +48,23 @@ public class RootController {
     }
 
     @PostMapping("/lobby")
-    public String lobby(Model model) {
-        //String[] cosas = "abracadabra".split
-        String[] alphabet = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P",
-                                        "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+    public String lobby(Model model, HttpSession session) {
+        User requester = (User)session.getAttribute("u");
+        String[] alphabet = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split("");
         String[] topics = new String[]{"Verbos", "Sustantivos", "Animales", "Comida"}; 
         model.addAttribute("alphabet", alphabet);
         model.addAttribute("selected_topics", topics);
+        model.addAttribute("creator", requester.getId());
         return "lobby";
     }
 
     @GetMapping("/game")
     public String game(Model model) {
-        String[] alphabet = new String [] {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P",
-        "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+        String[] alphabet = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split("");
         String[] interfix = new String[]{"I", "T", "O"};
         
         model.addAttribute("alphabet", alphabet);
         model.addAttribute("interfix", interfix);
-
-        /*Game game = new Game();
-        game.setExploding_time(30);
-        game.setIfx_length(3);
-        
-        List<String> topics = new ArrayList<>();
-        topics.add("All");
-        game.setTopics(topics);
-        game.setAlphabet(alphabet);
-        game.setState("Started");
-        game.setRounds(0);
-        game.setPriv(true);
-        game.setInterfix("ito");
-
-        Player creator = new Player();
-        creator.setGame(game);
-        creator.setRounds(0);
-
-        User user = new User();
-        user.setEnabled(true);
-        user.setUsername("Erik");
-        creator.setUser(user);
-        game.setCurr_player(creator);*/
 
         return "game";
     }

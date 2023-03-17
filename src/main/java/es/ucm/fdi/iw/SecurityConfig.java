@@ -52,10 +52,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	        .authorizeRequests()
 	            .antMatchers("/css/**", "/js/**", "/img/**", "/", "/error").permitAll()
 				.antMatchers("/api/**").permitAll()            // <-- public api access
-				.antMatchers("/admin/**").hasRole("ADMIN")	   // <-- administration
-	            .antMatchers("/user/**").hasRole("USER")	   // <-- logged-in users
-				// MODIFICACIONES
-	            .antMatchers("/home/**", "/lobby/**", "/register/**", "/game/**", "/bystander/**", "/profile/**", "/summary/**", "/report/**").permitAll()
+				.antMatchers("/admin/**", "/report/**").hasRole("ADMIN")	   // <-- administration
+	            .antMatchers("/user/**", "/lobby/**", "/game/**", "/bystander/**", "/profile/**", "/summary/**").hasRole("USER")	   // <-- logged-in users
+	            .antMatchers("/home/**", "/register/**").permitAll()
 				.anyRequest().authenticated()
 	            .and()
 			.formLogin()
