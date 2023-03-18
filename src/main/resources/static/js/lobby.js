@@ -1,1 +1,1 @@
-console.log("ja");
+console.log("ok");

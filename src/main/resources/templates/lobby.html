@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-md-auto user-list">
                     <div class="row">
-                        <select class="form-select form-select-md mb-3 btn-dropdown-white-bg" aria-label=".form-select-lg example" id="num-players">
+                        <select class="mb-3 btn-dropdown-white-bg" id="num-players">
                             <option class="dropdown-item" value="2">2 jugadores</option>
                             <option class="dropdown-item" value="3">3 jugadores</option>
                             <option class="dropdown-item" value="4">4 jugadores</option>
@@ -112,14 +112,12 @@
                             <p class="exploding-time">TIEMPO DE EXPLOSIÓN</p>
                         </div>
                         <div class="col-md-auto exploding-time">
-                            <div class="btn-group">
-                                <button type="button" class="dropdown-toggle btn-dropdown-white-bg" data-bs-toggle="dropdown" aria-expanded="false">
-                                  20 segundos
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li>20 segundos</li>
-                                </ul>
-                            </div>
+                            <select class="btn-dropdown-white-bg" id="exploding_time">
+                                <option class="dropdown-item" value="30">30 segundos</option>
+                                <option class="dropdown-item" value="3">40 segundos</option>
+                                <option class="dropdown-item" value="4">50 segundos</option>
+                                <option class="dropdown-item" value="5">60 segundos</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row card crd-light-bg crd-thin">
@@ -127,14 +125,11 @@
                             <p class="interfix-length">TAMAÑO INTERFIJO</p>
                         </div>
                         <div class="col-md-auto interfix-length">
-                            <div class="btn-group">
-                                <button type="button" class="dropdown-toggle btn-dropdown-white-bg" data-bs-toggle="dropdown" aria-expanded="false">
-                                  3 letras
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li>3 letras</li>
-                                </ul>
-                            </div>
+                            <select class="btn-dropdown-white-bg" id="ifx_length">
+                                <option class="dropdown-item" value="30">2 letras</option>
+                                <option class="dropdown-item" value="3">3 letras</option>
+                                <option class="dropdown-item" value="4">4 letras</option>
+                            </select>
                         </div>
                     </div>
                     <div class="card crd-light-bg crd-alphabet-lobby">
@@ -153,6 +148,9 @@
                             <p><button class="btn-topic text-center" th:each="topic:${selected_topics}" th:text="${topic}">Verbos</button>
                                 <button class="btn-topic-plus text-center">+</button></p>
                         </div>
+                    </div>
+                    <div class="row">
+                        <button class="btn-white-bg start">¡EMPEZAR!</button>
                     </div>
                 </div>
             </div>

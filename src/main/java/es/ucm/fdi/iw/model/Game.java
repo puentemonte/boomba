@@ -19,6 +19,7 @@ public class Game implements Transferable<Game.Transfer> {
     private static final String _STATE = "LOBBY";
     private static final int _ROUNDS = 0;
     private static final boolean _PRIV = true;
+
     
 
     @Id
@@ -50,7 +51,7 @@ public class Game implements Transferable<Game.Transfer> {
 
     @OneToMany
     @JoinColumn(name="game_id")
-    private List<Player> players = new ArrayList<>();
+    private List<Player> players;
 
     @Getter
     @AllArgsConstructor
@@ -68,7 +69,18 @@ public class Game implements Transferable<Game.Transfer> {
         return toTransfer().toString();
     }
 
-    public void init_game() {
-        
+    public void init_game(User ucreator) {
+        exploding_time = _EXPLODING_TIME;
+        ifx_length = _IFX_LENGTH;
+        topics = new ArrayList<String>(Arrays.asList(_TOPICS.split(",")));
+        alphabet = new ArrayList<String>(Arrays.asList(_ALPHABET.split("")));
+        state =  _STATE;
+        rounds = _ROUNDS;
+        priv = _PRIV;
+        Player creator = new Player();
+        creator.init_player(this, ucreator, _ROUNDS);
+        players = new ArrayList<Player>();
+        players.add(creator);
+        this.creator = creator;
     }
 }

@@ -77,6 +77,13 @@
 			<version>${karate.version}</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- OpenCSV para leer CSVs -->
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>4.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>

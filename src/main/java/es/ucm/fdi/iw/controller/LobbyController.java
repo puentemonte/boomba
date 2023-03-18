@@ -49,7 +49,7 @@ public class LobbyController {
     private static final Logger log = LogManager.getLogger(LobbyController.class);
 
     // Crear un game con configuración predeterminada
-    @PostMapping("/{id}")
+	@PostMapping("/{id}") // User id
 	@Transactional
 	public String postGame(
 			HttpServletResponse response,
@@ -57,50 +57,19 @@ public class LobbyController {
 			@ModelAttribute Game edited,
 			Model model, HttpSession session) throws IOException {
 
-        
-        /*Game requester = (Game)session.getAttribute("u");
-        User target = null;
-        if (id == -1 && requester.hasRole(*.ADMIN)) {
-            // create new user with random password
-            target = new User();
-            target.setPassword(encodePassword(generateRandomBase64Token(12)));
-            target.setEnabled(true);
-            entityManager.persist(target);
-            entityManager.flush(); // forces DB to add user & assign valid id
-            id = target.getId();   // retrieve assigned id from DB
-        }*/
+        Game game = new Game();
+        User creator = (User)session.getAttribute("u");
+        game.init_game(creator);
 
-        Game target = new Game();
-        target.init_game();
+        session.setAttribute("g", game);
 
-
-        /*
-        // retrieve requested user
-        target = entityManager.find(User.class, id);
-        model.addAttribute("user", target);
-		
-		if (requester.getId() != target.getId() &&
-				! requester.hasRole(Role.ADMIN)) {
-			throw new NoEsTuPerfilException();
-		}
-		
-		if (edited.getPassword() != null) {
-            if ( ! edited.getPassword().equals(pass2)) {
-                // FIXME: complain
-            } else {
-                // save encoded version of password
-                target.setPassword(encodePassword(edited.getPassword()));
-            }
-		}		
-		target.setUsername(edited.getUsername());
-
-		// update user session so that changes are persisted in the session, too
-        if (requester.getId() == target.getId()) {
-            session.setAttribute("u", target);
-        }*/
+		model.addAttribute("players", game.getPlayers());
 
 		return "lobby";
-	}	
-
-    
+	}
+	
+	@GetMapping("/{id}") // Game id
+	public String joinGame() {
+		return "lobby";
+	}
 }
