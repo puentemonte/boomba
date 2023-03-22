@@ -18,9 +18,10 @@
             <div class="row text-center cards">
                 <div class="col create card">
                     <p class="card-text" th:text="#{home.create}">Crear</p>
-                    <form action="#" th:action="@{/lobby}" method="post">
-                        <button class="btn-home" type="submit" name="create">CREAR</button>
-                    </form>
+                    <a th:href="@{/lobby/new}">
+                        <button class="btn-home" name="create">CREAR</button>
+                    </a>
+                    
                 </div>
                 <div class="col play card">
                     <p class="card-text" th:text="#{home.play}">Jugar</p>

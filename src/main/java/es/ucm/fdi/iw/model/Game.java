@@ -5,6 +5,10 @@ import lombok.*;
 import java.util.*;
 
 import javax.persistence.*;
+import javax.persistence.EntityManager;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Data
@@ -69,7 +73,8 @@ public class Game implements Transferable<Game.Transfer> {
         return toTransfer().toString();
     }
 
-    public void init_game(User ucreator) {
+    @Transactional
+    public void initGame(User ucreator,  Player creator) {
         exploding_time = _EXPLODING_TIME;
         ifx_length = _IFX_LENGTH;
         topics = new ArrayList<String>(Arrays.asList(_TOPICS.split(",")));
@@ -77,8 +82,8 @@ public class Game implements Transferable<Game.Transfer> {
         state =  _STATE;
         rounds = _ROUNDS;
         priv = _PRIV;
-        Player creator = new Player();
-        creator.init_player(this, ucreator, _ROUNDS);
+
+        creator.initPlayer(this, ucreator, _ROUNDS);
         players = new ArrayList<Player>();
         players.add(creator);
         this.creator = creator;

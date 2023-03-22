@@ -4,10 +4,13 @@ import lombok.*;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name="Player")
-public class Player {
+public class Player implements Transferable<Player.Transfer> {
 
     private static final int _RANK = 0;
 
@@ -25,7 +28,23 @@ public class Player {
     @ManyToOne
     private User user;
 
-    public void init_player(Game game, User user, int rounds) {
+    @Getter
+    @AllArgsConstructor
+    public static class Transfer {
+        private long id;
+    }
+
+    @Override
+    public Transfer toTransfer() {
+        return new Transfer(id);
+    }
+
+    @Override
+    public String toString() {
+        return toTransfer().toString();
+    }
+
+    public void initPlayer(Game game, User user, int rounds) {
         this.game = game;
         this.user = user;
         this.rounds = rounds;

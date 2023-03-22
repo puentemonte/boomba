@@ -48,28 +48,39 @@ public class LobbyController {
 
     private static final Logger log = LogManager.getLogger(LobbyController.class);
 
+	@Autowired
+	private EntityManager entityManager;
+
     // Crear un game con configuración predeterminada
-	@PostMapping("/{id}") // User id
+	@GetMapping("/new") // Game id
 	@Transactional
 	public String postGame(
 			HttpServletResponse response,
-			@PathVariable long id, 
 			@ModelAttribute Game edited,
 			Model model, HttpSession session) throws IOException {
 
         Game game = new Game();
-        User creator = (User)session.getAttribute("u");
-        game.init_game(creator);
 
-        session.setAttribute("g", game);
+        User ucreator = (User)session.getAttribute("u");
 
-		model.addAttribute("players", game.getPlayers());
+		Player creator = new Player();
+		creator.initPlayer(game, ucreator, 0);
+        game.initGame(ucreator, creator);
 
-		return "lobby";
+		entityManager.persist(creator);
+		entityManager.persist(game);
+        entityManager.flush(); // forces DB to add user & assign valid id
+
+        long id = game.getId();   // retrieve assigned id from DB
+
+        model.addAttribute("game", game);
+
+		return "redirect:/lobby/"+id;
 	}
-	
+	/*
 	@GetMapping("/{id}") // Game id
 	public String joinGame() {
 		return "lobby";
 	}
+	*/
 }
