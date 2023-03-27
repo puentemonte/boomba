@@ -85,7 +85,6 @@ public class Game implements Transferable<Game.Transfer> {
 
         creator.initPlayer(this, ucreator, _ROUNDS);
         players = new ArrayList<Player>();
-        players.add(creator);
         this.creator = creator;
     }
 }

@@ -52,7 +52,7 @@ public class LobbyController {
 	private EntityManager entityManager;
 
     // Crear un game con configuración predeterminada
-	@GetMapping("/new") // Game id
+	@PostMapping("/new")
 	@Transactional
 	public String postGame(
 			HttpServletResponse response,
@@ -69,29 +69,38 @@ public class LobbyController {
 
 		entityManager.persist(creator);
 		entityManager.persist(game);
-        entityManager.flush(); // forces DB to add game & assign valid id
+        entityManager.flush();
 
-        long id = game.getId();   // retrieve assigned id from DB
+        long id = game.getId();
 
-		return "redirect:/lobby/"+id;
+		return "redirect:/lobby/join/"+id;
 	}
 	
-	@GetMapping("{id}") // Game id
+	@PostMapping("/join/{id}") // Game id
 	@Transactional
 	public String joinGame(@PathVariable long id, Model model, HttpSession session) {
 		Game game = entityManager.find(Game.class, id);
 		
-		User user = (User)session.getAttribute("user");
+		User user = (User)session.getAttribute("u");
+		User newUser = entityManager.find(User.class, user.getId());
+
 		Player newPlayer = new Player();
-		newPlayer.initPlayer(game, user, 0);
+		newPlayer.initPlayer(game, newUser, 0);
+
 		game.getPlayers().add(newPlayer);
 
 		entityManager.persist(newPlayer);
-		/*entityManager.persist(game);
-        entityManager.flush();*/
+		entityManager.persist(game);
+        entityManager.flush();
         
+        return "redirect:/lobby/"+id;
+	}
+
+	@GetMapping("/{id}") // Game id
+	public String viewGame(@PathVariable long id, Model model, HttpSession session) {
+		Game game = entityManager.find(Game.class, id);
 		model.addAttribute("game", game);
-        return "lobby";
+		return "lobby";
 	}
 	
 }
