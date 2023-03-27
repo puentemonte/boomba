@@ -219,13 +219,12 @@ a:visited {
 #chat-textarea {
     position: absolute;
     bottom: 0;
-    width: 200px;
+    width: 100%;
 }
 
 .chat-textarea {
     border-radius: 20px;
     height: 50px;
-    width: 450px;
     margin: 10px 0;
 }
 

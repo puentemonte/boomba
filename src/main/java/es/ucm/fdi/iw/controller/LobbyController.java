@@ -69,18 +69,29 @@ public class LobbyController {
 
 		entityManager.persist(creator);
 		entityManager.persist(game);
-        entityManager.flush(); // forces DB to add user & assign valid id
+        entityManager.flush(); // forces DB to add game & assign valid id
 
         long id = game.getId();   // retrieve assigned id from DB
 
-        model.addAttribute("game", game);
-
 		return "redirect:/lobby/"+id;
 	}
-	/*
-	@GetMapping("/{id}") // Game id
-	public String joinGame() {
-		return "lobby";
+	
+	@GetMapping("{id}") // Game id
+	@Transactional
+	public String joinGame(@PathVariable long id, Model model, HttpSession session) {
+		Game game = entityManager.find(Game.class, id);
+		
+		User user = (User)session.getAttribute("user");
+		Player newPlayer = new Player();
+		newPlayer.initPlayer(game, user, 0);
+		game.getPlayers().add(newPlayer);
+
+		entityManager.persist(newPlayer);
+		/*entityManager.persist(game);
+        entityManager.flush();*/
+        
+		model.addAttribute("game", game);
+        return "lobby";
 	}
-	*/
+	
 }

@@ -12,10 +12,10 @@
 
     <main class="flex-shrink-0">
         <div class="container window">
-            <h2 class="mt-4"><b>PARTIDA #18</b></h2>
+            <h2 class="mt-4"><b>PARTIDA #<span th:text="${game.id}">0</span></b></h2>
             <div class="row">
                 <div class="col">
-                    <h3>Creado por <b>@erik</b></h3>    
+                    <h3>Creado por <b>@<span th:text="${game.creator.user.username}">misgüel</span></b></h3>    
                 </div>
                 <div class="col-md-auto">
                     <button class="btn-purple-bg">PRIVADA</button>
@@ -37,52 +37,12 @@
                             <option class="dropdown-item" value="8">8 jugadores</option>
                         </select>
                     </div>
-                    <div class="row row-player">
+                    <div class="row row-player" th:each="player:${game.players}">
                         <div class="col-md-auto">
                             <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_yellow.png}">
                         </div>
                         <div class="col-md-auto lobby-player-name">
-                            <p class="lobby-player-name">@elena</p>
-                        </div>
-                    </div>
-                    <div class="row row-player">
-                        <div class="col-md-auto">
-                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_pink.png}">
-                        </div>
-                        <div class="col-md-auto lobby-player-name">
-                            <p class="lobby-player-name">@ainhoa</p>
-                        </div>
-                    </div>
-                    <div class="row row-player">
-                        <div class="col-md-auto">
-                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_green.png}">
-                        </div>
-                        <div class="col-md-auto lobby-player-name">
-                            <p class="lobby-player-name">@fran</p>
-                        </div>
-                    </div>
-                    <div class="row row-player">
-                        <div class="col-md-auto">
-                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_blue.png}">
-                        </div>
-                        <div class="col-md-auto lobby-player-name">
-                            <p class="lobby-player-name">@manuela</p>
-                        </div>
-                    </div>
-                    <div class="row row-player">
-                        <div class="col-md-auto">
-                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_orange.png}">
-                        </div>
-                        <div class="col-md-auto lobby-player-name">
-                            <p class="lobby-player-name">@julia</p>
-                        </div>
-                    </div>
-                    <div class="row row-player">
-                        <div class="col-md-auto">
-                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_purple.png}">
-                        </div>
-                        <div class="col-md-auto lobby-player-name">
-                            <p class="lobby-player-name">@erik</p>
+                            <p class="lobby-player-name">@<span th:text="${player.user.username}">0</span></p>
                         </div>
                     </div>
                 </div>
@@ -100,7 +60,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="chat-textarea" class="d-flex">
+                    <div class="row" id="chat-textarea">
                         <form>
                             <input type="text" class="form-control chat-textarea disabled" placeholder="Escribe aquí lo que quieras...">
                         </form>
@@ -137,7 +97,7 @@
                             <p class="alphabet text-center">ABECEDARIO A COMPLETAR</p>
                         </div>
                         <div class="d-flex row text-center">
-                            <p><button class="btn-small text-center" th:each="letter:${alphabet}" th:text="${letter}">A</button></p>
+                            <p><button class="btn-small text-center" th:each="letter:${game.alphabet}" th:text="${letter}">A</button></p>
                         </div>
                     </div>
                     <div class="card crd-light-bg crd-topics">
@@ -145,7 +105,7 @@
                             <p class="topics text-center">TEMÁTICAS</p>
                         </div>
                         <div class="d-flex row topics-mg">
-                            <p><button class="btn-topic text-center" th:each="topic:${selected_topics}" th:text="${topic}">Verbos</button>
+                            <p><button class="btn-topic text-center" th:each="topic:${game.topics}" th:text="${topic}">Verbos</button>
                                 <button class="btn-topic-plus text-center">+</button></p>
                         </div>
                     </div>

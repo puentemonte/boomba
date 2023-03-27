@@ -44,6 +44,9 @@ public class Player implements Transferable<Player.Transfer> {
         return toTransfer().toString();
     }
 
+    @Override
+    public int hashCode() { return (int) id; }
+
     public void initPlayer(Game game, User user, int rounds) {
         this.game = game;
         this.user = user;

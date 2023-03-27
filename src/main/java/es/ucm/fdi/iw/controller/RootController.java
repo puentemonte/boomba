@@ -49,13 +49,6 @@ public class RootController {
 
     @PostMapping("/lobby")
     public String lobby(Model model, HttpSession session) {
-        User requester = (User)session.getAttribute("u");
-        
-        String[] alphabet = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split("");
-        String[] topics = new String[]{"Verbos", "Sustantivos", "Animales", "Comida"}; 
-        model.addAttribute("alphabet", alphabet);
-        model.addAttribute("selected_topics", topics);
-        model.addAttribute("creator", requester.getId());
         return "lobby";
     }
 
