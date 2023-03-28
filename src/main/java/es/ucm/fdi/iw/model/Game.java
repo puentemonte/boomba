@@ -85,6 +85,15 @@ public class Game implements Transferable<Game.Transfer> {
 
         creator.initPlayer(this, ucreator, _ROUNDS);
         players = new ArrayList<Player>();
+        players.add(creator);
         this.creator = creator;
+    }
+
+    public boolean playerExist(User user){
+        for(Player p: players){
+            if (p.getUser().getId() == user.getId())
+                return true;
+        }
+        return false;
     }
 }

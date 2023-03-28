@@ -17,23 +17,12 @@
         <div class="container">
             <div class="row text-center cards">
                 <div class="col create card">
-                    <p class="card-text" th:text="#{home.create}">Crear</p>
-                    <form th:action="@{/lobby/new}" method="post">
-                        <button class="btn-home" name="create" type="submit">CREAR</button>
+                    <p class="card-text">¿Quieres unirte a la partida?</p>
+                    <form th:action="@{/lobby/join/__${game.id}__}" method="post">
+                        <button class="btn-home" name="create" type="submit">UNIRME</button>
                     </form>
                 </div>
-                <div class="col play card">
-                    <p class="card-text" th:text="#{home.play}">Jugar</p>
-                    <a th:href="@{lobby}">
-                        <button class="btn-home" type="submit" name="play">JUGAR</button>
-                    </a>
-                </div>
             </div>
-        </div>
-        <div class="container text-center no-account">
-            <span>¿Quieres guardar tus estadísticas?
-            <a th:href="@{login}">Inicia sesión</a> 
-            <a th:href="@{register}">Regístrate</a>.</span>
         </div>
     </main>
 

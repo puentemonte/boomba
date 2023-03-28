@@ -73,7 +73,7 @@ public class LobbyController {
 
         long id = game.getId();
 
-		return "redirect:/lobby/join/"+id;
+		return "redirect:/lobby/"+id;
 	}
 	
 	@PostMapping("/join/{id}") // Game id
@@ -96,7 +96,18 @@ public class LobbyController {
         return "redirect:/lobby/"+id;
 	}
 
-	@GetMapping("/{id}") // Game id
+	@GetMapping("/j/{id}")
+	public String jGame(@PathVariable long id, Model model, HttpSession session) {
+		Game game = entityManager.find(Game.class, id);
+		model.addAttribute("game", game);
+		
+		if (game.playerExist((User) session.getAttribute("u")))
+			return "redirect:/lobby/"+id;
+			
+		return "join";
+	}
+
+	@GetMapping("/{id}")
 	public String viewGame(@PathVariable long id, Model model, HttpSession session) {
 		Game game = entityManager.find(Game.class, id);
 		model.addAttribute("game", game);
