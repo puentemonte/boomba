@@ -67,9 +67,9 @@ a:visited {
 }
 
 .create, .play {
-    height: 220px;
+    height: 200px;
     font-size: larger;
-    padding: 25px;
+    padding: 40px;
 }
 
 .create {

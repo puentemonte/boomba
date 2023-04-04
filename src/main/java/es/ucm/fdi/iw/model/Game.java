@@ -17,14 +17,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Game implements Transferable<Game.Transfer> {
 
     private static final int _EXPLODING_TIME = 30;
+    private static final int _NUMPLAYERS = 2;
     private static final int _IFX_LENGTH = 3;
     private static final String _TOPICS = "ALL";
     private static final String _ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
     private static final String _STATE = "LOBBY";
     private static final int _ROUNDS = 0;
     private static final boolean _PRIV = true;
-
-    
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen")
@@ -33,15 +32,28 @@ public class Game implements Transferable<Game.Transfer> {
 
     private int exploding_time;
     private int ifx_length;
+    private int numPlayers;
+
+    /*@Column
+    @ElementCollection
+    @CollectionTable(name = "game_topics", joinColumns = { @JoinColumn(name = "game_id") })
+    @MapKeyColumn(name = "key")
+    private Map<String, Boolean> topics;
 
     @Column
-    @ElementCollection(targetClass = String.class)
-    private List<String> topics;
+    @ElementCollection
+    @CollectionTable(name = "game_alphabet", joinColumns = { @JoinColumn(name = "game_id") })
+    @MapKeyColumn(name = "key")
+    private Map<String, Boolean> alphabet;*/
 
     @Column
-    @ElementCollection(targetClass = String.class)
-    private List<String> alphabet;
-    
+    @ElementCollection
+    private List<Letter> alphabet;
+
+    @Column
+    @ElementCollection
+    private List<Topic> topics;
+
     private String state;
     private int rounds;
     private boolean priv;
@@ -77,8 +89,25 @@ public class Game implements Transferable<Game.Transfer> {
     public void initGame(User ucreator,  Player creator) {
         exploding_time = _EXPLODING_TIME;
         ifx_length = _IFX_LENGTH;
-        topics = new ArrayList<String>(Arrays.asList(_TOPICS.split(",")));
-        alphabet = new ArrayList<String>(Arrays.asList(_ALPHABET.split("")));
+        numPlayers = _NUMPLAYERS;
+
+        topics = new ArrayList<Topic>();
+        for(String topic: Arrays.asList(_TOPICS.split(" "))){
+            Topic n = new Topic();
+            n.setB(true);
+            n.setTopic(topic);
+            topics.add(n);
+        }
+        
+        alphabet = new ArrayList<Letter>();
+        for(String letter: Arrays.asList(_ALPHABET.split(""))){
+            Letter n = new Letter();
+            n.setB(true);
+            n.setLetter(letter);
+            alphabet.add(n);
+        }
+            
+
         state =  _STATE;
         rounds = _ROUNDS;
         priv = _PRIV;

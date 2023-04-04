@@ -3,7 +3,6 @@
 
 <head>
     <th:block th:replace="fragments/head :: header" />
-    <script th:src="@{/js/lobby.js}"></script>
     <title>IW: Lobby</title>
 </head>
 
@@ -27,7 +26,7 @@
             <div class="row">
                 <div class="col-md-auto user-list">
                     <div class="row">
-                        <select class="mb-3 btn-dropdown-white-bg" id="num-players">
+                        <select class="mb-3 btn-dropdown-white-bg" id="num-players" onchange="selectNumPlayers()">
                             <option class="dropdown-item" value="2">2 jugadores</option>
                             <option class="dropdown-item" value="3">3 jugadores</option>
                             <option class="dropdown-item" value="4">4 jugadores</option>
@@ -72,11 +71,11 @@
                             <p class="exploding-time">TIEMPO DE EXPLOSIÓN</p>
                         </div>
                         <div class="col-md-auto exploding-time">
-                            <select class="btn-dropdown-white-bg" id="exploding_time">
+                            <select class="btn-dropdown-white-bg" id="exploding-time" onchange="selectExplodingTime()">
                                 <option class="dropdown-item" value="30">30 segundos</option>
-                                <option class="dropdown-item" value="3">40 segundos</option>
-                                <option class="dropdown-item" value="4">50 segundos</option>
-                                <option class="dropdown-item" value="5">60 segundos</option>
+                                <option class="dropdown-item" value="40">40 segundos</option>
+                                <option class="dropdown-item" value="50">50 segundos</option>
+                                <option class="dropdown-item" value="60">60 segundos</option>
                             </select>
                         </div>
                     </div>
@@ -85,8 +84,8 @@
                             <p class="interfix-length">TAMAÑO INTERFIJO</p>
                         </div>
                         <div class="col-md-auto interfix-length">
-                            <select class="btn-dropdown-white-bg" id="ifx_length">
-                                <option class="dropdown-item" value="30">2 letras</option>
+                            <select class="btn-dropdown-white-bg" id="ifx-length" onchange="selectIfxLength()">
+                                <option class="dropdown-item" value="2">2 letras</option>
                                 <option class="dropdown-item" value="3">3 letras</option>
                                 <option class="dropdown-item" value="4">4 letras</option>
                             </select>
@@ -96,17 +95,16 @@
                         <div class="row">
                             <p class="alphabet text-center">ABECEDARIO A COMPLETAR</p>
                         </div>
-                        <div class="d-flex row text-center">
-                            <p><button class="btn-small text-center" th:each="letter:${game.alphabet}" th:text="${letter}">A</button></p>
+                        <div id = "alphabet-btns" class="d-flex row text-center">
+                            <p><button class="btn-small text-center" th:each="l:${game.alphabet}" th:id="${l.letter}" th:text="${l.letter}">B</button></p>
                         </div>
                     </div>
                     <div class="card crd-light-bg crd-topics">
                         <div class="row">
                             <p class="topics text-center">TEMÁTICAS</p>
                         </div>
-                        <div class="d-flex row topics-mg">
-                            <p><button class="btn-topic text-center" th:each="topic:${game.topics}" th:text="${topic}">Verbos</button>
-                                <button class="btn-topic-plus text-center">+</button></p>
+                        <div id = "topics-btns" class="d-flex row topics-mg">
+                            <p><button class="btn-topic text-center" th:each="t:${game.topics}" th:id="${t.topic}" th:text="${t.topic}">Verbos</button></p>
                         </div>
                     </div>
                     <div class="row">
@@ -116,6 +114,8 @@
             </div>
         </div>
     </main>
+
+    <script th:src="@{/js/lobby.js}"></script>
 
     <th:block th:replace="fragments/footer.html :: footer" />
 </body>

@@ -114,4 +114,12 @@ public class LobbyController {
 		return "lobby";
 	}
 	
+	@GetMapping("/lobby/unp/{id}")
+	public String updateNumPlayers(@PathVariable long id, Model model, HttpSession session) {
+		Game game = entityManager.find(Game.class, id);
+		//game.setNumPlayers(n);
+		model.addAttribute("game", game);
+		return "lobby";
+	}
+	
 }
