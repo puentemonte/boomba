@@ -114,12 +114,36 @@ public class LobbyController {
 		return "lobby";
 	}
 	
-	@GetMapping("/lobby/unp/{id}")
-	public String updateNumPlayers(@PathVariable long id, Model model, HttpSession session) {
+	@PostMapping("/unp/{id}")
+	@Transactional
+	@ResponseBody
+	public String updateNumPlayers(@PathVariable long id, @RequestBody JsonNode o, Model model, HttpSession session) {
 		Game game = entityManager.find(Game.class, id);
-		//game.setNumPlayers(n);
+		int n = o.get("numPlayers").asInt();
+		game.setNumPlayers(n);
 		model.addAttribute("game", game);
-		return "lobby";
+		return "{\"result\": \"OK\"}";
 	}
 	
+	@PostMapping("/uet/{id}")
+	@Transactional
+	@ResponseBody
+	public String updateExplodingTime(@PathVariable long id, @RequestBody JsonNode o, Model model, HttpSession session) {
+		Game game = entityManager.find(Game.class, id);
+		int n = o.get("explodingTime").asInt();
+		game.setExplodingTime(n);
+		model.addAttribute("game", game);
+		return "{\"result\": \"OK\"}";
+	}
+
+	@PostMapping("/uil/{id}")
+	@Transactional
+	@ResponseBody
+	public String updateIfxLength(@PathVariable long id, @RequestBody JsonNode o, Model model, HttpSession session) {
+		Game game = entityManager.find(Game.class, id);
+		int n = o.get("ifxLength").asInt();
+		game.setIfxLength(n);
+		model.addAttribute("game", game);
+		return "{\"result\": \"OK\"}";
+	}
 }

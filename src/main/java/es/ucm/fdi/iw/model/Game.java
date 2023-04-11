@@ -30,8 +30,8 @@ public class Game implements Transferable<Game.Transfer> {
     @SequenceGenerator(name = "gen", sequenceName = "gen")
     private long id;
 
-    private int exploding_time;
-    private int ifx_length;
+    private int explodingTime;
+    private int ifxLength;
     private int numPlayers;
 
     /*@Column
@@ -87,8 +87,8 @@ public class Game implements Transferable<Game.Transfer> {
 
     @Transactional
     public void initGame(User ucreator,  Player creator) {
-        exploding_time = _EXPLODING_TIME;
-        ifx_length = _IFX_LENGTH;
+        explodingTime = _EXPLODING_TIME;
+        ifxLength = _IFX_LENGTH;
         numPlayers = _NUMPLAYERS;
 
         topics = new ArrayList<Topic>();

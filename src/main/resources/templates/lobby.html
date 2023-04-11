@@ -14,11 +14,11 @@
             <h2 class="mt-4"><b>PARTIDA #<span th:text="${game.id}">0</span></b></h2>
             <div class="row">
                 <div class="col">
-                    <h3>Creado por <b>@<span th:text="${game.creator.user.username}">misgüel</span></b></h3>    
+                    <h3>Creado por <b>@<span th:text="${game.creator.user.username}">H</span></b></h3>    
                 </div>
                 <div class="col-md-auto">
-                    <button class="btn-purple-bg">PRIVADA</button>
-                    <button class="btn-white-bg">PÚBLICA</button>
+                    <button class="btn-white-bg" th:attrappend="class=${game.priv != session.u.id}?'btn-purple-bg'" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'">PRIVADA</button>
+                    <button class="btn-white-bg" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'btn-purple-bg'">PÚBLICA</button>
                 </div>
             </div>
         </div>
@@ -26,14 +26,14 @@
             <div class="row">
                 <div class="col-md-auto user-list">
                     <div class="row">
-                        <select class="mb-3 btn-dropdown-white-bg" id="num-players" onchange="selectNumPlayers()">
-                            <option class="dropdown-item" value="2">2 jugadores</option>
-                            <option class="dropdown-item" value="3">3 jugadores</option>
-                            <option class="dropdown-item" value="4">4 jugadores</option>
-                            <option class="dropdown-item" value="5">5 jugadores</option>
-                            <option class="dropdown-item" value="6">6 jugadores</option>
-                            <option class="dropdown-item" value="7">7 jugadores</option>
-                            <option class="dropdown-item" value="8">8 jugadores</option>
+                        <select class="mb-3 btn-dropdown-white-bg" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" id="num-players" onchange="selectNumPlayers()">
+                            <option class="dropdown-item" th:attrappend="selected=${game.numPlayers == 2}?'selected'" value="2">2 jugadores</option>
+                            <option class="dropdown-item" th:attrappend="selected=${game.numPlayers == 3}?'selected'" value="3">3 jugadores</option>
+                            <option class="dropdown-item" th:attrappend="selected=${game.numPlayers == 4}?'selected'" value="4">4 jugadores</option>
+                            <option class="dropdown-item" th:attrappend="selected=${game.numPlayers == 5}?'selected'" value="5">5 jugadores</option>
+                            <option class="dropdown-item" th:attrappend="selected=${game.numPlayers == 6}?'selected'" value="6">6 jugadores</option>
+                            <option class="dropdown-item" th:attrappend="selected=${game.numPlayers == 7}?'selected'" value="7">7 jugadores</option>
+                            <option class="dropdown-item" th:attrappend="selected=${game.numPlayers == 8}?'selected'" value="8">8 jugadores</option>
                         </select>
                     </div>
                     <div class="row row-player" th:each="player:${game.players}">
@@ -71,11 +71,11 @@
                             <p class="exploding-time">TIEMPO DE EXPLOSIÓN</p>
                         </div>
                         <div class="col-md-auto exploding-time">
-                            <select class="btn-dropdown-white-bg" id="exploding-time" onchange="selectExplodingTime()">
-                                <option class="dropdown-item" value="30">30 segundos</option>
-                                <option class="dropdown-item" value="40">40 segundos</option>
-                                <option class="dropdown-item" value="50">50 segundos</option>
-                                <option class="dropdown-item" value="60">60 segundos</option>
+                            <select class="btn-dropdown-white-bg" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" id="exploding-time" onchange="selectExplodingTime()">
+                                <option class="dropdown-item" th:attrappend="selected=${game.explodingTime == 30}?'selected'" value="30">30 segundos</option>
+                                <option class="dropdown-item" th:attrappend="selected=${game.explodingTime == 40}?'selected'" value="40">40 segundos</option>
+                                <option class="dropdown-item" th:attrappend="selected=${game.explodingTime == 50}?'selected'" value="50">50 segundos</option>
+                                <option class="dropdown-item" th:attrappend="selected=${game.explodingTime == 60}?'selected'" value="60">60 segundos</option>
                             </select>
                         </div>
                     </div>
@@ -84,10 +84,10 @@
                             <p class="interfix-length">TAMAÑO INTERFIJO</p>
                         </div>
                         <div class="col-md-auto interfix-length">
-                            <select class="btn-dropdown-white-bg" id="ifx-length" onchange="selectIfxLength()">
-                                <option class="dropdown-item" value="2">2 letras</option>
-                                <option class="dropdown-item" value="3">3 letras</option>
-                                <option class="dropdown-item" value="4">4 letras</option>
+                            <select class="btn-dropdown-white-bg" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" id="ifx-length" onchange="selectIfxLength()">
+                                <option class="dropdown-item" th:attrappend="selected=${game.ifxLength == 2}?'selected'" value="2">2 letras</option>
+                                <option class="dropdown-item" th:attrappend="selected=${game.ifxLength == 3}?'selected'" value="3">3 letras</option>
+                                <option class="dropdown-item" th:attrappend="selected=${game.ifxLength == 4}?'selected'" value="4">4 letras</option>
                             </select>
                         </div>
                     </div>

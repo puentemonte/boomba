@@ -1,32 +1,25 @@
-console.log("ok");
 function selectNumPlayers(){
     const selector = document.querySelector("#num-players");
     const n = +selector.value;
-    console.log(n);
     let split = document.URL.split("/");
     let id = split[split.length - 1];
-    console.log("/lobby/unp/".concat("", id));
-    // go("/lobby/unp".concat("", id), "POST", {n});
+    go("/lobby/unp/"+id, "POST", {"numPlayers":n});
 }
 
 function selectExplodingTime(){
     const selector = document.querySelector("#exploding-time");
     const n = +selector.value;
-    console.log(n);
     let split = document.URL.split("/");
     let id = split[split.length - 1];
-    console.log("/lobby/uet/".concat("", id));
-    // go("/lobby/uet".concat("", id), "POST", {n});
+    go("/lobby/uet/"+id, "POST", {"explodingTime":n});
 }
 
 function selectIfxLength(){
     const selector = document.querySelector("#ifx-length");
     const n = +selector.value;
-    console.log(n);
     let split = document.URL.split("/");
     let id = split[split.length - 1];
-    console.log("/lobby/uil/".concat("", id));
-    // go("/lobby/uil".concat("", id), "POST", {n});
+    go("/lobby/uil/"+id, "POST", {"ifxLength":n});
 }
 
 const alphabet = document.getElementById('alphabet-btns');
