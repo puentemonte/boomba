@@ -16,23 +16,24 @@ window.onload = function() {
 
         this.move = function() { 
             var dateDev  = new Date();
-            var unite  = dateDev.getSeconds() + (dateDev.getMilliseconds()/1000);
-            var diviseur = 30;
-            var texte = 60 - unite;
+            var unite  = (dateDev.getSeconds() + (dateDev.getMilliseconds()/1000)) * 2;
+            var diviseur = 15;
+            var texte = 30 - unite;
 
             context.beginPath();
             context.globalCompositeOperation = 'source-over';
-            context.font                     = this.radius+"px Arial";
-            context.textAlign                = 'center';
-            context.textBaseline             = 'middle';
-            context.fillStyle                = 'white';
+            context.font = this.radius+"px Arial";
+            context.textAlign = 'center';
+            context.textBaseline = 'middle';
+            context.fillStyle = 'white';
             context.fillText(Math.floor(texte),this.x,this.y);
             context.globalCompositeOperation = 'destination-over';
-            context.lineWidth                = this.lineWidth;
+            context.lineWidth = this.lineWidth;
             context.fill();
-            context.fillStyle                = this.color;
-            context.strokeStyle              = this.color;
+            context.fillStyle = this.color;
+            context.strokeStyle = this.color;
             
+            //context.arc(this.x, this.y, this.radius, (Math.PI*1.5), (Math.PI) * (unite/diviseur) + (Math.PI * 1.5), true);
             context.arc(this.x, this.y, this.radius, (Math.PI*1.5), (Math.PI) * (unite/diviseur) + (Math.PI * 1.5), true);
             context.lineTo(this.x,this.y); 
             context.fill();

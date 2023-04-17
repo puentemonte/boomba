@@ -776,3 +776,9 @@ table{
     height: 50px;
     font-size: large;
 }
+
+.timer {
+    color: rgb(150,71,254);
+    font-size: xx-large;
+    font-weight: bolder;
+}

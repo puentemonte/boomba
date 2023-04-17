@@ -3,7 +3,7 @@
 
 <head>
     <th:block th:replace="fragments/head :: header" />
-    <script type="text/javascript" th:src="@{/js/timer.js}"></script>
+    <!--<script type="text/javascript" th:src="@{/js/timer.js}"></script>-->
     <title>IW: Game</title>
 </head>
 
@@ -17,10 +17,11 @@
                     <div class="col-5"></div>
                     <div class="col lives">
                         <div class="lives-text"><h3 class="center-inside-div">Vidas restantes: </h3></div>
-                        <div class="lives-counter center-inside-div"><p class="center-inside-div">3</p></div>    
+                        <div class="lives-counter center-inside-div"><p id="num-lives" class="center-inside-div">3</p></div>    
                     </div>
                     <div class="col-md-auto">
-                        <canvas id="canvas"></canvas>
+                        <!--<canvas id="canvas"></canvas>-->
+                        <span id="timer" class="timer" th:text="${game.explodingTime}"></span>
                     </div>
                 </div>
                 <div class="row">
@@ -38,7 +39,7 @@
                         <div class="row">
                             <div class="col correct-words">
                                 <div class="correct-words-text"><h4 class="center-inside-div">PALABRAS CORRECTAS</h4></div>
-                                <div class="correct-words-number center-inside-div"><p class="center-inside-div">13</p></div>
+                                <div class="correct-words-number center-inside-div"><p id="player-rounds" class="center-inside-div" th:text="${game.currPlayer.rounds}">13</p></div>
                             </div>
                         </div>
                     </div>
@@ -53,52 +54,12 @@
                         </div>
                     </div>
                     <div class="col user-list-game crd-purple-bg">
-                        <div class="row row-player current-turn">
+                        <div class="row row-player" th:each="player:${game.players}">
                             <div class="col-md-auto">
                                 <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_yellow.png}">
                             </div>
                             <div class="col-md-auto lobby-player-name">
-                                <p class="lobby-player-name">@elena</p>
-                            </div>
-                        </div>
-                        <div class="row row-player">
-                            <div class="col-md-auto">
-                                <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_pink.png}">
-                            </div>
-                            <div class="col-md-auto lobby-player-name">
-                                <p class="lobby-player-name">@ainhoa</p>
-                            </div>
-                        </div>
-                        <div class="row row-player">
-                            <div class="col-md-auto">
-                                <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_green.png}">
-                            </div>
-                            <div class="col-md-auto lobby-player-name">
-                                <p class="lobby-player-name">@fran</p>
-                            </div>
-                        </div>
-                        <div class="row row-player">
-                            <div class="col-md-auto">
-                                <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_blue.png}">
-                            </div>
-                            <div class="col-md-auto lobby-player-name">
-                                <p class="lobby-player-name">@manuela</p>
-                            </div>
-                        </div>
-                        <div class="row row-player">
-                            <div class="col-md-auto">
-                                <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_orange.png}">
-                            </div>
-                            <div class="col-md-auto lobby-player-name">
-                                <p class="lobby-player-name">@julia</p>
-                            </div>
-                        </div>
-                        <div class="row row-player">
-                            <div class="col-md-auto">
-                                <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_purple.png}">
-                            </div>
-                            <div class="col-md-auto lobby-player-name">
-                                <p class="lobby-player-name">@erik</p>
+                                <p class="lobby-player-name">@<span th:text="${player.user.username}">0</span></p>
                             </div>
                         </div>
                     </div>

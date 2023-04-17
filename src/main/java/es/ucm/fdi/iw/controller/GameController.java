@@ -4,6 +4,7 @@ import es.ucm.fdi.iw.LocalData;
 import es.ucm.fdi.iw.model.*;
 import es.ucm.fdi.iw.model.Game.GameState;
 
+import org.apache.el.parser.AstString;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +72,40 @@ public class GameController {
 		Game game = entityManager.find(Game.class, id);
 		model.addAttribute("game", game);
 		return "game";
+	}
+
+	@PostMapping("/loselife/{id}")
+	@Transactional
+	@ResponseBody
+	public String loseLife(@PathVariable long id, @RequestBody JsonNode o, Model model, HttpSession session) {
+		Game game = entityManager.find(Game.class, id);
+		Player p = game.getCurrPlayer();
+		p.setLives(p.getLives() - 1);
+		model.addAttribute("game", game);
+		return "{\"result\": \"OK\"}";
+	}
+
+	@PostMapping("/deadplayer/{id}")
+	@Transactional
+	@ResponseBody
+	public String deadPlayer(@PathVariable long id, @RequestBody JsonNode o, Model model, HttpSession session) {
+		Game game = entityManager.find(Game.class, id);
+		Player p = game.getCurrPlayer();
+		p.setLives(p.getLives() - 1);
+		model.addAttribute("game", game);
+		return "{\"result\": \"OK\"}";
+	}
+
+	@PostMapping("/correctword/{id}")
+	@Transactional
+	@ResponseBody
+	public String correctWord(@PathVariable long id, @RequestBody JsonNode o, Model model, HttpSession session) {
+		Game game = entityManager.find(Game.class, id);
+		Player p = game.getCurrPlayer();
+		p.setRounds(p.getRounds() + 1);
+		p.updateAlphabet(o.get("word").asText());
+		model.addAttribute("game", game);
+		return "{\"result\": \"OK\"}";
 	}
     
 }

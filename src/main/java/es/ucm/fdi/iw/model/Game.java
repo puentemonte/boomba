@@ -19,12 +19,12 @@ import es.ucm.fdi.iw.controller.UserController;
 public class Game implements Transferable<Game.Transfer> {
 
     private static final int EXPLODING_TIME = 30;
-    private static final int _NUMPLAYERS = 2;
-    private static final int _IFX_LENGTH = 3;
-    private static final String _TOPICS = "ALL";
-    private static final String _ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
-    private static final int _ROUNDS = 0;
-    private static final boolean _PRIV = true;
+    private static final int NUMPLAYERS = 2;
+    private static final int IFX_LENGTH = 3;
+    private static final String TOPICS = "ALL";
+    private static final String ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+    private static final int ROUNDS = 0;
+    private static final boolean PRIV = true;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen")
@@ -57,7 +57,7 @@ public class Game implements Transferable<Game.Transfer> {
     private String topicCode;
 
     @OneToOne
-    private Player curr_player; 
+    private Player currPlayer; 
 
     @OneToOne
     private Player creator; 
@@ -85,14 +85,14 @@ public class Game implements Transferable<Game.Transfer> {
     @Transactional
     public void initGame(User ucreator,  Player creator) {
         explodingTime = EXPLODING_TIME;
-        ifxLength = _IFX_LENGTH;
-        numPlayers = _NUMPLAYERS;
+        ifxLength = IFX_LENGTH;
+        numPlayers = NUMPLAYERS;
         interfix = "ITO";
 
         topicCode = UserController.generateRandomBase64Token(6);
 
         topics = new ArrayList<Topic>();
-        for(String topic: Arrays.asList(_TOPICS.split(" "))){
+        for(String topic: Arrays.asList(TOPICS.split(" "))){
             Topic n = new Topic();
             n.setB(true);
             n.setTopic(topic);
@@ -100,22 +100,22 @@ public class Game implements Transferable<Game.Transfer> {
         }
         
         alphabet = new ArrayList<Letter>();
-        for(String letter: Arrays.asList(_ALPHABET.split(""))){
+        for(String letter: Arrays.asList(ALPHABET.split(""))){
             Letter n = new Letter();
             n.setB(true);
             n.setLetter(letter);
             alphabet.add(n);
         }
-            
-
+        
         state =  GameState.LOBBY;
-        rounds = _ROUNDS;
-        priv = _PRIV;
+        rounds = ROUNDS;
+        priv = PRIV;
 
-        creator.initPlayer(this, ucreator, _ROUNDS);
+        creator.initPlayer(this, ucreator, ROUNDS);
         players = new ArrayList<Player>();
         players.add(creator);
         this.creator = creator;
+        currPlayer = creator;
     }
 
     public boolean playerExist(User user){
