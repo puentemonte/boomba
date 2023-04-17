@@ -146,4 +146,15 @@ public class LobbyController {
 		model.addAttribute("game", game);
 		return "{\"result\": \"OK\"}";
 	}
+
+	@PostMapping("/up/{id}")
+	@Transactional
+	@ResponseBody
+	public String updatePrivacy(@PathVariable long id, @RequestBody JsonNode o, Model model, HttpSession session) {
+		Game game = entityManager.find(Game.class, id);
+		boolean priv = o.get("priv").asBoolean();
+		game.setPriv(priv);
+		model.addAttribute("game", game);
+		return "{\"result\": \"OK\"}";
+	}
 }

@@ -44,14 +44,12 @@
                     </div>
                     <div class="col-6 game text-center">
                         <div class="d-flex flex-row text-center">
-                            <th:block th:each="letter:${interfix}" >
-                                <p class="p-2 text-center interfix playing" th:text="${letter}">interfijo</p>
+                            <th:block th:each="letter:${game.interfix}" >
+                                <p id="interfix" class="p-2 text-center interfix playing" th:text="${letter}">interfijo</p>
                             </th:block>
                         </div>
                         <div class="game-input">
-                            <form>
-                                <input type="text" class="form-control chat-textarea" placeholder="Escribe aquí lo que quieras...">
-                            </form>
+                            <input id="word" type="text" class="form-control input-textarea" placeholder="Escribe aquí lo que quieras...">
                         </div>
                     </div>
                     <div class="col user-list-game crd-purple-bg">
@@ -107,6 +105,8 @@
                 </div>
         </div>
     </main>
+
+    <script th:src="@{/js/game.js}"></script>
 
     <th:block th:replace="fragments/footer.html :: footer" />
 </body>

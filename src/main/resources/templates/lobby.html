@@ -16,9 +16,13 @@
                 <div class="col">
                     <h3>Creado por <b>@<span th:text="${game.creator.user.username}">H</span></b></h3>    
                 </div>
-                <div class="col-md-auto">
-                    <button class="btn-white-bg" th:attrappend="class=${game.priv != session.u.id}?'btn-purple-bg'" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'">PRIVADA</button>
-                    <button class="btn-white-bg" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'btn-purple-bg'">PÚBLICA</button>
+                <div th:if="${game.priv}" class="col-md-auto">
+                    <button class="btn-purple-bg"  th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" onclick="selectPrivate(true)">PRIVADA</button>
+                    <button class="btn-white-bg" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" onclick="selectPrivate(false)">PÚBLICA</button>
+                </div>
+                <div th:unless="${game.priv}" class="col-md-auto">
+                    <button class="btn-white-bg"  th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" onclick="selectPrivate(true)">PRIVADA</button>
+                    <button class="btn-purple-bg" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" onclick="selectPrivate(false)">PÚBLICA</button>
                 </div>
             </div>
         </div>
@@ -108,7 +112,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <button class="btn-white-bg start">¡EMPEZAR!</button>
+                        <button class="btn-white-bg start" onclick="startGame()">¡EMPEZAR!</button>
                     </div>
                 </div>
             </div>
@@ -117,7 +121,21 @@
 
     <script th:src="@{/js/lobby.js}"></script>
 
+    <script>
+        config.topicCode = "[['/topic/'+${game.topicCode}]]";
+        config.startUrl = "[['/game/'+${game.id}]]";
+    </script>
     <th:block th:replace="fragments/footer.html :: footer" />
+    <script>
+        const prevHandler = ws.receive;
+        ws.receive = (x) => {
+            if (x.type && x.type === "START") {
+                location.href = config.startUrl;
+            }
+            console.log("hola mundo");
+            prevHandler(x);
+        }
+    </script>
 </body>
 
-</html>
+</html>    

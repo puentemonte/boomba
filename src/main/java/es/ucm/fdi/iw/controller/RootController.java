@@ -55,12 +55,6 @@ public class RootController {
 
     @GetMapping("/game")
     public String game(Model model) {
-        String[] alphabet = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split("");
-        String[] interfix = new String[]{"I", "T", "O"};
-        
-        model.addAttribute("alphabet", alphabet);
-        model.addAttribute("interfix", interfix);
-
         return "game";
     }
 

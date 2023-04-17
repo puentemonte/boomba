@@ -10,18 +10,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import es.ucm.fdi.iw.controller.UserController;
+
 @Entity
 @Data
 @NoArgsConstructor
 @Table(name="Game")
 public class Game implements Transferable<Game.Transfer> {
 
-    private static final int _EXPLODING_TIME = 30;
+    private static final int EXPLODING_TIME = 30;
     private static final int _NUMPLAYERS = 2;
     private static final int _IFX_LENGTH = 3;
     private static final String _TOPICS = "ALL";
     private static final String _ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
-    private static final String _STATE = "LOBBY";
     private static final int _ROUNDS = 0;
     private static final boolean _PRIV = true;
 
@@ -34,18 +35,6 @@ public class Game implements Transferable<Game.Transfer> {
     private int ifxLength;
     private int numPlayers;
 
-    /*@Column
-    @ElementCollection
-    @CollectionTable(name = "game_topics", joinColumns = { @JoinColumn(name = "game_id") })
-    @MapKeyColumn(name = "key")
-    private Map<String, Boolean> topics;
-
-    @Column
-    @ElementCollection
-    @CollectionTable(name = "game_alphabet", joinColumns = { @JoinColumn(name = "game_id") })
-    @MapKeyColumn(name = "key")
-    private Map<String, Boolean> alphabet;*/
-
     @Column
     @ElementCollection
     private List<Letter> alphabet;
@@ -54,10 +43,18 @@ public class Game implements Transferable<Game.Transfer> {
     @ElementCollection
     private List<Topic> topics;
 
-    private String state;
+    public enum GameState {
+        LOBBY,
+        GAME,
+        FINISHED
+    };
+
+    private GameState state;
     private int rounds;
     private boolean priv;
     private String interfix;
+
+    private String topicCode;
 
     @OneToOne
     private Player curr_player; 
@@ -87,9 +84,12 @@ public class Game implements Transferable<Game.Transfer> {
 
     @Transactional
     public void initGame(User ucreator,  Player creator) {
-        explodingTime = _EXPLODING_TIME;
+        explodingTime = EXPLODING_TIME;
         ifxLength = _IFX_LENGTH;
         numPlayers = _NUMPLAYERS;
+        interfix = "ITO";
+
+        topicCode = UserController.generateRandomBase64Token(6);
 
         topics = new ArrayList<Topic>();
         for(String topic: Arrays.asList(_TOPICS.split(" "))){
@@ -108,7 +108,7 @@ public class Game implements Transferable<Game.Transfer> {
         }
             
 
-        state =  _STATE;
+        state =  GameState.LOBBY;
         rounds = _ROUNDS;
         priv = _PRIV;
 

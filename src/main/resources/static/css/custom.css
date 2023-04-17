@@ -228,6 +228,13 @@ a:visited {
     margin: 10px 0;
 }
 
+.input-textarea {
+    width: 200px;
+    border-radius: 20px;
+    height: 50px;
+    margin: 10px 0;
+}
+
 .btn-small {
     width: 27px;
     height: 27px;

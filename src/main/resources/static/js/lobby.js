@@ -46,14 +46,14 @@ topics.addEventListener('click', (event) => {
   console.log("/lobby/ut/".concat("", id));
 })
 
-/*document.addEventListener("load", ()=>{
-    const selector = document.querySelector("#num-players");
-    selector.addEventListener("change", () => {
-        const n = +selector.value;
-        console.log(n);
-        let split = document.URL().split("/");
-        let id = split[split.length - 1];
-        console.log("/lobby/".concat("", id));
-        // go("/lobby/".concat("", id), "POST", {n});
-    })
-});*/
+function selectPrivate(val) {
+  let split = document.URL.split("/");
+  let id = split[split.length - 1];
+  go("/lobby/up/"+id, "POST", {"priv":val});
+}
+
+function startGame() {
+  let split = document.URL.split("/");
+  let id = split[split.length - 1];
+  go("/game/start/"+id, "POST", {});
+}
