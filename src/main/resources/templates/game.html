@@ -17,7 +17,7 @@
                     <div class="col-5"></div>
                     <div class="col lives">
                         <div class="lives-text"><h3 class="center-inside-div">Vidas restantes: </h3></div>
-                        <div class="lives-counter center-inside-div"><p id="num-lives" class="center-inside-div">3</p></div>    
+                        <div class="lives-counter center-inside-div"><p th:text="${game.currPlayer.lives}" class="center-inside-div">3</p></div>    
                     </div>
                     <div class="col-md-auto">
                         <!--<canvas id="canvas"></canvas>-->
@@ -39,7 +39,7 @@
                         <div class="row">
                             <div class="col correct-words">
                                 <div class="correct-words-text"><h4 class="center-inside-div">PALABRAS CORRECTAS</h4></div>
-                                <div class="correct-words-number center-inside-div"><p id="player-rounds" class="center-inside-div" th:text="${game.currPlayer.rounds}">13</p></div>
+                                <div class="correct-words-number center-inside-div"><p class="center-inside-div" th:text="${game.currPlayer.rounds}">13</p></div>
                             </div>
                         </div>
                     </div>

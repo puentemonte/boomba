@@ -2,6 +2,8 @@ package es.ucm.fdi.iw.model;
 
 import lombok.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 import javax.persistence.*;
@@ -30,6 +32,8 @@ public class Game implements Transferable<Game.Transfer> {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen")
     @SequenceGenerator(name = "gen", sequenceName = "gen")
     private long id;
+
+    private Random rand = new Random(0);
 
     private int explodingTime;
     private int ifxLength;
@@ -65,6 +69,10 @@ public class Game implements Transferable<Game.Transfer> {
     @OneToMany
     @JoinColumn(name="game_id")
     private List<Player> players;
+
+    @Column
+    @ElementCollection
+    private List<String> wordList;
 
     @Getter
     @AllArgsConstructor
@@ -111,6 +119,12 @@ public class Game implements Transferable<Game.Transfer> {
         rounds = ROUNDS;
         priv = PRIV;
 
+        try {
+            initWordList();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
         creator.initPlayer(this, ucreator, ROUNDS);
         players = new ArrayList<Player>();
         players.add(creator);
@@ -124,5 +138,48 @@ public class Game implements Transferable<Game.Transfer> {
                 return true;
         }
         return false;
+    }
+
+    public void initWordList() throws FileNotFoundException{
+        wordList = new ArrayList<String>();
+        Scanner s = new Scanner(new File("src\\main\\resources\\static\\docs\\wordList.txt"));
+        while (s.hasNext()){
+            wordList.add(s.next());
+        }
+        s.close();
+    }
+
+    public List<String> getWordList(){
+        return wordList;
+    }
+
+    public boolean isWord(String word) {
+        return wordList.contains(word);
+    }
+
+    public String rndIfx() {
+        int rnd;
+        String rndWord;
+        // Get random word of at least length ifx_length
+        do {
+            rnd = rand.nextInt(wordList.size());
+            rndWord = wordList.get(rnd);
+        } while(rndWord.length() < 3);
+
+        System.out.println(rndWord);
+        // Generate all possible intervals of length ifx_length
+        List<String> possible_ifx = new ArrayList<String>();
+
+        for(int i=0; i<= rndWord.length(); i++) {
+            for(int j=rndWord.length(); j>=i; j--) {
+            	String pIfx = rndWord.substring(i, j);
+                if (pIfx.length() == 3) {
+                    possible_ifx.add(pIfx);
+                }
+            }
+        }
+
+        rnd = rand.nextInt(possible_ifx.size());
+        return possible_ifx.get(rnd).toUpperCase();
     }
 }

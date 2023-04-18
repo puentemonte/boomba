@@ -74,38 +74,38 @@ public class GameController {
 		return "game";
 	}
 
-	@PostMapping("/loselife/{id}")
+	@PostMapping("/enterword/{id}")
 	@Transactional
 	@ResponseBody
-	public String loseLife(@PathVariable long id, @RequestBody JsonNode o, Model model, HttpSession session) {
+	public String enterWord(@PathVariable long id, @RequestBody JsonNode o, Model model, HttpSession session) {
+		String word = o.get("word").asText();
 		Game game = entityManager.find(Game.class, id);
-		Player p = game.getCurrPlayer();
-		p.setLives(p.getLives() - 1);
-		model.addAttribute("game", game);
-		return "{\"result\": \"OK\"}";
-	}
+		// word contains interfix and is in the dictionary
+		if(word.contains(game.getInterfix().toLowerCase()) && game.isWord(word)){
+			// update player info
+			Player p = game.getCurrPlayer();
+			p.setRounds(p.getRounds() + 1);
+			p.updateAlphabet(word.toUpperCase());
 
-	@PostMapping("/deadplayer/{id}")
-	@Transactional
-	@ResponseBody
-	public String deadPlayer(@PathVariable long id, @RequestBody JsonNode o, Model model, HttpSession session) {
-		Game game = entityManager.find(Game.class, id);
-		Player p = game.getCurrPlayer();
-		p.setLives(p.getLives() - 1);
+			// generate new interfix
+			game.setInterfix(game.rndIfx());
+		}
+		else { // the word is not correct
+			// player loses a life
+			Player p = game.getCurrPlayer();
+			p.setLives(p.getLives() - 1);
+			model.addAttribute("game", game);
+			// check if player dies
+			if(p.getLives() <= 0){
+				// is the last player? --> go to summary
+				return "redirect:/summary/"; 
+			}
+			else{
+				// turn goes to next player
+			}
+		}
 		model.addAttribute("game", game);
 		return "{\"result\": \"OK\"}";
-	}
-
-	@PostMapping("/correctword/{id}")
-	@Transactional
-	@ResponseBody
-	public String correctWord(@PathVariable long id, @RequestBody JsonNode o, Model model, HttpSession session) {
-		Game game = entityManager.find(Game.class, id);
-		Player p = game.getCurrPlayer();
-		p.setRounds(p.getRounds() + 1);
-		p.updateAlphabet(o.get("word").asText());
-		model.addAttribute("game", game);
-		return "{\"result\": \"OK\"}";
-	}
-    
+	
+	}    
 }
