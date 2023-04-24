@@ -28,10 +28,9 @@ alphabet.addEventListener('click', (event) => {
   if (!isButton) {
     return;
   }
-  console.log(event.target.id);
   let split = document.URL.split("/");
   let id = split[split.length - 1];
-  console.log("/lobby/ua/".concat("", id));
+  go("/lobby/ua/".concat("", id), "POST", {'letter': event.target.id});
 })
 
 const topics = document.getElementById('topics-btns');

@@ -76,10 +76,10 @@
                         </div>
                         <div class="col-md-auto exploding-time">
                             <select class="btn-dropdown-white-bg" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" id="exploding-time" onchange="selectExplodingTime()">
+                                <option class="dropdown-item" th:attrappend="selected=${game.explodingTime == 10}?'selected'" value="10">10 segundos</option>
+                                <option class="dropdown-item" th:attrappend="selected=${game.explodingTime == 15}?'selected'" value="15">15 segundos</option>
+                                <option class="dropdown-item" th:attrappend="selected=${game.explodingTime == 20}?'selected'" value="20">20 segundos</option>
                                 <option class="dropdown-item" th:attrappend="selected=${game.explodingTime == 30}?'selected'" value="30">30 segundos</option>
-                                <option class="dropdown-item" th:attrappend="selected=${game.explodingTime == 40}?'selected'" value="40">40 segundos</option>
-                                <option class="dropdown-item" th:attrappend="selected=${game.explodingTime == 50}?'selected'" value="50">50 segundos</option>
-                                <option class="dropdown-item" th:attrappend="selected=${game.explodingTime == 60}?'selected'" value="60">60 segundos</option>
                             </select>
                         </div>
                     </div>
@@ -101,14 +101,6 @@
                         </div>
                         <div id = "alphabet-btns" class="d-flex row text-center">
                             <p><button class="btn-small text-center" th:each="l:${game.alphabet}" th:id="${l.letter}" th:text="${l.letter}">B</button></p>
-                        </div>
-                    </div>
-                    <div class="card crd-light-bg crd-topics">
-                        <div class="row">
-                            <p class="topics text-center">TEMÁTICAS</p>
-                        </div>
-                        <div id = "topics-btns" class="d-flex row topics-mg">
-                            <p><button class="btn-topic text-center" th:each="t:${game.topics}" th:id="${t.topic}" th:text="${t.topic}">Verbos</button></p>
                         </div>
                     </div>
                     <div class="row">

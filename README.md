@@ -1,5 +1,23 @@
 # LA BOOMBA
 
+## PENDING
+
+** [ ] ** Websockets palabra correcta
+
+** [ ] ** Websockets configuración juego
+
+** [ ] ** Websockets time's up
+
+** [ ] ** Websockets next turn (vista)
+
+** [ ] ** Websockets chat
+
+** [ ] ** Websockets fin partida
+
+** [ ] ** Reports
+
+** [ ] ** Profile
+
 ## DB
 
 ![DB](https://user-images.githubusercontent.com/56733112/223422199-9e879b59-2e70-4b7f-ad1a-63f63a39603c.png)

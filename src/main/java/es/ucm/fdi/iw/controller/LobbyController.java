@@ -157,4 +157,15 @@ public class LobbyController {
 		model.addAttribute("game", game);
 		return "{\"result\": \"OK\"}";
 	}
+
+	@PostMapping("/ua/{id}")
+	@Transactional
+	@ResponseBody
+	public String updateAlphabet(@PathVariable long id, @RequestBody JsonNode o, Model model, HttpSession session) {
+		Game game = entityManager.find(Game.class, id);
+		String letter = o.get("letter").asText();
+		game.updateAlphabet(letter);
+		model.addAttribute("game", game);
+		return "{\"result\": \"OK\"}";
+	}
 }

@@ -23,7 +23,6 @@ public class Game implements Transferable<Game.Transfer> {
     private static final int EXPLODING_TIME = 30;
     private static final int NUMPLAYERS = 2;
     private static final int IFX_LENGTH = 3;
-    private static final String TOPICS = "ALL";
     private static final String ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
     private static final int ROUNDS = 0;
     private static final boolean PRIV = true;
@@ -33,7 +32,7 @@ public class Game implements Transferable<Game.Transfer> {
     @SequenceGenerator(name = "gen", sequenceName = "gen")
     private long id;
 
-    private Random rand = new Random(0);
+    private Random rand = new Random();
 
     private int explodingTime;
     private int ifxLength;
@@ -42,10 +41,6 @@ public class Game implements Transferable<Game.Transfer> {
     @Column
     @ElementCollection
     private List<Letter> alphabet;
-
-    @Column
-    @ElementCollection
-    private List<Topic> topics;
 
     public enum GameState {
         LOBBY,
@@ -95,17 +90,8 @@ public class Game implements Transferable<Game.Transfer> {
         explodingTime = EXPLODING_TIME;
         ifxLength = IFX_LENGTH;
         numPlayers = NUMPLAYERS;
-        interfix = "ITO";
 
         topicCode = UserController.generateRandomBase64Token(6);
-
-        topics = new ArrayList<Topic>();
-        for(String topic: Arrays.asList(TOPICS.split(" "))){
-            Topic n = new Topic();
-            n.setB(true);
-            n.setTopic(topic);
-            topics.add(n);
-        }
         
         alphabet = new ArrayList<Letter>();
         for(String letter: Arrays.asList(ALPHABET.split(""))){
@@ -124,6 +110,8 @@ public class Game implements Transferable<Game.Transfer> {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+        interfix = rndIfx();
 
         creator.initPlayer(this, ucreator, ROUNDS);
         players = new ArrayList<Player>();
@@ -181,5 +169,10 @@ public class Game implements Transferable<Game.Transfer> {
 
         rnd = rand.nextInt(possible_ifx.size());
         return possible_ifx.get(rnd).toUpperCase();
+    }
+
+    public void updateAlphabet(String letter) {
+        int l = letter.charAt(0) - 'A';
+        (alphabet.get(l)).setB(!((alphabet.get(l)).getB()));
     }
 }

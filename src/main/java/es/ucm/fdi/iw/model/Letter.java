@@ -10,4 +10,8 @@ import lombok.*;
 public class Letter {
     private String letter;
     private boolean b;
+
+    public boolean getB(){
+        return b;
+    }
 }

@@ -242,7 +242,21 @@ a:visited {
     background-color: rgb(150,71,254);
     color: white;
     border-width: 0;
-    display: inline;
+    display: inline-block;
+    box-sizing:border-box;
+    margin: 5px 7px;
+    font-weight: bold;
+}
+
+.btn-small-deselected {
+    width: 27px;
+    height: 27px;
+    border-radius: 20px;
+    background-color: white;
+    color: rgb(150,71,254);
+    border-width: 0;
+    display: inline-block;
+    box-sizing:border-box;
     margin: 5px 7px;
     font-weight: bold;
 }
@@ -775,6 +789,7 @@ table{
 .start {
     height: 50px;
     font-size: large;
+    margin: 50px auto 0 auto;
 }
 
 .timer {
