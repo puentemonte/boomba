@@ -57,6 +57,7 @@ public class Game implements Transferable<Game.Transfer> {
 
     @OneToOne
     private Player currPlayer; 
+    private int playerIdx;
 
     @OneToOne
     private Player creator; 
@@ -118,6 +119,7 @@ public class Game implements Transferable<Game.Transfer> {
         players.add(creator);
         this.creator = creator;
         currPlayer = creator;
+        playerIdx = 0;
     }
 
     public boolean playerExist(User user){
@@ -174,5 +176,10 @@ public class Game implements Transferable<Game.Transfer> {
     public void updateAlphabet(String letter) {
         int l = letter.charAt(0) - 'A';
         (alphabet.get(l)).setB(!((alphabet.get(l)).getB()));
+    }
+
+    public void nextTurn(){
+        playerIdx = (playerIdx + 1) % players.size();
+        this.setCurrPlayer(players.get(playerIdx));
     }
 }

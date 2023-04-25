@@ -89,6 +89,23 @@ public class GameController {
 
 			// generate new interfix
 			game.setInterfix(game.rndIfx());
+
+			game.setRounds(game.getRounds() + 1);
+
+			// pass the turn to the next player
+			//game.nextTurn();
+			int playerIdx = (game.getPlayerIdx() + 1) % game.getNumPlayers();
+			log.info("Prev player was {}", game.getCurrPlayer());
+			Player next = game.getPlayers().get(playerIdx);
+			game.setCurrPlayer(next);
+			log.info("Next player is {} - I repeat, {}", game.getCurrPlayer(), next);
+			next.setGame(game);
+
+
+			model.addAttribute("game", game);
+
+			messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
+			"{\"type\": \"CORRECT\", \"newIfx\": \""+ game.getInterfix() +"\"}");
 		}
 		else { // the word is not correct
 			// player loses a life
@@ -98,7 +115,9 @@ public class GameController {
 			// check if player dies
 			if(p.getLives() <= 0){
 				// is the last player? --> go to summary
-				return "redirect:/summary/"; 
+				messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
+				"{\"type\": \"CORRECT\", \"newIfx\": \""+ game.getInterfix() +"\"}");
+				
 			}
 			else{
 				// turn goes to next player
@@ -106,6 +125,5 @@ public class GameController {
 		}
 		model.addAttribute("game", game);
 		return "{\"result\": \"OK\"}";
-	
 	}    
 }

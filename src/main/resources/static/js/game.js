@@ -41,3 +41,8 @@ selector.addEventListener('keyup', (event) => {
         go("/game/enterword/"+id, "POST", {'word':word});
     }
 });
+
+function updateIfx(ifx){
+    let selector = document.getElementById('interfix');
+    
+}

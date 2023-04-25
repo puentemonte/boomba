@@ -45,12 +45,10 @@
                     </div>
                     <div class="col-6 game text-center">
                         <div class="d-flex flex-row text-center">
-                            <th:block th:each="letter:${game.interfix}" >
-                                <p id="interfix" class="p-2 text-center interfix playing" th:text="${letter}">interfijo</p>
-                            </th:block>
+                            <p id="interfix" class="p-2 text-center interfix playing" th:text="${game.interfix}">interfijo</p>
                         </div>
                         <div class="game-input">
-                            <input id="word" type="text" class="form-control input-textarea" placeholder="Escribe aquí lo que quieras...">
+                            <input th:if="${game.currPlayer.user.id == session.u.id}" id="word" type="text" class="form-control input-textarea" placeholder="Escribe aquí lo que quieras...">
                         </div>
                     </div>
                     <div class="col user-list-game crd-purple-bg">
@@ -69,7 +67,24 @@
 
     <script th:src="@{/js/game.js}"></script>
 
+    <script>
+        config.topicCode = "[['/topic/'+${game.topicCode}]]";
+        config.startUrl = "[['/game/'+${game.id}]]";
+    </script>
+
     <th:block th:replace="fragments/footer.html :: footer" />
+
+    <script>
+        const prevHandler = ws.receive;
+        ws.receive = (x) => {
+            if (x.type && x.type === "CORRECT") {
+                location.href = config.startUrl;
+                $("#interfix").reload(location.href + " #interfix");
+            }
+            console.log("hola mundo");
+            prevHandler(x);
+        }
+    </script>
 </body>
 
 </html>
