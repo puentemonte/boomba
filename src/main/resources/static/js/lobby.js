@@ -30,6 +30,7 @@ alphabet.addEventListener('click', (event) => {
   }
   let split = document.URL.split("/");
   let id = split[split.length - 1];
+  console.log(event.target.id);
   go("/lobby/ua/".concat("", id), "POST", {'letter': event.target.id});
 })
 

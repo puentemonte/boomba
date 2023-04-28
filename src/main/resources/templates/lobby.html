@@ -100,11 +100,14 @@
                             <p class="alphabet text-center">ABECEDARIO A COMPLETAR</p>
                         </div>
                         <div id = "alphabet-btns" class="d-flex row text-center">
-                            <p><button class="btn-small text-center" th:each="l:${game.alphabet}" th:id="${l.letter}" th:text="${l.letter}">B</button></p>
+                            <p>
+                            <button class="btn-small text-center" th:each="l:${game.alphabet}" th:id="${l.letter}" th:text="${l.letter}" th:if="${l.b}">B</button>
+                            <button class="btn-small-deselected text-center" th:each="l:${game.alphabet}" th:id="${l.letter}" th:text="${l.letter}" th:unless="${l.b}">B</button>
+                            </p>
                         </div>
                     </div>
                     <div class="row">
-                        <button class="btn-white-bg start" onclick="startGame()">¡EMPEZAR!</button>
+                        <button class="btn-white-bg start" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" onclick="startGame()">¡EMPEZAR!</button>
                     </div>
                 </div>
             </div>

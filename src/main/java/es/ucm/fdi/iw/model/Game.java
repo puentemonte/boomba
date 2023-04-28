@@ -174,12 +174,22 @@ public class Game implements Transferable<Game.Transfer> {
     }
 
     public void updateAlphabet(String letter) {
-        int l = letter.charAt(0) - 'A';
-        (alphabet.get(l)).setB(!((alphabet.get(l)).getB()));
+        for (Letter l: alphabet)
+            if(l.getLetter().charAt(0) == letter.charAt(0))
+                l.setB(!(l.getB()));
+
+        for (Player p: players)
+            p.updateAlphabet(letter);
     }
 
     public void nextTurn(){
         playerIdx = (playerIdx + 1) % players.size();
+        if (players.get(playerIdx).getLives() <= 0)
+            nextTurn();
         this.setCurrPlayer(players.get(playerIdx));
+    }
+
+    public void playerDies() {
+        numPlayers--;
     }
 }

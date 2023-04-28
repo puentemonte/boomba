@@ -64,24 +64,34 @@ public class Player implements Transferable<Player.Transfer> {
         this.rounds = rounds;
         lives = LIVES;
         rank = RANK;
-        
-        alphabet = new ArrayList<Letter>();
-        for(String letter: Arrays.asList(ALPHABET.split(""))){
-            Letter n = new Letter();
-            n.setB(false);
-            n.setLetter(letter);
-            alphabet.add(n);
-        }
+        alphabet = game.getAlphabet();
     }
 
     public void updateAlphabet(String word){
-        for(String letter: Arrays.asList(word.split(""))){
-            // guarrada
-            int index = letter.toCharArray()[0] - 'A';
-            Letter l = new Letter();
-            l.setB(true);
-            l.setLetter(letter);
-            alphabet.set(index, l);
-        }
+        for (Letter l: alphabet)
+            if(l.getLetter().charAt(0) == word.charAt(0))
+                l.setB(!(l.getB()));
+    }
+
+    public void looseLife() {
+        lives--;
+    }
+
+    public void setLetters(String upperCase) {
+        for(int i = 0; i < upperCase.length(); ++i)
+            for (Letter l: alphabet)
+                if(l.getLetter().charAt(0) == upperCase.charAt(i))
+                    l.setB(false);
+    }
+
+    public boolean completeAlphabet() {
+        for (Letter l: alphabet)
+            if (l.getB())
+                return false;
+        return true;
+    }
+
+    public void addLife() {
+        lives++;
     }
 }

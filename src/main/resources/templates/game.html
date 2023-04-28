@@ -12,7 +12,7 @@
 
     <main class="flex-shrink-0">
         <div class="container window">
-            <h2 class="mt-4"><b>PARTIDA #2318</b></h2>
+            <h2 class="mt-4"><b>PARTIDA #<span th:text="${game.id}">2318</span></b></h2>
                 <div class="row">
                     <div class="col-5"></div>
                     <div class="col lives">
@@ -31,8 +31,13 @@
                                 <div class="row">
                                     <p class="alphabet text-center">ABECEDARIO A COMPLETAR</p>
                                 </div>
-                                <div class="d-flex row text-center">
-                                    <p><button class="btn-small text-center" th:each="letter:${alphabet}" th:text="${letter}">A</button></p>
+                                <div id = "alphabet-btns" class="d-flex row text-center">
+                                    <p>
+                                        <button class="btn-small text-center" th:each="l:${game.currPlayer.alphabet}" th:id="${l.letter}">
+                                            <span th:if="${l.b}" th:text="${l.letter}">B</span>
+                                            <span th:unless="${l.b}"> </span>
+                                        </button>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -52,12 +57,24 @@
                         </div>
                     </div>
                     <div class="col user-list-game crd-purple-bg">
-                        <div class="row row-player" th:each="player:${game.players}">
+                        <div class="row row-player current-turn" th:each="player:${game.players}" th:if="${game.currPlayer.id == player.id}">
                             <div class="col-md-auto">
                                 <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_yellow.png}">
                             </div>
+
                             <div class="col-md-auto lobby-player-name">
-                                <p class="lobby-player-name">@<span th:text="${player.user.username}">0</span></p>
+                                <p th:if="${player.lives} le 0" class="lobby-player-name">@<span th:text="${player.user.username}">0</span> 💀</p>
+                                <p th:unless="${player.lives} le 0" class="lobby-player-name">@<span th:text="${player.user.username}">0</span></p>
+                            </div>
+                        </div>
+                        <div class="row row-player" th:each="player:${game.players}" th:unless="${game.currPlayer.id == player.id}">
+                            <div class="col-md-auto">
+                                <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_yellow.png}">
+                            </div>
+
+                            <div class="col-md-auto lobby-player-name">
+                                <p th:if="${player.lives} le 0" class="lobby-player-name">@<span th:text="${player.user.username}">0</span> 💀</p>
+                                <p th:unless="${player.lives} le 0" class="lobby-player-name">@<span th:text="${player.user.username}">0</span></p>
                             </div>
                         </div>
                     </div>
@@ -78,6 +95,10 @@
         const prevHandler = ws.receive;
         ws.receive = (x) => {
             if (x.type && x.type === "CORRECT") {
+                location.href = config.startUrl;
+                $("#interfix").reload(location.href + " #interfix");
+            }
+            else if (x.type && x.type === "INCORRECT") {
                 location.href = config.startUrl;
                 $("#interfix").reload(location.href + " #interfix");
             }

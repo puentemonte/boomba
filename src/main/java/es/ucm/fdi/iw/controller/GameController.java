@@ -85,7 +85,9 @@ public class GameController {
 			// update player info
 			Player p = game.getCurrPlayer();
 			p.setRounds(p.getRounds() + 1);
-			p.updateAlphabet(word.toUpperCase());
+			p.setLetters(word.toUpperCase());
+			if(p.completeAlphabet())
+				p.addLife();
 
 			// generate new interfix
 			game.setInterfix(game.rndIfx());
@@ -93,34 +95,40 @@ public class GameController {
 			game.setRounds(game.getRounds() + 1);
 
 			// pass the turn to the next player
-			//game.nextTurn();
-			int playerIdx = (game.getPlayerIdx() + 1) % game.getNumPlayers();
-			log.info("Prev player was {}", game.getCurrPlayer());
-			Player next = game.getPlayers().get(playerIdx);
-			game.setCurrPlayer(next);
-			log.info("Next player is {} - I repeat, {}", game.getCurrPlayer(), next);
-			next.setGame(game);
-
-
-			model.addAttribute("game", game);
+			game.nextTurn();
 
 			messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
 			"{\"type\": \"CORRECT\", \"newIfx\": \""+ game.getInterfix() +"\"}");
 		}
 		else { // the word is not correct
+
 			// player loses a life
 			Player p = game.getCurrPlayer();
-			p.setLives(p.getLives() - 1);
-			model.addAttribute("game", game);
+			p.looseLife();
+
+			// generate new interfix
+			game.setInterfix(game.rndIfx());
+
+			// the turn goes to the next player
+			game.nextTurn();
+
 			// check if player dies
 			if(p.getLives() <= 0){
-				// is the last player? --> go to summary
-				messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
-				"{\"type\": \"CORRECT\", \"newIfx\": \""+ game.getInterfix() +"\"}");
-				
+				game.playerDies();
+				// is the last player
+				if (game.getNumPlayers() == 1){
+					// redirect to summary
+					messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
+					"{\"type\": \"INCORRECT\", \"newIfx\": \""+ game.getInterfix() +"\"}");
+				}	
+				else {
+					messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
+					"{\"type\": \"INCORRECT\", \"newIfx\": \""+ game.getInterfix() +"\"}");
+				}
 			}
 			else{
-				// turn goes to next player
+				messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
+				"{\"type\": \"INCORRECT\", \"newIfx\": \""+ game.getInterfix() +"\"}");
 			}
 		}
 		model.addAttribute("game", game);
