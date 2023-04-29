@@ -2,13 +2,13 @@
 
 ## PENDING
 
-** [ ] ** Websockets palabra correcta
+** [ X ] ** Websockets palabra correcta
 
 ** [ ] ** Websockets configuración juego
 
 ** [ ] ** Websockets time's up
 
-** [ ] ** Websockets next turn (vista)
+** [ X ] ** Websockets next turn (vista)
 
 ** [ ] ** Websockets chat
 
