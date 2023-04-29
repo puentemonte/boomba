@@ -64,7 +64,14 @@ public class Player implements Transferable<Player.Transfer> {
         this.rounds = rounds;
         lives = LIVES;
         rank = RANK;
-        alphabet = game.getAlphabet();
+        //alphabet = game.getAlphabet();
+        alphabet = new ArrayList<Letter>();
+        for(Letter letter: game.getAlphabet()){
+            Letter newLetter = new Letter();
+            newLetter.setLetter(letter.getLetter());
+            newLetter.setB(letter.getB());
+            alphabet.add(newLetter);
+        }
     }
 
     public void updateAlphabet(String word){

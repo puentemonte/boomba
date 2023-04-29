@@ -64,8 +64,8 @@ public class LobbyController {
         User ucreator = (User)session.getAttribute("u");
 
 		Player creator = new Player();
+		game.initGame(ucreator, creator);
 		creator.initPlayer(game, ucreator, 0);
-        game.initGame(ucreator, creator);
 
 		entityManager.persist(creator);
 		entityManager.persist(game);
