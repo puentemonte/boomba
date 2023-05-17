@@ -12,7 +12,7 @@
     <main class="flex-shrink-0">
         <div class="container window">
             <h2 class="mt-4"><b>PARTIDA #<span th:text="${game.id}">0</span></b></h2>
-            <div class="row">
+            <div div="privacy" class="row">
                 <div class="col">
                     <h3>Creado por <b>@<span th:text="${game.creator.user.username}">H</span></b></h3>    
                 </div>
@@ -28,7 +28,7 @@
         </div>
         <div class="container card crd-purple-bg window">
             <div class="row">
-                <div class="col-md-auto user-list">
+                <div id="user-list" class="col-md-auto user-list">
                     <div class="row">
                         <select class="mb-3 btn-dropdown-white-bg" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" id="num-players" onchange="selectNumPlayers()">
                             <option class="dropdown-item" th:attrappend="selected=${game.numPlayers == 2}?'selected'" value="2">2 jugadores</option>
@@ -101,8 +101,8 @@
                         </div>
                         <div id = "alphabet-btns" class="d-flex row text-center">
                             <p>
-                            <button class="btn-small text-center" th:each="l:${game.alphabet}" th:id="${l.letter}" th:text="${l.letter}" th:if="${l.b}">B</button>
-                            <button class="btn-small-deselected text-center" th:each="l:${game.alphabet}" th:id="${l.letter}" th:text="${l.letter}" th:unless="${l.b}">B</button>
+                            <button class="btn-small text-center" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" th:each="l:${game.alphabet}" th:id="${l.letter}" th:text="${l.letter}" th:if="${l.b}">B</button>
+                            <button class="btn-small-deselected text-center" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" th:each="l:${game.alphabet}" th:id="${l.letter}" th:text="${l.letter}" th:unless="${l.b}">B</button>
                             </p>
                         </div>
                     </div>
@@ -119,6 +119,7 @@
     <script>
         config.topicCode = "[['/topic/'+${game.topicCode}]]";
         config.startUrl = "[['/game/'+${game.id}]]";
+        config.lobbyUrl = "[['/lobby/'+${game.id}]]";
     </script>
     <th:block th:replace="fragments/footer.html :: footer" />
     <script>
@@ -126,6 +127,30 @@
         ws.receive = (x) => {
             if (x.type && x.type === "START") {
                 location.href = config.startUrl;
+            }
+            else if (x.type && x.type === "JOIN"){
+                location.href = config.lobbyUrl;
+                $("#user-list").reload(location.href + " #user-list");
+            }
+            else if (x.type && x.type === "NUMPLAYERS"){
+                location.href = config.lobbyUrl;
+                $("#user-list").reload(location.href + " #user-list");
+            }
+            else if (x.type && x.type === "EXPLODINGTIME"){
+                location.href = config.lobbyUrl;
+                $("#exploding-time").reload(location.href + " #exploding-time");
+            }
+            else if (x.type && x.type === "IFXLENGTH"){
+                location.href = config.lobbyUrl;
+                $("#ifx-length").reload(location.href + " #ifx-length");
+            }
+            else if (x.type && x.type === "PRIVACY"){
+                location.href = config.lobbyUrl;
+                $("#privacy").reload(location.href + " #privacy");
+            }
+            else if (x.type && x.type === "ALPHABET"){
+                location.href = config.lobbyUrl;
+                $("#alphabet-btns").reload(location.href + " #alphabet-btns");
             }
             console.log("hola mundo");
             prevHandler(x);

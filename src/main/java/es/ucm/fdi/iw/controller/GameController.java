@@ -134,4 +134,43 @@ public class GameController {
 		model.addAttribute("game", game);
 		return "{\"result\": \"OK\"}";
 	}    
+
+	@PostMapping("/timeout/{id}")
+    @Transactional
+    @ResponseBody
+	public String timeout(@PathVariable long id, @RequestBody JsonNode o, Model model, HttpSession session) {
+		Game game = entityManager.find(Game.class, id);
+        game.setState(GameState.GAME);
+		model.addAttribute("game", game);
+
+        // player loses a life
+		Player p = game.getCurrPlayer();
+		p.looseLife();
+
+		// generate new interfix
+		game.setInterfix(game.rndIfx());
+
+		// the turn goes to the next player
+		game.nextTurn();
+
+		// check if player dies
+		if(p.getLives() <= 0){
+			game.playerDies();
+			// is the last player
+			if (game.getNumPlayers() == 1){
+				// redirect to summary
+				messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
+				"{\"type\": \"INCORRECT\", \"newIfx\": \""+ game.getInterfix() +"\"}");
+			}	
+			else {
+				messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
+				"{\"type\": \"INCORRECT\", \"newIfx\": \""+ game.getInterfix() +"\"}");
+			}
+		}
+		else{
+			messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
+			"{\"type\": \"INCORRECT\", \"newIfx\": \""+ game.getInterfix() +"\"}");
+		}
+		return "{\"result\": \"OK\"}";
+	}
 }

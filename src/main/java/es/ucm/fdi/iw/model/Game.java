@@ -132,11 +132,12 @@ public class Game implements Transferable<Game.Transfer> {
 
     public void initWordList() throws FileNotFoundException{
         wordList = new ArrayList<String>();
-        Scanner s = new Scanner(new File("src\\main\\resources\\static\\docs\\wordList.txt"));
-        while (s.hasNext()){
-            wordList.add(s.next());
+        try (Scanner s = new Scanner(Game.class.getResourceAsStream("/static/docs/wordList.txt"))) {
+            while (s.hasNext()){
+                wordList.add(s.next());
+            }
+            s.close();
         }
-        s.close();
     }
 
     public List<String> getWordList(){

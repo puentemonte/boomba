@@ -24,7 +24,7 @@
                 <p>Ha pasado algo feo. Mira el log del servidor para saber más detalles.</p>
 
                 <h4>Detalles del error</h4>
-                <table class="errTable">
+                <table class="my-table errTable">
                     <tr>
                         <td>Date</td>
                         <td th:text="${timestamp}"></td>
@@ -56,14 +56,14 @@
                 </table>
 
                 <h4>Variables definidas en sesión</h4>
-                <table class="errTable">
+                <table class="my-table errTable">
                     <tr th:each="v: ${session}">
                         <td><span class="errKey" th:text="${v.key}"></span>
                             <td th:text="${v.value}">
                 </table>
 
                 <h4>Variables definidas en parámetros</h4>
-                <table class="errTable">
+                <table class="my-table errTable">
                     <tr th:each="v: ${param}">
                         <td th:text="${v.key}"></td>
                         <td>
@@ -75,7 +75,7 @@
                 </table>
 
                 <h4>Otras</h4>
-                <table class="errTable">
+                <table class="my-table errTable">
                     <tr>
                         <td>req.url</td>
                         <td th:text="${#request.requestURL}"></td>

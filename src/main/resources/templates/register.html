@@ -38,7 +38,7 @@
                     </div>
                     <div class = "col register-form">
                         <div class = "row">
-                            <form class="form-signin" method="post" th:action="@{/login}">
+                            <form class="form-signin" method="post" th:action="@{/user/new}">
                                 <p th:if="${#request.getQueryString() == 'error'}" class="error">
                                     Error en nombre de usuario o contraseña
                                 </p>

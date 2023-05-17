@@ -304,5 +304,20 @@ public class UserController {
 
 		messagingTemplate.convertAndSend("/user/"+u.getUsername()+"/queue/updates", json);
 		return "{\"result\": \"message sent.\"}";
-	}	
+	}
+	
+	/**
+	* Register a new user
+	*/
+	@PostMapping("/new")
+	@Transactional
+	public String registerUser(HttpServletResponse response, @ModelAttribute User edited, Model model, HttpSession session) throws IOException {
+		User target = new User();
+		target.setUsername(edited.getUsername());
+		target.setPassword(encodePassword(edited.getPassword()));
+		target.setRoles(Role.USER.name());
+		target.setEnabled(true);
+		entityManager.persist(target);
+		return "login";
+	}
 }

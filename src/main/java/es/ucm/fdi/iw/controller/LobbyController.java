@@ -51,6 +51,9 @@ public class LobbyController {
 	@Autowired
 	private EntityManager entityManager;
 
+	@Autowired
+	private SimpMessagingTemplate messagingTemplate;
+
     // Crear un game con configuración predeterminada
 	@PostMapping("/new")
 	@Transactional
@@ -93,6 +96,8 @@ public class LobbyController {
 		entityManager.persist(game);
         entityManager.flush();
         
+		messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
+				"{\"type\": \"JOIN\"}");
         return "redirect:/lobby/"+id;
 	}
 
@@ -122,6 +127,8 @@ public class LobbyController {
 		int n = o.get("numPlayers").asInt();
 		game.setNumPlayers(n);
 		model.addAttribute("game", game);
+		messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
+				"{\"type\": \"NUMPLAYERS\"}");
 		return "{\"result\": \"OK\"}";
 	}
 	
@@ -133,6 +140,8 @@ public class LobbyController {
 		int n = o.get("explodingTime").asInt();
 		game.setExplodingTime(n);
 		model.addAttribute("game", game);
+		messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
+				"{\"type\": \"EXPLODINGTIME\"}");
 		return "{\"result\": \"OK\"}";
 	}
 
@@ -144,6 +153,8 @@ public class LobbyController {
 		int n = o.get("ifxLength").asInt();
 		game.setIfxLength(n);
 		model.addAttribute("game", game);
+		messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
+				"{\"type\": \"IFXLENGTH\"}");
 		return "{\"result\": \"OK\"}";
 	}
 
@@ -155,6 +166,8 @@ public class LobbyController {
 		boolean priv = o.get("priv").asBoolean();
 		game.setPriv(priv);
 		model.addAttribute("game", game);
+		messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
+				"{\"type\": \"PRIVACY\"}");
 		return "{\"result\": \"OK\"}";
 	}
 
@@ -166,6 +179,8 @@ public class LobbyController {
 		String letter = o.get("letter").asText();
 		game.updateAlphabet(letter);
 		model.addAttribute("game", game);
+		messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
+				"{\"type\": \"ALPHABET\"}");
 		return "{\"result\": \"OK\"}";
 	}
 }

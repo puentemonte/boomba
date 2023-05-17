@@ -24,10 +24,14 @@ function startTimer(duration, display) {
     }, 1000);
 }
 
-// se pueden hacer trampas 
 window.onload = () => {
+    setTimeout(myFunction, +(document.getElementById('timer').innerText)*1000);
     startTimer(document.getElementById('timer').innerText, document.getElementById('timer'));
 };
+
+function myFunction(){
+    go("/game/timeout/"+id, "POST", {});
+}
 
 // get game id
 let str = document.URL.split("/");
