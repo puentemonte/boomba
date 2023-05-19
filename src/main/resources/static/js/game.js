@@ -50,5 +50,5 @@ selector.addEventListener('keyup', (event) => {
 
 function updateIfx(ifx) {
     let selector = document.getElementById('interfix');
-
 }
+

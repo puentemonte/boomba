@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name="Player")
 public class Player implements Transferable<Player.Transfer> {
 
-    private static final int RANK = 0;
+    private static final int RANK = 1;
     private static final int LIVES = 3;
     private static final String ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
 

@@ -86,6 +86,7 @@
     <script>
         config.topicCode = "[['/topic/'+${game.topicCode}]]";
         config.startUrl = "[['/game/'+${game.id}]]";
+        config.summaryUrl = "[['/summary/'+${game.id}]]";
     </script>
 
     <th:block th:replace="fragments/footer.html :: footer" />
@@ -100,6 +101,11 @@
             else if (x.type && x.type === "INCORRECT") {
                 location.href = config.startUrl;
                 $("#interfix").reload(location.href + " #interfix");
+            }
+            else if(x.type && x.type === "SUMMARY"){
+                console.log("llega a summary");
+                location.href = config.summaryUrl;
+                // $("#interfix").reload(location.href + " #interfix");
             }
             console.log("hola mundo");
             prevHandler(x);

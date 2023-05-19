@@ -49,16 +49,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="col card crd-light-bg lobby chat-lobby">
-                    <div class="card crd-lighter-bg chat-msg">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-auto">
-                                    <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_yellow.png}">
-                                </div>
-                                <div class="col">
-                                    <p class="chat-text">@elena</p>
-                                    <p class="chat-text">Podemos poner 30s?</p>
+                <div class="col card crd-light-bg chat-lobby">
+                    <div class="chat-scroll">
+                        <div th:each="msg:${game.received}" class="card crd-lighter-bg chat-msg">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-auto">
+                                        <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_yellow.png}">
+                                    </div>
+                                    <div class="col">
+                                        <p class="chat-text">@<span th:text="${msg.sender.username}">elena</span></p>
+                                        <p class="chat-text" th:text="${msg.text}">Podemos poner 30s?</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -164,7 +166,7 @@
                 location.href = config.lobbyUrl;
                 $("#alphabet-btns").reload(location.href + " #alphabet-btns");
             } else if (x.type && x.type === "MSG") {
-                const chat = document.querySelector(".chat-lobby");
+                const chat = document.querySelector(".chat-scroll");
                 chat.insertAdjacentHTML("beforeend", renderMsg(x));
             }
             console.log("hola mundo");

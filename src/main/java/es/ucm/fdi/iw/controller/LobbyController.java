@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -81,8 +82,12 @@ public class LobbyController {
 	
 	@PostMapping("/join/{id}") // Game id
 	@Transactional
-	public String joinGame(@PathVariable long id, Model model, HttpSession session) {
+	@ResponseBody
+	public String joinGame(@PathVariable long id, Model model, @RequestBody JsonNode o, HttpSession session) {
 		Game game = entityManager.find(Game.class, id);
+
+		if (game.playerExist((User) session.getAttribute("u")))
+			return "{\"result\": \"OK\"}";
 		
 		User user = (User)session.getAttribute("u");
 		User newUser = entityManager.find(User.class, user.getId());
@@ -90,25 +95,18 @@ public class LobbyController {
 		Player newPlayer = new Player();
 		newPlayer.initPlayer(game, newUser, 0);
 
-		game.getPlayers().add(newPlayer);
+		game.addPlayer(newPlayer);
 
 		entityManager.persist(newPlayer);
-		entityManager.persist(game);
         entityManager.flush();
         
 		messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
 				"{\"type\": \"JOIN\"}");
-        return "redirect:/lobby/"+id;
+		return "{\"result\": \"OK\"}";
 	}
 
-	@GetMapping("/j/{id}")
-	public String jGame(@PathVariable long id, Model model, HttpSession session) {
-		Game game = entityManager.find(Game.class, id);
-		model.addAttribute("game", game);
-		
-		if (game.playerExist((User) session.getAttribute("u")))
-			return "redirect:/lobby/"+id;
-			
+	@GetMapping("/j")
+	public String jGame(Model model, HttpSession session) {
 		return "join";
 	}
 

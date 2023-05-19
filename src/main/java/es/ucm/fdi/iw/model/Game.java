@@ -21,7 +21,7 @@ import es.ucm.fdi.iw.controller.UserController;
 public class Game implements Transferable<Game.Transfer> {
 
     private static final int EXPLODING_TIME = 30;
-    private static final int NUMPLAYERS = 2;
+    private static final int NUMPLAYERS = 1;
     private static final int IFX_LENGTH = 3;
     private static final String ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
     private static final int ROUNDS = 0;
@@ -67,6 +67,18 @@ public class Game implements Transferable<Game.Transfer> {
 
     @OneToOne
     private Player creator; 
+
+    // for the summary
+    @OneToOne
+    private Player winner;
+    @OneToOne
+    private Player second;
+    @OneToOne
+    private Player third;
+    @OneToOne
+    private Player fourth;
+    @OneToOne
+    private Player fifth;
 
     @OneToMany
     @JoinColumn(name="game_id")
@@ -197,6 +209,36 @@ public class Game implements Transferable<Game.Transfer> {
     }
 
     public void playerDies() {
+        // ranking
+        currPlayer.setRank(numPlayers);
         numPlayers--;
+    }
+
+    public void addPlayer(Player newPlayer) {
+        players.add(newPlayer);
+        numPlayers++;
+    }
+
+    public void getRanking() {
+        for (int i = 0; i < 5 && i < players.size(); i++){
+            Player p = players.get(i);
+            switch (p.getRank()){
+                case 1:
+                    winner = p;
+                    break;
+                case 2:
+                    second = p;
+                    break;
+                case 3:
+                    third = p;
+                    break;
+                case 4:
+                    fourth = p;
+                    break;
+                case 5:
+                    fifth = p;
+                    break;
+            }
+        }
     }
 }

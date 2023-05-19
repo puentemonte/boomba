@@ -18,15 +18,16 @@
             <div class="row text-center cards">
                 <div class="col create card">
                     <p class="card-text">¿Quieres unirte a la partida?</p>
-                    <form th:action="@{/lobby/join/__${game.id}__}" method="post">
-                        <button class="btn-home" name="create" type="submit">UNIRME</button>
-                    </form>
+                    <input type="text" class = "form-control" name="code" id="code"></input>
                 </div>
             </div>
         </div>
     </main>
 
+    <script th:src="@{/js/join.js}"></script>
+
     <th:block th:replace="fragments/footer.html :: footer" />
+
 </body>
 
 </html>

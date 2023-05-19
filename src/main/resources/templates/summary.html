@@ -11,10 +11,10 @@
 
     <main class="flex-shrink-0">
         <div class="container window">
-            <h2 class="mt-4"><b>PARTIDA #2318</b></h2>
+            <h2 class="mt-4"><b>PARTIDA #<span th:text="${game.id}"></span></b></h2>
             <div class="row">
                 <div class="col">
-                    <h3>Creado por <b>@erik</b></h3>    
+                    <h3>Creado por <b>@<span th:text="${game.creator.user.username}"></span></b></h3>    
                 </div>
             </div>
             <div class="row">
@@ -29,7 +29,7 @@
                             </div>
                         </div>
                         <div class = "row text-center">
-                            <h4><b>¡El ganador/a es @manuela!</b></h4>
+                            <h4><b>¡El ganador/a es @<span th:text="${game.winner.user.username}"></span>!</b></h4>
                         </div>
                         <div class = "card winner-stats">
                             <div class = "row">
@@ -37,7 +37,7 @@
                                     <p><b>PALABRAS CORRECTAS</b></p>
                                 </div>
                                 <div class = "col-md-auto">
-                                    <p class = "white-purple-stat text-center"><b>28</b></p>
+                                    <p class = "white-purple-stat text-center"><b><span th:text="${game.winner.rounds}"></span></b></p>
                                 </div>
                             </div>
                             <div class = "row">
@@ -45,15 +45,7 @@
                                     <p><b>VIDAS RESTANTES</b></p>
                                 </div>
                                 <div class = "col-md-auto">
-                                    <p class = "white-purple-stat text-center"><b>2</b></p>
-                                </div>
-                            </div>
-                            <div class = "row">
-                                <div class = "col">
-                                    <p><b>RONDAS SOBREVIVIDAS</b></p>
-                                </div>
-                                <div class = "col-md-auto">
-                                    <p class = "white-purple-stat text-center"><b>10</b></p>
+                                    <p class = "white-purple-stat text-center"><b><span th:text="${game.winner.lives}"></span></b></p>
                                 </div>
                             </div>
                         </div>
@@ -73,13 +65,13 @@
                                         <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_yellow.png}">
                                     </div>
                                     <div class="col-md-auto lobby-player-name">
-                                        <p class="lobby-player-name">@julia</p>
+                                        <p class="lobby-player-name">@<span th:text="${game.second.user.username}"></span></p>
                                     </div>
                                 </div> 
                             </div>
                         </div>
                     </div>
-                    <div class = "card third-player-card">
+                    <div th:if="${#lists.size(game.players) >= 3}" class = "card third-player-card">
                         <div class = "row">
                             <div class = "col-md-auto">
                                 <div class = "card mini-card-purple">
@@ -92,13 +84,13 @@
                                         <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_pink.png}">
                                     </div>
                                     <div class="col-md-auto lobby-player-name">
-                                        <p class="lobby-player-name">@ainhoa</p>
+                                        <p class="lobby-player-name">@<span th:text="${game.third.user.username}"></span></p>
                                     </div>
                                 </div> 
                             </div>
                         </div>
                     </div>
-                    <div class = "card fourth-player-card">
+                    <div th:if="${#lists.size(game.players) >= 4}" class = "card fourth-player-card">
                         <div class = "row">
                             <div class = "col-md-auto">
                                 <div class = "card mini-card-grey">
@@ -111,13 +103,13 @@
                                         <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_green.png}">
                                     </div>
                                     <div class="col-md-auto lobby-player-name">
-                                        <p class="lobby-player-name">@fran</p>
+                                        <p class="lobby-player-name">@<span th:text="${game.fourth.user.username}"></span></p>
                                     </div>
                                 </div> 
                             </div>
                         </div>
                     </div>
-                    <div class = "card fifth-player-card">
+                    <div th:if="${#lists.size(game.players) >= 5}" class = "card fifth-player-card">
                         <div class = "row">
                             <div class = "col-md-auto">
                                 <div class = "card mini-card-grey">
@@ -130,7 +122,7 @@
                                         <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_purple.png}">
                                     </div>
                                     <div class="col-md-auto lobby-player-name">
-                                        <p class="lobby-player-name">@erik</p>
+                                        <p class="lobby-player-name">@<span th:text="${game.fifth.user.username}"></span></p>
                                     </div>
                                 </div> 
                             </div>

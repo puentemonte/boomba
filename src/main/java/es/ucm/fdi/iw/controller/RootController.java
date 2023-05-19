@@ -87,4 +87,9 @@ public class RootController {
         return "report";
     }
 
+    @GetMapping("/join")
+    public String join(Model model) {
+        return "join";
+    }
+
 }

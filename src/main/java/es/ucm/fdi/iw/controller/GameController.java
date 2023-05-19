@@ -47,7 +47,7 @@ import java.util.stream.Collectors;
 @Controller()
 @RequestMapping("game")
 public class GameController {
-    private static final Logger log = LogManager.getLogger(LobbyController.class);
+    private static final Logger log = LogManager.getLogger(GameController.class);
 
 	@Autowired
 	private EntityManager entityManager;
@@ -109,24 +109,31 @@ public class GameController {
 			// generate new interfix
 			game.setInterfix(game.rndIfx());
 
-			// the turn goes to the next player
-			game.nextTurn();
-
 			// check if player dies
 			if(p.getLives() <= 0){
 				game.playerDies();
 				// is the last player
 				if (game.getNumPlayers() == 1){
+					// update the status of the game
+					game.setState(GameState.FINISHED);
+
+					// update the ranking
+					game.getRanking();
+
 					// redirect to summary
 					messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
-					"{\"type\": \"INCORRECT\", \"newIfx\": \""+ game.getInterfix() +"\"}");
+					"{\"type\": \"SUMMARY\", \"newIfx\": \""+ game.getInterfix() +"\"}");
 				}	
 				else {
+					// the turn goes to the next player
+					game.nextTurn();
 					messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
 					"{\"type\": \"INCORRECT\", \"newIfx\": \""+ game.getInterfix() +"\"}");
 				}
 			}
 			else{
+				// the turn goes to the next player
+				game.nextTurn();
 				messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
 				"{\"type\": \"INCORRECT\", \"newIfx\": \""+ game.getInterfix() +"\"}");
 			}
@@ -143,34 +150,41 @@ public class GameController {
         game.setState(GameState.GAME);
 		model.addAttribute("game", game);
 
-        // player loses a life
-		Player p = game.getCurrPlayer();
-		p.looseLife();
+        Player p = game.getCurrPlayer();
+			p.looseLife();
 
-		// generate new interfix
-		game.setInterfix(game.rndIfx());
+			// generate new interfix
+			game.setInterfix(game.rndIfx());
 
-		// the turn goes to the next player
-		game.nextTurn();
+			// check if player dies
+			if(p.getLives() <= 0){
+				game.playerDies();
+				// is the last player
+				if (game.getNumPlayers() == 1){
+					// update the status of the game
+					game.setState(GameState.FINISHED);
 
-		// check if player dies
-		if(p.getLives() <= 0){
-			game.playerDies();
-			// is the last player
-			if (game.getNumPlayers() == 1){
-				// redirect to summary
-				messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
-				"{\"type\": \"INCORRECT\", \"newIfx\": \""+ game.getInterfix() +"\"}");
-			}	
-			else {
+					// update the ranking
+					game.getRanking();
+
+					// redirect to summary
+					messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
+					"{\"type\": \"SUMMARY\", \"newIfx\": \""+ game.getInterfix() +"\"}");
+				}	
+				else {
+					// the turn goes to the next player
+					game.nextTurn();
+					messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
+					"{\"type\": \"INCORRECT\", \"newIfx\": \""+ game.getInterfix() +"\"}");
+				}
+			}
+			else{
+				// the turn goes to the next player
+				game.nextTurn();
 				messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
 				"{\"type\": \"INCORRECT\", \"newIfx\": \""+ game.getInterfix() +"\"}");
 			}
-		}
-		else{
-			messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
-			"{\"type\": \"INCORRECT\", \"newIfx\": \""+ game.getInterfix() +"\"}");
-		}
+		model.addAttribute("game", game);
 		return "{\"result\": \"OK\"}";
 	}
 }
