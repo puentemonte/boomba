@@ -118,6 +118,43 @@ public class LobbyController {
 		model.addAttribute("game", game);
 		return "lobby";
 	}
+
+	/**
+     * Posts a message to a game.
+     * @param id of target game
+     * @param o JSON-ized message, similar to {"message": "text goes here"}
+     * @throws JsonProcessingException
+     */
+    @PostMapping("/{id}/msg")
+	@ResponseBody
+	@Transactional
+	public String postMsg(@PathVariable long id, 
+			@RequestBody JsonNode o, Model model, HttpSession session) 
+		throws JsonProcessingException {
+		
+		String text = o.get("message").asText();
+		Game g = entityManager.find(Game.class, id);
+		User sender = entityManager.find(
+				User.class, ((User)session.getAttribute("u")).getId());
+		
+		// construye mensaje, lo guarda en BD
+		Message m = new Message();
+		m.setRecipient(g);
+		m.setSender(sender);
+		m.setDateSent(LocalDateTime.now());
+		m.setText(text);
+		entityManager.persist(m);
+		entityManager.flush(); // to get Id before commit
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(m.toTransfer());
+
+		log.info("Sending a message to {} with contents '{}'", id, json);
+
+		messagingTemplate.convertAndSend("/topic/"+g.getTopicCode(), json);
+		return "{\"result\": \"message sent.\"}";
+	}
+	
 	
 	@PostMapping("/unp/{id}")
 	@Transactional

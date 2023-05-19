@@ -21,8 +21,9 @@ function fn() {
     karate.configure('driver', {
         type: 'chrome',
         // descomentar para chromium bajo linux
-        // executable: '/usr/bin/chromium-browser',
-        executable: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        executable: '/usr/bin/chromium-browser',
+        addOptions: ['--remote-allow-origins=*'],
+        //executable: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
         showDriverLog: true
     })
 

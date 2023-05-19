@@ -14,14 +14,14 @@
             <h2 class="mt-4"><b>PARTIDA #<span th:text="${game.id}">0</span></b></h2>
             <div div="privacy" class="row">
                 <div class="col">
-                    <h3>Creado por <b>@<span th:text="${game.creator.user.username}">H</span></b></h3>    
+                    <h3>Creado por <b>@<span th:text="${game.creator.user.username}">H</span></b></h3>
                 </div>
                 <div th:if="${game.priv}" class="col-md-auto">
-                    <button class="btn-purple-bg"  th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" onclick="selectPrivate(true)">PRIVADA</button>
+                    <button class="btn-purple-bg" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" onclick="selectPrivate(true)">PRIVADA</button>
                     <button class="btn-white-bg" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" onclick="selectPrivate(false)">PÚBLICA</button>
                 </div>
                 <div th:unless="${game.priv}" class="col-md-auto">
-                    <button class="btn-white-bg"  th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" onclick="selectPrivate(true)">PRIVADA</button>
+                    <button class="btn-white-bg" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" onclick="selectPrivate(true)">PRIVADA</button>
                     <button class="btn-purple-bg" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" onclick="selectPrivate(false)">PÚBLICA</button>
                 </div>
             </div>
@@ -64,14 +64,14 @@
                         </div>
                     </div>
                     <div class="row" id="chat-textarea">
-                        <form>
+                        <form th:action=@{/lobby/{id}/msg(id=${game.id})} method="POST">
                             <input type="text" class="form-control chat-textarea disabled" placeholder="Escribe aquí lo que quieras...">
                         </form>
                     </div>
                 </div>
                 <div class="col">
                     <div class="row card crd-light-bg crd-thin">
-                        <div class="col-md-auto exploding-time"> 
+                        <div class="col-md-auto exploding-time">
                             <p class="exploding-time">TIEMPO DE EXPLOSIÓN</p>
                         </div>
                         <div class="col-md-auto exploding-time">
@@ -84,7 +84,7 @@
                         </div>
                     </div>
                     <div class="row card crd-light-bg crd-thin">
-                        <div class="col-md-auto interfix-length"> 
+                        <div class="col-md-auto interfix-length">
                             <p class="interfix-length">TAMAÑO INTERFIJO</p>
                         </div>
                         <div class="col-md-auto interfix-length">
@@ -99,10 +99,10 @@
                         <div class="row">
                             <p class="alphabet text-center">ABECEDARIO A COMPLETAR</p>
                         </div>
-                        <div id = "alphabet-btns" class="d-flex row text-center">
+                        <div id="alphabet-btns" class="d-flex row text-center">
                             <p>
-                            <button class="btn-small text-center" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" th:each="l:${game.alphabet}" th:id="${l.letter}" th:text="${l.letter}" th:if="${l.b}">B</button>
-                            <button class="btn-small-deselected text-center" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" th:each="l:${game.alphabet}" th:id="${l.letter}" th:text="${l.letter}" th:unless="${l.b}">B</button>
+                                <button class="btn-small text-center" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" th:each="l:${game.alphabet}" th:id="${l.letter}" th:text="${l.letter}" th:if="${l.b}">B</button>
+                                <button class="btn-small-deselected text-center" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" th:each="l:${game.alphabet}" th:id="${l.letter}" th:text="${l.letter}" th:unless="${l.b}">B</button>
                             </p>
                         </div>
                     </div>
@@ -123,39 +123,64 @@
     </script>
     <th:block th:replace="fragments/footer.html :: footer" />
     <script>
+        function renderMsg(msg) {
+            return `
+            <div class="card crd-lighter-bg chat-msg">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-auto">
+                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_yellow.png}">
+                        </div>
+                        <div class="col">
+                            <p class="chat-text">@${msg.from}</p>
+                            <p class="chat-text">${msg.text}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        }
+
+
         const prevHandler = ws.receive;
         ws.receive = (x) => {
             if (x.type && x.type === "START") {
                 location.href = config.startUrl;
-            }
-            else if (x.type && x.type === "JOIN"){
+            } else if (x.type && x.type === "JOIN") {
                 location.href = config.lobbyUrl;
                 $("#user-list").reload(location.href + " #user-list");
-            }
-            else if (x.type && x.type === "NUMPLAYERS"){
+            } else if (x.type && x.type === "NUMPLAYERS") {
                 location.href = config.lobbyUrl;
                 $("#user-list").reload(location.href + " #user-list");
-            }
-            else if (x.type && x.type === "EXPLODINGTIME"){
+            } else if (x.type && x.type === "EXPLODINGTIME") {
                 location.href = config.lobbyUrl;
                 $("#exploding-time").reload(location.href + " #exploding-time");
-            }
-            else if (x.type && x.type === "IFXLENGTH"){
+            } else if (x.type && x.type === "IFXLENGTH") {
                 location.href = config.lobbyUrl;
                 $("#ifx-length").reload(location.href + " #ifx-length");
-            }
-            else if (x.type && x.type === "PRIVACY"){
+            } else if (x.type && x.type === "PRIVACY") {
                 location.href = config.lobbyUrl;
                 $("#privacy").reload(location.href + " #privacy");
-            }
-            else if (x.type && x.type === "ALPHABET"){
+            } else if (x.type && x.type === "ALPHABET") {
                 location.href = config.lobbyUrl;
                 $("#alphabet-btns").reload(location.href + " #alphabet-btns");
+            } else if (x.type && x.type === "MSG") {
+                const chat = document.querySelector(".chat-lobby");
+                chat.insertAdjacentHTML("beforeend", renderMsg(x));
             }
             console.log("hola mundo");
             prevHandler(x);
         }
+
+        const msgForm = document.querySelector(".chat-textarea").parentNode;
+        msgForm.addEventListener("submit", e => {
+            e.preventDefault();
+            go(msgForm.action, 'POST', {
+                    message: document.querySelector(".chat-textarea").value
+                })
+                .then(d => console.log("happy", d))
+                .catch(e => console.log("sad", e))
+        });
     </script>
 </body>
 
-</html>    
+</html>

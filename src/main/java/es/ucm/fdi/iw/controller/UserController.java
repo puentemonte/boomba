@@ -312,6 +312,9 @@ public class UserController {
 	@PostMapping("/new")
 	@Transactional
 	public String registerUser(HttpServletResponse response, @ModelAttribute User edited, Model model, HttpSession session) throws IOException {
+		
+		log.info("Creating user '{}'", edited.getUsername());
+
 		User target = new User();
 		target.setUsername(edited.getUsername());
 		target.setPassword(encodePassword(edited.getPassword()));

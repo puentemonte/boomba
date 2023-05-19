@@ -38,6 +38,12 @@ public class Game implements Transferable<Game.Transfer> {
     private int ifxLength;
     private int numPlayers;
 
+    
+	@OneToMany
+	@JoinColumn(name = "recipient_id")	
+	private List<Message> received = new ArrayList<>();
+
+
     @Column
     @ElementCollection
     private List<Letter> alphabet;
