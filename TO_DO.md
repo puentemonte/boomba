@@ -1,3 +1,9 @@
+- acceder a BD (via modelo, thymeleaf, foreach sobre game.received) para mostrar todos los  mensajes del juego cuando te conectas a ese lobby. Especialmente bueno si no estás usando buen AJAX 
+- poner bonito el unirse a partida: diálogo gordo con "introduce id aquí" para poder entrar. 
+- seguridad ante todo: usa los topicCode (aleatorios, no adivinables) para unirte a partidas en lugar de los ids
+- explica 
+
+
 # Lista de cosas que faltan:
 ** [  ] ** Hacer que todos los campos sean configurables (actualizadas en la BBDD)
 ** [  ] ** Deshabilitar los botones para que solo los pueda modificar el anfitrión

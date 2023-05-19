@@ -34,6 +34,20 @@ Feature: login en servidor
     When submit().click(".form-signin button")
     Then waitForUrl(baseUrl + '/admin')
 
+  @register_c
+  Scenario: registro correcto como c
+    Given driver baseUrl + '/register'
+    And input('#username', 'c')
+    And input('#password', 'aa')
+    And input('#email', 'aa@aa.a')
+    When click(".form-signin button[type=submit]")
+    * screenshot();
+    Then waitForUrl(baseUrl + '/user/new')
+    And input('#username', 'c')
+    And input('#password', 'aa')
+    When click(".form-signin button[type=submit]")
+    Then waitForUrl(baseUrl + '/home')
+
   Scenario: logout after login
     Given driver baseUrl + '/login'
     And input('#username', 'a')
@@ -42,3 +56,9 @@ Feature: login en servidor
     Then waitForUrl(baseUrl + '/admin')
     When submit().click("{button}logout")
     Then waitForUrl(baseUrl + '/login')
+
+#  una prueba:
+#  mvn test -Dtest=ExternalRunner -Dkarate.options='-t=@login_a'
+#
+#  todas las pruebas externas
+#  mvn test -Dtest=ExternalRunner
