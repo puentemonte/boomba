@@ -802,3 +802,9 @@ a:visited {
     font-size: xx-large;
     font-weight: bolder;
 }
+
+.no-dec{
+    padding: 0;
+    border: none;
+    background: none;
+}

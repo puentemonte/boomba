@@ -218,4 +218,20 @@ public class LobbyController {
 				"{\"type\": \"ALPHABET\"}");
 		return "{\"result\": \"OK\"}";
 	}
+
+	@PostMapping("/report")
+	@Transactional
+	@ResponseBody
+	public String report(@RequestBody JsonNode o, Model model, HttpSession session) {
+		long msgId = o.get("msg").asLong();
+		Message msg = entityManager.find(Message.class, msgId);
+
+		// The message has been reported
+		msg.setReported(true);
+
+		// The user has been reported
+		msg.getSender().setReported(true);
+		
+		return "{\"result\": \"OK\"}";
+	}
 }

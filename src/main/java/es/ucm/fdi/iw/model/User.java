@@ -24,7 +24,10 @@ import java.util.List;
         @NamedQuery(name="User.hasUsername",
                 query="SELECT COUNT(u) "
                         + "FROM User u "
-                        + "WHERE u.username = :username")
+                        + "WHERE u.username = :username"),
+        @NamedQuery(name="User.reportedUsers",
+                query="SELECT u FROM User u "
+                        + "WHERE u.reported = TRUE")
 })
 @Table(name="IWUser")
 public class User implements Transferable<User.Transfer> {
@@ -44,7 +47,9 @@ public class User implements Transferable<User.Transfer> {
     @Column(nullable = false)
     private String password;
 
-    private boolean enabled;
+    private boolean enabled; // the admin has banned the user
+    private boolean reported; // another user has reported this user
+
     private String roles; // split by ',' to separate roles
     
     @OneToMany

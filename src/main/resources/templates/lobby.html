@@ -61,6 +61,9 @@
                                         <p class="chat-text">@<span th:text="${msg.sender.username}">elena</span></p>
                                         <p class="chat-text" th:text="${msg.text}">Podemos poner 30s?</p>
                                     </div>
+                                    <div class="col-md-auto">
+                                        <button class="no-dec" title="Reportar" th:onclick="|report('${msg.id}')|">🚩</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +102,7 @@
                     </div>
                     <div class="card crd-light-bg crd-alphabet-lobby">
                         <div class="row">
-                            <p class="alphabet text-center">ABECEDARIO A COMPLETAR</p>
+                            <p class="alphabet text-center">ABECEDARIO A COMPLETAR <span title="Si consigues escribir todas las letras del abecedario conseguirás una vida extra. Puedes deseleccionar algunas letras, para que ya aparezcan como escritas en la partida.">ⓘ</span></p>
                         </div>
                         <div id="alphabet-btns" class="d-flex row text-center">
                             <p>
@@ -125,17 +128,21 @@
     </script>
     <th:block th:replace="fragments/footer.html :: footer" />
     <script>
+        
         function renderMsg(msg) {
             return `
             <div class="card crd-lighter-bg chat-msg">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-auto">
-                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_yellow.png}">
+                            <img class="rounded-circle lobby-player-avatar" src="/img/pale_yellow.png">
                         </div>
                         <div class="col">
                             <p class="chat-text">@${msg.from}</p>
                             <p class="chat-text">${msg.text}</p>
+                        </div>
+                        <div class="col-md-auto">
+                            <button class="no-dec" title="Reportar" onclick="report(${msg.id})">🚩</button>
                         </div>
                     </div>
                 </div>

@@ -57,3 +57,8 @@ function startGame() {
   let id = split[split.length - 1];
   go("/game/start/"+id, "POST", {});
 }
+
+function report(id){
+  console.log(id);
+  go("/lobby/report", "POST", {"msg":id});
+}

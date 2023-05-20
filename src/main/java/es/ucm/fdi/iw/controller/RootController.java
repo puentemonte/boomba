@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 
 import es.ucm.fdi.iw.model.*;
@@ -25,6 +27,9 @@ import es.ucm.fdi.iw.model.User.Role;
  */
 @Controller
 public class RootController {
+
+    @Autowired
+	private EntityManager entityManager;
 
 	private static final Logger log = LogManager.getLogger(RootController.class);
 
@@ -90,6 +95,15 @@ public class RootController {
     @GetMapping("/join")
     public String join(Model model) {
         return "join";
+    }
+
+    @GetMapping("/admin")
+    public String admin(Model model) {
+        // get the list of reported users
+        List<User> reportedUsers =  entityManager.createNamedQuery("User.reportedUsers", User.class)
+                                    .getResultList();
+        model.addAttribute("reportedUsers",  reportedUsers);
+        return "admin";
     }
 
 }

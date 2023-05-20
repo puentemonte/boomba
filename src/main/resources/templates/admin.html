@@ -17,59 +17,17 @@
             <div class="row">
                 <div class="col-md-auto user-list">
                     <div class="row btn-group">
-                        <button type="button" class="btn-dropdown-white-bg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                          6 PERFILES
+                        <button type="button" class="btn-dropdown-white-bg" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span th:text="${#lists.size(reportedUsers)}">0</span> PERFILES
                         </button>
-                        <ul class="dropdown-menu">
-                            <li>6 perfiles</li>
-                        </ul>
                     </div>
-                    <div class="row row-player">
+
+                    <div th:if="${#lists.size(reportedUsers) > 0}" class="row row-player" th:each="user:${reportedUsers}">
                         <div class="col-md-auto">
                             <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_yellow.png}">
                         </div>
                         <div class="col-md-auto lobby-player-name">
-                            <p class="lobby-player-name">@pam</p>
-                        </div>
-                    </div>
-                    <div class="row row-player">
-                        <div class="col-md-auto">
-                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_green.png}">
-                        </div>
-                        <div class="col-md-auto lobby-player-name">
-                            <p class="lobby-player-name">@hugo</p>
-                        </div>
-                    </div>
-                    <div class="row row-player">
-                        <div class="col-md-auto">
-                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_blue.png}">
-                        </div>
-                        <div class="col-md-auto lobby-player-name">
-                            <p class="lobby-player-name">@adrian</p>
-                        </div>
-                    </div>
-                    <div class="row row-player">
-                        <div class="col-md-auto">
-                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_pink.png}">
-                        </div>
-                        <div class="col-md-auto lobby-player-name">
-                            <p class="lobby-player-name">@pablo</p>
-                        </div>
-                    </div>
-                    <div class="row row-player">
-                        <div class="col-md-auto">
-                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_orange.png}">
-                        </div>
-                        <div class="col-md-auto lobby-player-name">
-                            <p class="lobby-player-name">@monica</p>
-                        </div>
-                    </div>
-                    <div class="row row-player">
-                        <div class="col-md-auto">
-                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_purple.png}">
-                        </div>
-                        <div class="col-md-auto lobby-player-name">
-                            <p class="lobby-player-name">@esther</p>
+                            <p class="lobby-player-name">@<span th:text="${user.username}">username</span></p>
                         </div>
                     </div>
                 </div>
