@@ -49,6 +49,7 @@ public class User implements Transferable<User.Transfer> {
 
     private boolean enabled; // the admin has banned the user
     private boolean reported; // another user has reported this user
+    private String imgcolor; // the color for the picture
 
     private String roles; // split by ',' to separate roles
     

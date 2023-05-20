@@ -3,7 +3,7 @@
 
 <head>
     <th:block th:replace="fragments/head :: header" />
-    <title>IW: Profile</title>
+    <title>Perfil</title>
 </head>
 
 <body class="d-flex flex-column h-100 body-style">
@@ -13,12 +13,10 @@
         <div class="container window">
             <div class = "row mt-4">
                 <div class = "col-md-auto">
-                    <button class = "btn-profile-img"><b>Editar</b></button>
+                    <img class="rounded-circle profile-avatar" th:src="@{'/img/pale_'+ ${session.u.imgcolor} +'.png'}">
                 </div>
                 <div class = "col profile-info">
-                    <h2><b>John Doe</b></h2>
-                    <h5>@john_doe</h5>
-                    <p class = "last-conection">Última conexión el 12/12/23</p>
+                    <h2>@<b><span th:text="${session.u.username}">username</span></b></h2>
                 </div>
             </div>
             <div class = "row">
@@ -31,11 +29,11 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr th:each="code:${codes}">
-                              <td th:text="${code}">Default</td>
-                              <td>1er puesto</td>
-                              <td>28</td>
-                              <td>12</td>
+                            <tr th:each="player:${players}">
+                              <td th:text="${player.game.id}">code</td>
+                              <td th:text="${player.rank}">rank</td>
+                              <td th:text="${#lists.size(player.game.players)}">2</td>
+                              <td th:text="${player.rounds}">0</td>
                             </tr>
                           </tbody>
                     </table>

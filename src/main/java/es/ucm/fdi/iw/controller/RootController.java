@@ -74,11 +74,14 @@ public class RootController {
     }
 
     @GetMapping("/profile")
-    public String profile(Model model) {
-        String[] columns = new String[]{"Número de partidas", "Resultado", "Palabras", "Rondas"};
-        String[] codes = new String[]{"#1111", "#2222", "#3333", "#4444", "#5555"};
+    public String profile(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("u");
+        String[] columns = new String[]{"Código", "Ranking", "Número de jugadores","Palabras correctas"};
+        List<Player> players = entityManager.createNamedQuery("Player.byUser", Player.class)
+		        .setParameter("username", user.getUsername())
+		        .getResultList();		
         model.addAttribute("columns", columns);
-        model.addAttribute("codes", codes);
+        model.addAttribute("players", players);
         return "profile";
     }
 

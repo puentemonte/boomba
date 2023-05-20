@@ -4,7 +4,7 @@
 <head>
     <th:block th:replace="fragments/head :: header" />
     <!--<script type="text/javascript" th:src="@{/js/timer.js}"></script>-->
-    <title>IW: Game</title>
+    <title>Partida</title>
 </head>
 
 <body class="d-flex flex-column h-100 body-style">
@@ -58,7 +58,7 @@
                     <div class="col user-list-game crd-purple-bg">
                         <div class="row row-player current-turn" th:each="player:${game.players}" th:if="${game.currPlayer.id == player.id}">
                             <div class="col-md-auto">
-                                <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_yellow.png}">
+                                <img class="rounded-circle lobby-player-avatar" th:src="@{'/img/pale_'+ ${player.user.imgcolor} +'.png'}">
                             </div>
 
                             <div class="col-md-auto lobby-player-name">
@@ -68,7 +68,7 @@
                         </div>
                         <div class="row row-player" th:each="player:${game.players}" th:unless="${game.currPlayer.id == player.id}">
                             <div class="col-md-auto">
-                                <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_yellow.png}">
+                                <img class="rounded-circle lobby-player-avatar" th:src="@{'/img/pale_'+ ${player.user.imgcolor} +'.png'}">
                             </div>
 
                             <div class="col-md-auto lobby-player-name">

@@ -3,7 +3,7 @@
 
 <head>
     <th:block th:replace="fragments/head :: header" />
-    <title>IW: Admin</title>
+    <title>Administración</title>
 </head>
 
 <body class="d-flex flex-column h-100 body-style">
@@ -22,9 +22,9 @@
                         </button>
                     </div>
 
-                    <div th:if="${#lists.size(reportedUsers) > 0}" class="row row-player" th:each="user:${reportedUsers}">
+                    <div class="row row-player" th:each="user:${reportedUsers}">
                         <div class="col-md-auto">
-                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_yellow.png}">
+                            <img class="rounded-circle lobby-player-avatar" th:src="@{'/img/pale_'+ ${user.imgcolor} +'.png'}">
                         </div>
                         <div class="col-md-auto lobby-player-name">
                             <p class="lobby-player-name">@<span th:text="${user.username}">username</span></p>

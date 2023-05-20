@@ -3,7 +3,7 @@
 
 <head>
     <th:block th:replace="fragments/head :: header" />
-    <title>IW: Lobby</title>
+    <title>Lobby</title>
 </head>
 
 <body class="d-flex flex-column h-100 body-style">
@@ -42,7 +42,7 @@
                     </div>
                     <div class="row row-player" th:each="player:${game.players}">
                         <div class="col-md-auto">
-                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_yellow.png}">
+                            <img class="rounded-circle lobby-player-avatar" th:src="@{'/img/pale_'+ ${player.user.imgcolor} +'.png'}">
                         </div>
                         <div class="col-md-auto lobby-player-name">
                             <p class="lobby-player-name">@<span th:text="${player.user.username}">0</span></p>
@@ -50,12 +50,12 @@
                     </div>
                 </div>
                 <div class="col card crd-light-bg chat-lobby">
-                    <div class="chat-scroll">
+                    <div id ="chat-scroll" class="chat-scroll">
                         <div th:each="msg:${game.received}" class="card crd-lighter-bg chat-msg">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-auto">
-                                        <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_yellow.png}">
+                                        <img class="rounded-circle lobby-player-avatar" th:src="@{'/img/pale_'+ ${msg.sender.imgcolor} +'.png'}">
                                     </div>
                                     <div class="col">
                                         <p class="chat-text">@<span th:text="${msg.sender.username}">elena</span></p>
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <button class="btn-white-bg start" th:attrappend="disabled=${game.creator.user.id != session.u.id}?'disabled'" onclick="startGame()">¡EMPEZAR!</button>
+                        <button class="btn-white-bg start" th:attrappend="disabled=${game.creator.user.id != session.u.id OR game.numPlayers == 1} ?'disabled'" onclick="startGame()">¡EMPEZAR!</button>
                     </div>
                 </div>
             </div>
@@ -135,7 +135,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-auto">
-                            <img class="rounded-circle lobby-player-avatar" src="/img/pale_yellow.png">
+                            <img class="rounded-circle lobby-player-avatar" src="/img/pale_${msg.sender.imgcolor}.png">
                         </div>
                         <div class="col">
                             <p class="chat-text">@${msg.from}</p>
@@ -173,8 +173,11 @@
                 location.href = config.lobbyUrl;
                 $("#alphabet-btns").reload(location.href + " #alphabet-btns");
             } else if (x.type && x.type === "MSG") {
-                const chat = document.querySelector(".chat-scroll");
-                chat.insertAdjacentHTML("beforeend", renderMsg(x));
+                location.href = config.lobbyUrl;
+                $("#chat-scroll").reload(location.href + " #chat-scroll");
+                // No funciona con th:src --> problema al mostrar las imagenes de los mensajes
+                /*let chat = document.querySelector(".chat-scroll");
+                chat.insertAdjacentHTML("beforeend", renderMsg(x)); */
             }
             console.log("hola mundo");
             prevHandler(x);

@@ -320,6 +320,12 @@ public class UserController {
 		target.setPassword(encodePassword(edited.getPassword()));
 		target.setRoles(Role.USER.name());
 		target.setEnabled(true);
+		target.setReported(false);
+
+		// A random color picture for the user
+		String[] colors = {"blue", "green", "orange", "pink", "purple", "yellow"};
+		int randPos = (int) Math.floor(Math.random() * (colors.length));
+		target.setImgColor(colors[randPos]);
 		entityManager.persist(target);
 		return "login";
 	}

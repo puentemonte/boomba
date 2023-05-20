@@ -34,18 +34,6 @@ alphabet.addEventListener('click', (event) => {
   go("/lobby/ua/".concat("", id), "POST", {'letter': event.target.id});
 })
 
-const topics = document.getElementById('topics-btns');
-topics.addEventListener('click', (event) => {
-  const isButton = event.target.nodeName === 'BUTTON';
-  if (!isButton) {
-    return;
-  }
-  console.log(event.target.id);
-  let split = document.URL.split("/");
-  let id = split[split.length - 1];
-  console.log("/lobby/ut/".concat("", id));
-})
-
 function selectPrivate(val) {
   let split = document.URL.split("/");
   let id = split[split.length - 1];

@@ -13,6 +13,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Data
 @NoArgsConstructor
+@NamedQueries({
+    @NamedQuery(name="Player.byUser",
+            query="SELECT p FROM Player p "
+                    + "WHERE p.user.username = :username")
+})
 @Table(name="Player")
 public class Player implements Transferable<Player.Transfer> {
 

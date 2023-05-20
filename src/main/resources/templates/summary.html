@@ -3,7 +3,7 @@
 
 <head>
     <th:block th:replace="fragments/head :: header" />
-    <title>IW: Summary</title>
+    <title>Partida</title>
 </head>
 
 <body class="d-flex flex-column h-100 body-style">
@@ -25,7 +25,7 @@
                                 <h1><b>#1</b></h1>
                             </div>
                             <div class = "col">
-                                <img class="rounded-circle winner-photo" th:src="@{/img/pale_blue.png}">
+                                <img class="rounded-circle winner-photo" th:src="@{'/img/pale_'+ ${game.winner.user.imgcolor} +'.png'}">
                             </div>
                         </div>
                         <div class = "row text-center">
@@ -62,7 +62,7 @@
                             <div class = "col-md-auto summ-center-player">
                                 <div class = "row">
                                     <div class="col-md-auto">
-                                        <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_yellow.png}">
+                                        <img class="rounded-circle lobby-player-avatar" th:src="@{'/img/pale_'+ ${game.second.user.imgcolor} +'.png'}">
                                     </div>
                                     <div class="col-md-auto lobby-player-name">
                                         <p class="lobby-player-name">@<span th:text="${game.second.user.username}"></span></p>
@@ -81,7 +81,7 @@
                             <div class = "col-md-auto summ-center-player">
                                 <div class = "row">
                                     <div class="col-md-auto">
-                                        <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_pink.png}">
+                                        <img class="rounded-circle lobby-player-avatar" th:src="@{'/img/pale_'+ ${game.third.user.imgcolor} +'.png'}">
                                     </div>
                                     <div class="col-md-auto lobby-player-name">
                                         <p class="lobby-player-name">@<span th:text="${game.third.user.username}"></span></p>
@@ -100,7 +100,7 @@
                             <div class = "col-md-auto summ-center-player">
                                 <div class = "row">
                                     <div class="col-md-auto">
-                                        <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_green.png}">
+                                        <img class="rounded-circle lobby-player-avatar" th:src="@{'/img/pale_'+ ${game.fourth.user.imgcolor} +'.png'}">
                                     </div>
                                     <div class="col-md-auto lobby-player-name">
                                         <p class="lobby-player-name">@<span th:text="${game.fourth.user.username}"></span></p>
@@ -119,7 +119,7 @@
                             <div class = "col-md-auto summ-center-player">
                                 <div class = "row">
                                     <div class="col-md-auto">
-                                        <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_purple.png}">
+                                        <img class="rounded-circle lobby-player-avatar" th:src="@{'/img/pale_'+ ${game.fifth.user.imgcolor} +'.png'}">
                                     </div>
                                     <div class="col-md-auto lobby-player-name">
                                         <p class="lobby-player-name">@<span th:text="${game.fifth.user.username}"></span></p>
