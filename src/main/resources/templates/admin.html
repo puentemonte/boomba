@@ -22,7 +22,7 @@
                         </button>
                     </div>
 
-                    <div class="row row-player" th:each="user:${reportedUsers}">
+                    <div class="row row-player" th:each="user:${reportedUsers}" th:onclick="|selectReportedUser('${user.id}', '${user.numgames}')|">
                         <div class="col-md-auto">
                             <img class="rounded-circle lobby-player-avatar" th:src="@{'/img/pale_'+ ${user.imgcolor} +'.png'}">
                         </div>
@@ -31,47 +31,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col card report-stats">
-                    <div class = "even-lighter-cards">
-                        <div class = "even-lighter-crd">
-                            <div class = "col">
-                                <div class = "row">
-                                    <div class = "col">
-                                        <p>PARTIDAS JUGADAS</p>
-                                    </div>
-                                    <div class = "col-md-auto">
-                                        <p class = "white-purple-report-stats text-center">4</p>
-                                    </div>
-                                </div>
-                                <div class = "row">
-                                    <a class = "link-last">Ver última partida</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class = "even-lighter-crd">
-                            <div class = "col">
-                                <div class = "row">
-                                    <div class = "col">
-                                        <p>DENUNCIAS</p>
-                                    </div>
-                                    <div class = "col-md-auto">
-                                        <p class = "white-purple-report-stats text-center">3</p>
-                                    </div>
-                                </div>
-                                <div class = "row">
-                                    <a class = "link-last">Ver última partida denunciada</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class = "text-center mt-btn">
-                            <button class="btn-form" type="submit">VER PARTIDAS</button>
-                        </div>
-                    </div>
+                <div id="games-card" class="col card report-stats">
                 </div>
             </div>
         </div>
     </main>
 
+    <script th:src="@{/js/admin.js}"></script>
     <th:block th:replace="fragments/footer.html :: footer" />
 </body>
 

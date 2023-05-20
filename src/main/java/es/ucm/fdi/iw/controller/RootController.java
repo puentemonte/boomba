@@ -105,6 +105,12 @@ public class RootController {
         // get the list of reported users
         List<User> reportedUsers =  entityManager.createNamedQuery("User.reportedUsers", User.class)
                                     .getResultList();
+        for(User u: reportedUsers){
+            List<Player> players = entityManager.createNamedQuery("Player.byUser", Player.class)
+            .setParameter("username", u.getUsername())
+            .getResultList();	
+            u.setNumgames(players.size());
+        }
         model.addAttribute("reportedUsers",  reportedUsers);
         return "admin";
     }

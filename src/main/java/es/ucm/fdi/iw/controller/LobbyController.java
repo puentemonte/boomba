@@ -66,6 +66,7 @@ public class LobbyController {
         Game game = new Game();
 
         User ucreator = (User)session.getAttribute("u");
+		ucreator.addOneGame();
 
 		Player creator = new Player();
 		game.initGame(ucreator, creator);
@@ -90,7 +91,9 @@ public class LobbyController {
 			return "{\"result\": \"OK\"}";
 		
 		User user = (User)session.getAttribute("u");
+
 		User newUser = entityManager.find(User.class, user.getId());
+		newUser.addOneGame();
 
 		Player newPlayer = new Player();
 		newPlayer.initPlayer(game, newUser, 0);

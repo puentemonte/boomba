@@ -50,6 +50,7 @@ public class User implements Transferable<User.Transfer> {
     private boolean enabled; // the admin has banned the user
     private boolean reported; // another user has reported this user
     private String imgcolor; // the color for the picture
+    private int numgames; // the number of games
 
     private String roles; // split by ',' to separate roles
     
@@ -90,5 +91,9 @@ public class User implements Transferable<User.Transfer> {
 	public String toString() {
 		return toTransfer().toString();
 	}
+
+    public void addOneGame(){
+        numgames++;
+    }
 }
 

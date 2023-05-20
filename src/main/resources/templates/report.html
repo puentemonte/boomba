@@ -11,102 +11,30 @@
 
     <main class="flex-shrink-0">
         <div class="container window">
-            <h2 class="mt-4 mb-5 text-center"><b>PARTIDAS JUGADAS DE @pam</b></h2>
+            <h2 class="mt-4 mb-5 text-center"><b>PARTIDAS JUGADAS</b></h2>
         </div>
         <div class="container card crd-purple-bg window">
-            <div class="row">
-                <div class="col-md-auto user-list">
-                    <div class="row btn-group">
-                        <button type="button" class="btn-dropdown-white-bg" data-bs-toggle="dropdown" aria-expanded="false">
-                          4 DENUNCIAS
-                        </button>
-                    </div>
-                    <div class="row row-player current-turn">
-                        <div class="col-md-auto lobby-player-name report-game">
+            <div class="col card crd-light-bg chat-lobby">
+                <div id ="chat-scroll" class="chat-scroll">
+                    <div th:each="msg:${messages}" class="card crd-lighter-bg chat-msg">
+                        <div class="card-body">
                             <div class="row">
                                 <div class="col-md-auto">
-                                    <p class="lobby-player-name">PARTIDA #2318</p>
+                                    <img class="rounded-circle lobby-player-avatar" th:src="@{'/img/pale_'+ ${msg.sender.imgcolor} +'.png'}">
                                 </div>
                                 <div class="col">
-                                    <p>⚠️</p>
+                                    <p class="chat-text">@<span th:text="${msg.sender.username}">elena</span></p>
+                                    <p class="chat-text" th:text="${msg.text}">Podemos poner 30s?</p>
                                 </div>
-                            </div>                            
-                        </div>
-                    </div>
-                    <div class="row row-player">
-                        <div class="col-md-auto lobby-player-name report-game">
-                            <div class="row">
-                                <div class="col-md-auto">
-                                    <p class="lobby-player-name">PARTIDA #33</p>
-                                </div>
-                                <div class="col">
-                                    <p>⚠️</p>
-                                </div>
-                            </div>                            
-                        </div>
-                    </div>
-                    <div class="row row-player">
-                        <div class="col-md-auto lobby-player-name report-game">
-                            <div class="row">
-                                <div class="col-md-auto">
-                                    <p class="lobby-player-name">PARTIDA #7565</p>
-                                </div>
-                                <div class="col">
-                                    <p>⚠️</p>
-                                </div>
-                            </div>                            
-                        </div>
-                    </div>
-                    <div class="row row-player">
-                        <div class="col-md-auto lobby-player-name report-game">
-                            <div class="row">
-                                <div class="col-md-auto">
-                                    <p class="lobby-player-name">PARTIDA #8877</p>
-                                </div>
-                                <div class="col">
-                                    <p></p>
-                                </div>
-                            </div>                            
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-9 card crd-light-bg lobby chat-lobby">
-                    <div class="row">
-                        <div class="col">
-                            <div class="card crd-lighter-bg chat-msg">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-auto">
-                                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_yellow.png}">
-                                        </div>
-                                        <div class="col">
-                                            <p class="chat-text">@pam</p>
-                                            <p class="chat-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum iaculis fringilla lectus vel pellentesque. Donec sit amet convallis sem. Pellentesque iaculis ac odio vitae mollis. Ut nec velit eu tortor semper lacinia. Curabitur lobortis libero sit amet mi sollicitudin feugiat. Sed vitae eros vulputate, tincidunt enim et, sodales mauris. Etiam nibh sem, dapibus mollis interdum feugiat, ultrices non urna. Aenean congue dolor sit amet nulla mollis egestas. Proin vel suscipit neque. Nullam tristique lacinia metus. Praesent commodo nibh ut imperdiet bibendum. Nunc eu posuere nisi, et ultricies justo. Donec eleifend imperdiet dui nec semper.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card crd-lighter-bg chat-msg">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-auto">
-                                            <img class="rounded-circle lobby-player-avatar" th:src="@{/img/pale_green.png}">
-                                        </div>
-                                        <div class="col">
-                                            <p class="chat-text">@martina</p>
-                                            <p class="chat-text">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="btn-admin">
-                                <button class="btn btn-deban text-center">Desbloquear a @pam</button>
-                                <button class="btn btn-ban text-center">Bloquear permanentemente a @pam</button>
-                            </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="btn-admin">
+                            <button class="btn btn-deban text-center">Desbloquear</button>
+                            <button class="btn btn-ban text-center">Bloquear permanentemente</button>
                         </div>
                     </div>
                 </div>
