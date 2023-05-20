@@ -234,7 +234,7 @@ public class UserController {
     /**
      * Returns JSON with all received messages
      */
-    /*@GetMapping(path = "received", produces = "application/json")
+    @GetMapping(path = "received", produces = "application/json")
 	@Transactional // para no recibir resultados inconsistentes
 	@ResponseBody  // para indicar que no devuelve vista, sino un objeto (jsonizado)
 	public List<Message.Transfer> retrieveMessages(HttpSession session) {
@@ -243,7 +243,7 @@ public class UserController {
 		log.info("Generating message list for user {} ({} messages)", 
 				u.getUsername(), u.getReceived().size());
 		return  u.getReceived().stream().map(Transferable::toTransfer).collect(Collectors.toList());
-	}	*/
+	}	
     
     /**
      * Returns JSON with count of unread messages 
