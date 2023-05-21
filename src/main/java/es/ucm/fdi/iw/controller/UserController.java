@@ -40,6 +40,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.io.*;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
@@ -238,11 +239,9 @@ public class UserController {
 	@Transactional // para no recibir resultados inconsistentes
 	@ResponseBody  // para indicar que no devuelve vista, sino un objeto (jsonizado)
 	public List<Message.Transfer> retrieveMessages(HttpSession session) {
-		long userId = ((User)session.getAttribute("u")).getId();		
-		User u = entityManager.find(User.class, userId);
-		log.info("Generating message list for user {} ({} messages)", 
-				u.getUsername(), u.getReceived().size());
-		return  u.getReceived().stream().map(Transferable::toTransfer).collect(Collectors.toList());
+		/*long userId = ((User)session.getAttribute("u")).getId();		
+		User u = entityManager.find(User.class, userId);*/
+		return new ArrayList<Message.Transfer>();
 	}	
     
     /**
@@ -259,12 +258,14 @@ public class UserController {
 		return "{\"unread\": " + unread + "}";
     }
     
-    /**
+	
+    /*
      * Posts a message to a user.
      * @param id of target user (source user is from ID)
      * @param o JSON-ized message, similar to {"message": "text goes here"}
      * @throws JsonProcessingException
      */
+	/*
     @PostMapping("/{id}/msg")
 	@ResponseBody
 	@Transactional
@@ -288,7 +289,7 @@ public class UserController {
 		entityManager.flush(); // to get Id before commit
 		
 		ObjectMapper mapper = new ObjectMapper();
-		/*
+		
 		// construye json: método manual
 		ObjectNode rootNode = mapper.createObjectNode();
 		rootNode.put("from", sender.getUsername());
@@ -296,7 +297,7 @@ public class UserController {
 		rootNode.put("text", text);
 		rootNode.put("id", m.getId());
 		String json = mapper.writeValueAsString(rootNode);
-		*/
+		
 		// persiste objeto a json usando Jackson
 		String json = mapper.writeValueAsString(m.toTransfer());
 
@@ -304,7 +305,7 @@ public class UserController {
 
 		messagingTemplate.convertAndSend("/user/"+u.getUsername()+"/queue/updates", json);
 		return "{\"result\": \"message sent.\"}";
-	}
+	}*/
 	
 	/**
 	* Register a new user
