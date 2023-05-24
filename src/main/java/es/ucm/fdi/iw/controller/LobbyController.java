@@ -190,6 +190,7 @@ public class LobbyController {
 		Game game = entityManager.find(Game.class, id);
 		int n = o.get("ifxLength").asInt();
 		game.setIfxLength(n);
+		game.setInterfix(game.rndIfx());
 		model.addAttribute("game", game);
 		messagingTemplate.convertAndSend("/topic/" + game.getTopicCode(), 
 				"{\"type\": \"IFXLENGTH\"}");

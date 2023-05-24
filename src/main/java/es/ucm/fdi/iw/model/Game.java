@@ -173,7 +173,7 @@ public class Game implements Transferable<Game.Transfer> {
         do {
             rnd = rand.nextInt(wordList.size());
             rndWord = wordList.get(rnd);
-        } while(rndWord.length() < 3);
+        } while(rndWord.length() < ifxLength);
 
         System.out.println(rndWord);
         // Generate all possible intervals of length ifx_length
@@ -182,7 +182,7 @@ public class Game implements Transferable<Game.Transfer> {
         for(int i=0; i<= rndWord.length(); i++) {
             for(int j=rndWord.length(); j>=i; j--) {
             	String pIfx = rndWord.substring(i, j);
-                if (pIfx.length() == 3) {
+                if (pIfx.length() == ifxLength) {
                     possible_ifx.add(pIfx);
                 }
             }
