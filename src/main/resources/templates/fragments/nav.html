@@ -12,7 +12,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-purple-light">
             <div class="container-fluid">
                 <!-- nombre del sitio; es un enlace que lleva a la página ppal -->
-                <a class="navbar-brand" th:href="@{/}" href="/">
+                <a id="logo" class="navbar-brand" th:href="@{/}" href="/">
                     <!--<img th:src="@{/img/logo.png}" src="/img/logo.png" alt="logo IW" width="32" height="32" class="d-inline-block align-text-top">--> LA B💣MBA
                 </a>
                 <!-- menu hamburguesa si no cabe todo -->
@@ -39,7 +39,7 @@
                             </li> -->
                             <li class="nav-item align-self-center">
                                 <form th:action="@{/logout}" method="post">
-                                    <button type="submit" class="btn btn-outline-secondary btn-sm">logout</button>
+                                    <button type="submit" class="btn btn-outline-secondary btn-sm btn-logout">logout</button>
                                 </form>
                             </li>
                         </th:block>

@@ -19,13 +19,13 @@
                 <div class="col create card">
                     <p class="card-text">Crea una partida para jugar con tus amigos</p>
                     <form th:action="@{/lobby/new}" method="post">
-                        <button class="btn-home" name="create" type="submit">CREAR</button>
+                        <button id="create" class="btn-home" name="create" type="submit">CREAR</button>
                     </form>
                 </div>
                 <div class="col play card">
                     <p class="card-text">Únete a las partidas de otros jugadores</p>
                     <form th:action="@{/join}" method="get">
-                        <button class="btn-home" type="submit" name="play">JUGAR</button>
+                        <button id="play" class="btn-home" type="submit" name="play">JUGAR</button>
                     </form>
                 </div>
             </div>

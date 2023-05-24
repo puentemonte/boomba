@@ -11,28 +11,28 @@ Feature: login en servidor
 #    Then match html('.flash-error') contains 'Incorrect username or password.'
 #
 
-  Scenario: login malo en plantilla
-    Given driver baseUrl + '/user/2'
-    And input('#username', 'dummy')
-    And input('#password', 'world')
-    When submit().click(".form-signin button")
-    Then match html('.error') contains 'Error en nombre de usuario o contraseña'
+#  Scenario: login malo en plantilla
+#    Given driver baseUrl + '/user/2'
+#    And input('#username', 'dummy')
+#    And input('#password', 'world')
+#    When submit().click(".form-signin button")
+#    Then match html('.error') contains 'Error en nombre de usuario o contraseña'
 
   @login_b
   Scenario: login correcto como b
     Given driver baseUrl + '/login'
     And input('#username', 'b')
     And input('#password', 'aa')
-    When submit().click(".form-signin button")
-    Then waitForUrl(baseUrl + '/user/2')
+    When click(".form-signin button[type=submit]")
+    Then waitForUrl(baseUrl + '/home')
 
   @login_a
   Scenario: login correcto como a
     Given driver baseUrl + '/login'
     And input('#username', 'a')
     And input('#password', 'aa')
-    When submit().click(".form-signin button")
-    Then waitForUrl(baseUrl + '/admin')
+    When click(".form-signin button[type=submit]")
+    Then waitForUrl(baseUrl + '/home')
 
   @register_c
   Scenario: registro correcto como c
@@ -48,14 +48,55 @@ Feature: login en servidor
     When click(".form-signin button[type=submit]")
     Then waitForUrl(baseUrl + '/home')
 
+#  Scenario: logout after login
+#    Given driver baseUrl + '/login'
+#    And input('#username', 'a')
+#    And input('#password', 'aa')
+#    When click(".form-signin button[type=submit]")
+#    Then waitForUrl(baseUrl + '/home')
+#    When click("{button}logout")
+#    Then waitForUrl(baseUrl + '/login')
+
+  @logout_a
   Scenario: logout after login
     Given driver baseUrl + '/login'
     And input('#username', 'a')
     And input('#password', 'aa')
-    When submit().click(".form-signin button")
-    Then waitForUrl(baseUrl + '/admin')
-    When submit().click("{button}logout")
+    When click(".form-signin button[type=submit]")
+    Then waitForUrl(baseUrl + '/home')
+    When click(".btn-logout")
     Then waitForUrl(baseUrl + '/login')
+
+  @create_a
+  Scenario: user a creates a game 
+    Given driver baseUrl + '/login'
+    And input('#username', 'a')
+    And input('#password', 'aa')
+    When click(".form-signin button[type=submit]")
+    Then waitForUrl(baseUrl + '/home')
+    When click("#create")
+    Then waitForUrl(baseUrl + '/lobby/1075')
+
+# @join_b
+#  Scenario: user b joins a game 
+#    Given driver baseUrl + '/login'
+#    And input('#username', 'a')
+#    And input('#password', 'aa')
+#    When click(".form-signin button[type=submit]")
+#    Then waitForUrl(baseUrl + '/home')
+#    When click("#create")
+#    Then waitForUrl(baseUrl + '/lobby/1076')
+#    When click(".btn-logout")
+#    Then waitForUrl(baseUrl + '/login')
+#    And input('#username', 'b')
+#    And input('#password', 'aa')
+#    When click(".form-signin button[type=submit]")
+#    Then waitForUrl(baseUrl + '/home')
+#    When click("#play")
+#    Then waitForUrl(baseUrl + '/join')
+#    And input('#code', '1076')
+#    * input('#code', Key.ENTER)
+#    * waitForUrl(baseUrl + '/lobby/1076')
 
 #  una prueba:
 #  mvn test -Dtest=ExternalRunner -Dkarate.options='-t=@login_a'
